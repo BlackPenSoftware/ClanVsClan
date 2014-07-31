@@ -1,0 +1,17 @@
+name: Clan Vs Clan
+version: 1.0.0
+main: Clan.clan
+commands:
+  clan:
+    description: Clan By MagaBenG
+    usage: /clan
+    permision:
+  claim:
+    description: Claim Land For Your Clan
+    usage: /claim
+    permision:
+  setAdminC1:
+    description: Set An Admin Land For Clan #1
+    usage: /setAdminC1 [player]
+    permision:
+  
