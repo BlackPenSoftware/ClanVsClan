@@ -58,7 +58,7 @@ public void initConfig() {
      
      config.addDefault("Clan_4.Admin.UserName.ClanAdmin", Clan_4Admin);
      
-     
+ 
     
      
      saveConfig();
@@ -103,10 +103,8 @@ public void onEnable() {
 		  
 		  Player playerName = Bukkit.getPlayer(args[2]);
 		  
+		if(args.length == 3){	   
 		  
-		  if(args[0].equalsIgnoreCase("SetAdmin")) {
-			    
-			 
 			  if(args[0].equalsIgnoreCase("SetAdmin") && playerName != null ){
 			  
 			  if(args[1].equalsIgnoreCase("1")){
@@ -122,7 +120,7 @@ public void onEnable() {
 				  this.reloadConfig();
 			  	}
 		  
-			  if(args[1].equalsIgnoreCase("2")){
+			  if(args[1].equalsIgnoreCase("2") && playerName != null ){
 				  
 				  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GOLD + playerName.getDisplayName() + ChatColor.DARK_PURPLE + " Is The New Clan 2 Leader!");
 				  
@@ -136,7 +134,7 @@ public void onEnable() {
 				  
 			  	}
 			  
-			  if(args[1].equalsIgnoreCase("3")){
+			  if(args[1].equalsIgnoreCase("3") && playerName != null ){
 	  
 				  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GOLD + playerName.getDisplayName() + ChatColor.DARK_PURPLE + " Is The New Clan 3 Leader!");
 				  		
@@ -150,7 +148,7 @@ public void onEnable() {
 				  
 			  	}
 
-			  if(args[1].equalsIgnoreCase("4")){
+			  if(args[1].equalsIgnoreCase("4") && playerName != null ){
 	  
 				  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GOLD + playerName.getDisplayName() + ChatColor.DARK_PURPLE + " Is The New Clan 4 Leader!");
 
@@ -162,11 +160,10 @@ public void onEnable() {
 				  
 				  this.reloadConfig();
 				  
-			  	}
+			  	}  
 			  }
-			  
-		  
-		  }else{
+			    
+			  }else{
 
 
 			  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_RED + "The Command You Enter Was Incorrect! Please Try Agian.");
@@ -185,15 +182,12 @@ public void onEnable() {
 	  
   }
 
-
-	  
-	  
 	return false;
   
   }
   
+}
   
-  
-  }
+
 
 
