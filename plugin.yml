@@ -14,8 +14,5 @@ commands:
     description: Base To Most CvC Commands
     usage: /CvC
     permission:
-  CvChelp:
-    description: Need Help With Clan Vs Clan Use This
-    usage: /CvChelp
-    permission:
+
   
