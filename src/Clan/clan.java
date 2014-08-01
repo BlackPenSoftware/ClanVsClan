@@ -109,11 +109,11 @@ public void onEnable() {
 			  
 			  if(args[1].equalsIgnoreCase("1")){
 				  
-				  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GOLD + playerName.getDisplayName() + ChatColor.DARK_PURPLE + " Is The New Clan 1 Leader!");
+				  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GOLD + playerName.getUniqueId() + ChatColor.DARK_PURPLE + " Is The New Clan 1 Leader!");
 				  
 				  getConfig().set("Clan_1.Admin.UserName", null);
 				  
-				  getConfig().set("Clan_1.Admin.UserName", playerName.getDisplayName());
+				  getConfig().set("Clan_1.Admin.UserName", playerName.getUniqueId());
 				  
 				  saveConfig();
 				  
@@ -122,11 +122,11 @@ public void onEnable() {
 		  
 			  if(args[1].equalsIgnoreCase("2") && playerName != null ){
 				  
-				  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GOLD + playerName.getDisplayName() + ChatColor.DARK_PURPLE + " Is The New Clan 2 Leader!");
+				  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GOLD + playerName.getUniqueId() + ChatColor.DARK_PURPLE + " Is The New Clan 2 Leader!");
 				  
 				  getConfig().set("Clan_2.Admin.UserName", null);
 				  
-				  getConfig().set("Clan_2.Admin.UserName", playerName.getDisplayName());
+				  getConfig().set("Clan_2.Admin.UserName", playerName.getUniqueId());
 				  
 				  saveConfig();
 				  
@@ -136,11 +136,11 @@ public void onEnable() {
 			  
 			  if(args[1].equalsIgnoreCase("3") && playerName != null ){
 	  
-				  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GOLD + playerName.getDisplayName() + ChatColor.DARK_PURPLE + " Is The New Clan 3 Leader!");
+				  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GOLD + playerName.getUniqueId() + ChatColor.DARK_PURPLE + " Is The New Clan 3 Leader!");
 				  		
 				  getConfig().set("Clan_3.Admin.UserName", null);
 				  
-				  getConfig().set("Clan_3.Admin.UserName", playerName.getDisplayName());
+				  getConfig().set("Clan_3.Admin.UserName", playerName.getUniqueId());
 				  
 				  saveConfig();
 				  
@@ -150,11 +150,11 @@ public void onEnable() {
 
 			  if(args[1].equalsIgnoreCase("4") && playerName != null ){
 	  
-				  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GOLD + playerName.getDisplayName() + ChatColor.DARK_PURPLE + " Is The New Clan 4 Leader!");
+				  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GOLD + playerName.getUniqueId() + ChatColor.DARK_PURPLE + " Is The New Clan 4 Leader!");
 
 				  getConfig().set("Clan_4.Admin.UserName", null);
 				  
-				  getConfig().set("Clan_4.Admin.UserName", playerName.getDisplayName());
+				  getConfig().set("Clan_4.Admin.UserName", playerName.getUniqueId());
 				  
 				  saveConfig();
 				  
