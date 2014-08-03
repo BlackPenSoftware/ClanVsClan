@@ -23,8 +23,8 @@ import Executer.cvc;
 public class clan extends JavaPlugin{
 
 	int MainVersion = 0;
-	int MidVersion = 0;
-	int SubVersion = 1;
+	int MidVersion = 2;
+	int SubVersion = 0;
 	
 	String MinecraftVersion = "1.7.9";
 	
@@ -33,6 +33,8 @@ public class clan extends JavaPlugin{
 	 String Clan_3Admin = "Admin";
 	 String Clan_4Admin = "Admin";
 	
+	 FileConfiguration config = getConfig();
+	 
 	public final Logger logger = Logger.getLogger("Minecraft");
 	
 	public final clanlistener pl = new clanlistener();
@@ -48,8 +50,7 @@ public void onDisable(){
 public void initConfig() {
 
 	 
-	 FileConfiguration config = getConfig();
-
+	
      
      config.addDefault("Clan_1.Admin.UserName.ClanAdmin", Clan_1Admin);
      	config.addDefault("Clan.Admin.ClaimSize.1", true);
@@ -99,6 +100,7 @@ public void initConfig() {
  		config.addDefault("Clan.Admin.ClaimSize.9", false);
  		config.addDefault("Clan.Admin.ClaimSize.10", false);
  
+ 	
      
      saveConfig();
 	
@@ -139,7 +141,18 @@ public void registerCommands(){
    
 }
 	  
-  
+public void playerJoin(PlayerJoinEvent event){
+	
+	
+String PlayerName = event.getPlayer().getDisplayName();
+
+//config.addDefault(PlayerName + "." + "Clan.Number", false);
+
+int ClanNumber = 1;
+	 
+	 config.set(PlayerName + "." + "Clan.Number"  , ClanNumber);
+	
+}
   
 }
   

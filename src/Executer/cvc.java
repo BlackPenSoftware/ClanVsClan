@@ -35,7 +35,7 @@ public class cvc implements CommandExecutor{
 
 				  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GREEN + "/CvC Claim (Clan Number / Name) " + ChatColor.DARK_PURPLE + "This Command Allows For Admins To Set The Main Starting Claim For Clans.");
 				  
-				  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GREEN + "/CvC ExpandCost " + ChatColor.DARK_PURPLE + "This Command Allows For The Admins Of The Clan To Check How Much It Will Cost To Expand Their Claim To The Nex Size."); 
+				  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GREEN + "/CvC ExpandCost " + ChatColor.DARK_PURPLE + "This Command Allows For The Admins Of The Clan To Check How Much It Will Cost To Expand Their Claim To The Next Size."); 
 				  
 				  sender.sendMessage(ChatColor.GOLD + "================================================");
 				  
@@ -152,9 +152,18 @@ public class cvc implements CommandExecutor{
 			  sender.sendMessage(ChatColor.GOLD + "================================================");
        	
        return true;	
+       
+        }else{
+        	
+        	sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan]" + ChatColor.DARK_RED + "The Command You Enterd Is Not Correct Please Try Again");
+       
+        	 
+        	
         }
         
+       
         
+    
         return false;
     }
 }
