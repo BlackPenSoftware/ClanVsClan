@@ -5,9 +5,13 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.FileConfigurationOptions;
 import org.bukkit.entity.Player;
 
 import Clan.clan;
+
+
 
 public class cvc implements CommandExecutor{
 	 
@@ -17,7 +21,7 @@ public class cvc implements CommandExecutor{
         this.plugin = plugin;
  
     }
-    
+ 
     
     
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
@@ -40,10 +44,14 @@ public class cvc implements CommandExecutor{
             
             return true;
             
+            
             	
             }else if((commandLabel.equalsIgnoreCase("CvC") && args[0].equalsIgnoreCase("setAdmin"))){
             	
             	Player playerName = Bukkit.getPlayer(args[2]);
+            	
+            	 FileConfiguration config = plugin.getConfig();
+            	   
             	
             	if(args[1].equalsIgnoreCase("1")){
 
@@ -51,12 +59,16 @@ public class cvc implements CommandExecutor{
 
             	     sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GOLD + playerName.getDisplayName() + ChatColor.DARK_PURPLE + " Is The New Clan 1 Leader!");
 
-            	   	 
-
             	     playerName.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GOLD + "You" + ChatColor.DARK_PURPLE + " Are The New Clan 1 Leader!");
 
-            	   	 
+            	     config.set("Clan_1.Admin.UserName", null);
 
+            	     config.set("Clan_1.Admin.UserName", playerName.getDisplayName());
+
+            	    plugin.configSave();
+
+            	     plugin.reloadConfig();
+            	     
             	     }
 
             	   	 
@@ -71,10 +83,14 @@ public class cvc implements CommandExecutor{
 
             	     playerName.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GOLD + "You" + ChatColor.DARK_PURPLE + " Are The New Clan 2 Leader!");
 
-            	    
+            	     config.set("Clan_2.Admin.UserName", null);
 
-            	   	 
+            	     config.set("Clan_2.Admin.UserName", playerName.getDisplayName());
 
+            	     plugin.configSave();
+
+            	     plugin.reloadConfig();
+            	     
             	     }
 
             	   	 
@@ -89,10 +105,13 @@ public class cvc implements CommandExecutor{
 
             	     playerName.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GOLD + "You" + ChatColor.DARK_PURPLE + " Are The New Clan 3 Leader!");
 
-            	    
+            	     config.set("Clan_3.Admin.UserName", null);
 
-            	   	 
+            	     config.set("Clan_3.Admin.UserName", playerName.getDisplayName());
 
+            	     plugin.configSave();
+
+            	     plugin.reloadConfig();
             	     }
 
 
@@ -107,27 +126,32 @@ public class cvc implements CommandExecutor{
 
             	     playerName.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GOLD + "You" + ChatColor.DARK_PURPLE + " Are The New Clan 4 Leader!");
 
-            	   
+            	     config.set("Clan_4.Admin.UserName", null);
 
-            	   	 
+            	     config.set("Clan_4.Admin.UserName", playerName.getDisplayName());
 
+            	     plugin.configSave();
+
+            	     plugin.reloadConfig();
+            	     
             	     }
             
         
             return true;
             
+            
         }else if((commandLabel.equalsIgnoreCase("CvC") && args[0].equalsIgnoreCase("2"))){
         	
-        	 sender.sendMessage(ChatColor.GOLD + "==================[CvC 2 / 2]===================");
-        	 
+       	 sender.sendMessage(ChatColor.GOLD + "==================[CvC 2 / 2]===================");
+       	 
 			  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GREEN + "/CvC Expand " + ChatColor.DARK_PURPLE + "This Command Allows For The Admins Of The Clan To Expand Their Claim.");
 			  
 			  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GREEN + "/CvC Bal " + ChatColor.DARK_PURPLE + "This Command Allows For The Admins Of A Clan To Check The Amount Of Money The Clan Has.");
 			  
 			  
 			  sender.sendMessage(ChatColor.GOLD + "================================================");
-        	
-        return true;	
+       	
+       return true;	
         }
         
         

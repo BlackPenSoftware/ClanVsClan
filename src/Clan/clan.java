@@ -104,6 +104,18 @@ public void initConfig() {
 	
 }
 
+public void configReload(){
+	
+	reloadConfig();
+	
+}
+
+public void configSave(){
+	
+	saveConfig();
+	
+}
+
 @Override
 public void onEnable() {
     
