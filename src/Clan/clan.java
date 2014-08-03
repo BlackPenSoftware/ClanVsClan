@@ -17,6 +17,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import ClanListener.clanlistener;
+import Executer.cvc;
 
 
 public class clan extends JavaPlugin{
@@ -51,15 +52,53 @@ public void initConfig() {
 
      
      config.addDefault("Clan_1.Admin.UserName.ClanAdmin", Clan_1Admin);
-
+     	config.addDefault("Clan.Admin.ClaimSize.1", true);
+     	config.addDefault("Clan.Admin.ClaimSize.2", false);
+     	config.addDefault("Clan.Admin.ClaimSize.3", false);
+     	config.addDefault("Clan.Admin.ClaimSize.4", false);
+     	config.addDefault("Clan.Admin.ClaimSize.5", false);
+     	config.addDefault("Clan.Admin.ClaimSize.6", false);
+     	config.addDefault("Clan.Admin.ClaimSize.7", false);
+     	config.addDefault("Clan.Admin.ClaimSize.8", false);
+     	config.addDefault("Clan.Admin.ClaimSize.9", false);
+     	config.addDefault("Clan.Admin.ClaimSize.10", false);
+        
      config.addDefault("Clan_2.Admin.UserName.ClanAdmin", Clan_2Admin);
-
-     config.addDefault("Clan_3.Admin.UserName.ClanAdmin", Clan_3Admin);
-     
+ 		config.addDefault("Clan.Admin.ClaimSize.1", true);
+ 		config.addDefault("Clan.Admin.ClaimSize.2", false);
+ 		config.addDefault("Clan.Admin.ClaimSize.3", false);
+ 		config.addDefault("Clan.Admin.ClaimSize.4", false);
+ 		config.addDefault("Clan.Admin.ClaimSize.5", false);
+ 		config.addDefault("Clan.Admin.ClaimSize.6", false);
+ 		config.addDefault("Clan.Admin.ClaimSize.7", false);
+ 		config.addDefault("Clan.Admin.ClaimSize.8", false);
+ 		config.addDefault("Clan.Admin.ClaimSize.9", false);
+ 		config.addDefault("Clan.Admin.ClaimSize.10", false);
+ 		
+ 	config.addDefault("Clan_3.Admin.UserName.ClanAdmin", Clan_3Admin);
+ 		config.addDefault("Clan.Admin.ClaimSize.1", true);
+ 		config.addDefault("Clan.Admin.ClaimSize.2", false);
+ 		config.addDefault("Clan.Admin.ClaimSize.3", false);
+ 		config.addDefault("Clan.Admin.ClaimSize.4", false);
+ 		config.addDefault("Clan.Admin.ClaimSize.5", false);
+ 		config.addDefault("Clan.Admin.ClaimSize.6", false);
+ 		config.addDefault("Clan.Admin.ClaimSize.7", false);
+ 		config.addDefault("Clan.Admin.ClaimSize.8", false);
+ 		config.addDefault("Clan.Admin.ClaimSize.9", false);
+ 		config.addDefault("Clan.Admin.ClaimSize.10", false);
+ 		
      config.addDefault("Clan_4.Admin.UserName.ClanAdmin", Clan_4Admin);
-     
+ 		config.addDefault("Clan.Admin.ClaimSize.1", true);
+ 		config.addDefault("Clan.Admin.ClaimSize.2", false);
+ 		config.addDefault("Clan.Admin.ClaimSize.3", false);
+ 		config.addDefault("Clan.Admin.ClaimSize.4", false);
+ 		config.addDefault("Clan.Admin.ClaimSize.5", false);
+ 		config.addDefault("Clan.Admin.ClaimSize.6", false);
+ 		config.addDefault("Clan.Admin.ClaimSize.7", false);
+ 		config.addDefault("Clan.Admin.ClaimSize.8", false);
+ 		config.addDefault("Clan.Admin.ClaimSize.9", false);
+ 		config.addDefault("Clan.Admin.ClaimSize.10", false);
  
-    
      
      saveConfig();
 	
@@ -77,114 +116,18 @@ public void onEnable() {
 	  PluginManager pm = getServer().getPluginManager();
 	  pm.registerEvents(pl, this);
 	  
+	  registerCommands();
+	  
     }
+
+
+public void registerCommands(){
+	
+	getCommand("cvc").setExecutor(new cvc(this));
+   
+}
 	  
-  public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
-	  
-	  if(cmd.getName().equalsIgnoreCase("clan")){
-		  if(sender instanceof Player){
-				
-				
-	  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_RED + "Clan Vs Clan v" + MainVersion + "." + MidVersion + "." + SubVersion + " Is Running.");
-	  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_RED + "**** THIS IS A DEVELOPMENT BUILD USE WITH CAUTION ****");
-	  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_RED+ "This Version Is To Be Used With Minecraft Version " + MinecraftVersion);
-
-	  }
-		  
-		  return true;
-		  
-	  }
-	  
-	  if(cmd.getName().equalsIgnoreCase("CvC")){
-
-		  if(sender instanceof Player){
-
-		  Player player = (Player) sender;
-		  
-		  Player playerName = Bukkit.getPlayer(args[2]);
-		  
-		if(args.length == 3){	   
-		  
-			  if(args[0].equalsIgnoreCase("SetAdmin") && playerName != null ){
-			  
-			  if(args[1].equalsIgnoreCase("1")){
-				  
-				  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GOLD + playerName.getUniqueId() + ChatColor.DARK_PURPLE + " Is The New Clan 1 Leader!");
-				  
-				  getConfig().set("Clan_1.Admin.UserName", null);
-				  
-				  getConfig().set("Clan_1.Admin.UserName", playerName.getUniqueId());
-				  
-				  saveConfig();
-				  
-				  this.reloadConfig();
-			  	}
-		  
-			  if(args[1].equalsIgnoreCase("2") && playerName != null ){
-				  
-				  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GOLD + playerName.getUniqueId() + ChatColor.DARK_PURPLE + " Is The New Clan 2 Leader!");
-				  
-				  getConfig().set("Clan_2.Admin.UserName", null);
-				  
-				  getConfig().set("Clan_2.Admin.UserName", playerName.getUniqueId());
-				  
-				  saveConfig();
-				  
-				  this.reloadConfig();
-				  
-			  	}
-			  
-			  if(args[1].equalsIgnoreCase("3") && playerName != null ){
-	  
-				  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GOLD + playerName.getUniqueId() + ChatColor.DARK_PURPLE + " Is The New Clan 3 Leader!");
-				  		
-				  getConfig().set("Clan_3.Admin.UserName", null);
-				  
-				  getConfig().set("Clan_3.Admin.UserName", playerName.getUniqueId());
-				  
-				  saveConfig();
-				  
-				  this.reloadConfig();
-				  
-			  	}
-
-			  if(args[1].equalsIgnoreCase("4") && playerName != null ){
-	  
-				  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GOLD + playerName.getUniqueId() + ChatColor.DARK_PURPLE + " Is The New Clan 4 Leader!");
-
-				  getConfig().set("Clan_4.Admin.UserName", null);
-				  
-				  getConfig().set("Clan_4.Admin.UserName", playerName.getUniqueId());
-				  
-				  saveConfig();
-				  
-				  this.reloadConfig();
-				  
-			  	}  
-			  }
-			    
-			  }else{
-
-
-			  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_RED + "The Command You Enter Was Incorrect! Please Try Agian.");
-			  
-		  }
-		  
-
-		  
-		 
-		  }
-		  
-		  
-		  return true;
-
-
-	  
-  }
-
-	return false;
   
-  }
   
 }
   
