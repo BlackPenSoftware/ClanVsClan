@@ -55,7 +55,7 @@ public class cvc implements CommandExecutor{
             	   FileConfiguration config = plugin.getConfig();
             	   
             	
-            	if(args[1].equalsIgnoreCase("1")){
+            	if(args[1].equalsIgnoreCase("1") && playerName.getName().toString() != config.get("Clan_2.Admin.UserName").toString() && playerName.getName().toString() != config.get("Clan_3.Admin.UserName").toString() && playerName.getName().toString() != config.get("Clan_4.Admin.UserName").toString()){
 
             	   	 
 
@@ -75,7 +75,7 @@ public class cvc implements CommandExecutor{
 
             	   	 
 
-            	     if(args[1].equalsIgnoreCase("2")){
+            	     if(args[1].equalsIgnoreCase("2") && playerName.getName().toString() != config.get("Clan_1.Admin.UserName").toString() && playerName.getName().toString() != config.get("Clan_3.Admin.UserName").toString() && playerName.getName().toString() != config.get("Clan_4.Admin.UserName").toString() ){
 
             	   	 
 
@@ -97,7 +97,7 @@ public class cvc implements CommandExecutor{
 
             	   	 
 
-            	     if(args[1].equalsIgnoreCase("3")){
+            	     if(args[1].equalsIgnoreCase("3") && playerName.getName().toString() != config.get("Clan_1.Admin.UserName").toString() && playerName.getName().toString() != config.get("Clan_2.Admin.UserName").toString() && playerName.getName().toString() != config.get("Clan_4.Admin.UserName").toString() ){
 
             	   	 
 
@@ -118,7 +118,7 @@ public class cvc implements CommandExecutor{
 
 
 
-            	     if(args[1].equalsIgnoreCase("4")){
+            	     if(args[1].equalsIgnoreCase("4") && playerName.getName() != config.get("Clan_1.Admin.UserName") && playerName.getName() != config.get("Clan_2.Admin.UserName") && playerName.getName() != config.get("Clan_3.Admin.UserName") ){
 
             	   	 
 
@@ -202,7 +202,16 @@ public class cvc implements CommandExecutor{
         	return true;	
         
         
-        } else{
+        }else if((commandLabel.equalsIgnoreCase("CvC") && args[0].equalsIgnoreCase("Expand") && args[1].equalsIgnoreCase("Cost"))){
+        	
+     	   FileConfiguration config = plugin.getConfig();
+     	   
+     	   sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] ");
+     	   
+     	   return true;
+     	   
+     	   
+        }else{
         	
         	sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan]" + ChatColor.DARK_RED + "The Command You Enterd Is Not Correct Please Try Again");
        
