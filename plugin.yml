@@ -13,6 +13,6 @@ commands:
   CvC:
     description: Base To Most CvC Commands
     usage: /CvC
-    permission:
+    permission: op
 
   

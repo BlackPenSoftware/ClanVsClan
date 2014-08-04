@@ -22,7 +22,9 @@ public class cvc implements CommandExecutor{
  
     }
  
+    int Bal = 1000;
     
+ 
     
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
         if((commandLabel.equalsIgnoreCase("CvC") && args.length == 0)){
@@ -50,7 +52,7 @@ public class cvc implements CommandExecutor{
             	
             	Player playerName = Bukkit.getPlayer(args[2]);
             	
-            	 FileConfiguration config = plugin.getConfig();
+            	   FileConfiguration config = plugin.getConfig();
             	   
             	
             	if(args[1].equalsIgnoreCase("1")){
@@ -142,7 +144,7 @@ public class cvc implements CommandExecutor{
             
         }else if((commandLabel.equalsIgnoreCase("CvC") && args[0].equalsIgnoreCase("2"))){
         	
-       	 sender.sendMessage(ChatColor.GOLD + "==================[CvC 2 / 2]===================");
+       	 		sender.sendMessage(ChatColor.GOLD + "==================[CvC 2 / 2]===================");
        	 
 			  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GREEN + "/CvC Expand " + ChatColor.DARK_PURPLE + "This Command Allows For The Admins Of The Clan To Expand Their Claim.");
 			  
@@ -153,7 +155,54 @@ public class cvc implements CommandExecutor{
        	
        return true;	
        
-        }else{
+        }else if((commandLabel.equalsIgnoreCase("CvC") && args[0].equalsIgnoreCase("Bal"))){
+        	
+        	   FileConfiguration config = plugin.getConfig();
+    
+        	   
+        	   if(sender.getName().equalsIgnoreCase((String) config.get("Clan_1.Admin.UserName"))){
+
+   	 		sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Your Clan Ballance Is " + ChatColor.GREEN + "$" + config.get("Clan_1.Admin.Ballance"));
+ 
+   	 		plugin.saveConfig();
+   	 		
+        	}
+        	   
+        	   if(sender.getName().equalsIgnoreCase((String) config.get("Clan_2.Admin.UserName"))){
+
+          	 		sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Your Clan Ballance Is " + ChatColor.GREEN + "$" + config.get("Clan_2.Admin.Ballance"));
+        
+          	 		plugin.saveConfig();
+          	 		
+               	}
+        	   
+        	   
+        	   
+        	   if(sender.getName().equalsIgnoreCase((String) config.get("Clan_3.Admin.UserName"))){
+
+          	 		sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Your Clan Ballance Is " + ChatColor.GREEN + "$" + config.get("Clan_3.Admin.Ballance"));
+        
+          	 		plugin.saveConfig();
+          	 		
+               	}
+        	   
+        	   
+        	   if(sender.getName().equalsIgnoreCase((String) config.get("Clan_4.Admin.UserName"))){
+
+          	 		sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Your Clan Ballance Is " + ChatColor.GREEN + "$" + config.get("Clan_4.Admin.Ballance"));
+        
+          	 		plugin.saveConfig();
+          	 		
+               	}else{
+        		
+        	 sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_RED + "You Are Not The Clan Leader!");
+        		
+        	}
+
+        	return true;	
+        
+        
+        } else{
         	
         	sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan]" + ChatColor.DARK_RED + "The Command You Enterd Is Not Correct Please Try Again");
        
