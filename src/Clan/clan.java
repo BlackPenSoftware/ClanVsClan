@@ -50,7 +50,7 @@ public void initConfig() {
      
      config.addDefault("Clan_1.Admin.UserName.ClanAdmin", Clan_1Admin);
      
-     config.addDefault("Clan_1.Admin.Ballance", 100);
+     config.addDefault("Clan_1.Admin.Ballance", 1000);
      
      config.addDefault("Clan_1.Players.Names", "Test");
      
