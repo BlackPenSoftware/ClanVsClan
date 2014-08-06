@@ -1,23 +1,23 @@
 package Clan;
 
+import java.lang.reflect.Array;
 import java.util.logging.Logger;
 
-import net.minecraft.server.v1_7_R3.Material;
-
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.player.PlayerLoginEvent;
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import ClanListener.clanlistener;
 import Executer.cvc;
 
 
-public class clan extends JavaPlugin{
+public class clan extends JavaPlugin implements Listener{
 
 	int MainVersion = 0;
 	int MidVersion = 2;
@@ -34,9 +34,34 @@ public class clan extends JavaPlugin{
 	 
 	 FileConfiguration config = getConfig();
 	 
+	public String[][] Clan_1_Player_List = {
+			
+	        	{}
+	        
+		};
+	
+	public String[][] Clan_2_Player_List = {
+			
+        		{}
+        
+	};
+	
+	public String[][] Clan_3_Player_List = {
+			
+        		{}
+        
+	};
+	
+	public String[][] Clan_4_Player_List = {
+			
+        		{}
+        
+	};
+	
+	 
 	public final Logger logger = Logger.getLogger("Minecraft");
 	
-	public final clanlistener pl = new clanlistener();
+	
 	
 public void onDisable(){
 
@@ -52,7 +77,7 @@ public void initConfig() {
      
      config.addDefault("Clan_1.Admin.Ballance", 1000);
      
-     config.addDefault("Clan_1.Players.Names", "Test");
+     config.addDefault("Clan_1.Players.Names", Clan_1_Player_List);
      
      	config.addDefault("Clan_1.Land.ClaimSize.1", true);
      	config.addDefault("Clan_1.Land.ClaimSize.1.Cost", 10000);
@@ -91,7 +116,7 @@ public void initConfig() {
      
      config.addDefault("Clan_2.Admin.Ballance", 100);
      
-     config.addDefault("Clan_2.Players.Names", "Test");
+     config.addDefault("Clan_2.Players.Names", Clan_2_Player_List);
      
      config.addDefault("Clan_2.Land.ClaimSize.1", true);
   	config.addDefault("Clan_2.Land.ClaimSize.1.Cost", 10000);
@@ -130,7 +155,7 @@ public void initConfig() {
  	
  	config.addDefault("Clan_3.Admin.Ballance", 100);
  	
- 	config.addDefault("Clan_3.Players.Names", "Test");
+ 	config.addDefault("Clan_3.Players.Names", Clan_3_Player_List);
  	
  	config.addDefault("Clan_3.Land.ClaimSize.1", true);
  	config.addDefault("Clan_3.Land.ClaimSize.1.Cost", 10000);
@@ -169,7 +194,7 @@ public void initConfig() {
      
      config.addDefault("Clan_4.Admin.Ballance", 100);
      
-     config.addDefault("Clan_4.Players.Names", "Test");
+     config.addDefault("Clan_4.Players.Names", Clan_4_Player_List);
      
      config.addDefault("Clan_4.Land.ClaimSize.1", true);
   	config.addDefault("Clan_4.Land.ClaimSize.1.Cost", 10000);
@@ -233,7 +258,7 @@ public void onEnable() {
 	  System.out.println(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_RED+ "This Version Is To Be Used With Minecraft Version " + MinecraftVersion);
 	  
 	  PluginManager pm = getServer().getPluginManager();
-	  pm.registerEvents(pl, this);
+	  pm.registerEvents(this, this);
 	  
 	  registerCommands();
 	  
@@ -247,5 +272,67 @@ public void registerCommands(){
    
 }
 	
+@EventHandler
+public void playerMove(PlayerMoveEvent event) {
 
+	
+	
+	Player player = event.getPlayer();
+	   
+	   Location loc = player.getLocation();
+	   
+	  
+	   
+	   if(loc.getBlockX() > 100){
+		   
+		  player.sendMessage("PAST 100");
+		
+		 // event.setCancelled(true);
+		  
+		  player.teleport(new Location(Bukkit.getWorld("world"), 95, loc.getBlockY(), loc.getBlockZ()));
+		   
+		  
+	   }
+	
+	   
+	   
+	   if(loc.getBlockZ() > 100){
+		   
+		  player.sendMessage("PAST 100");
+		
+		 // event.setCancelled(true);
+		  
+		  player.teleport(new Location(Bukkit.getWorld("world"), loc.getX(), loc.getBlockY(), 95));
+		   
+		  
+	   }
+	   
+	   
+	   if(loc.getBlockX() * -1 > 0){
+		   
+			  player.sendMessage("PAST 100");
+			
+			 // event.setCancelled(true);
+			  
+			  player.teleport(new Location(Bukkit.getWorld("world"), 5 , loc.getBlockY(), loc.getBlockZ()));
+			   
+			  
+		   }
+		
+		   
+		   
+		   if(loc.getBlockZ() * -1 > 0){
+			   
+			  player.sendMessage("PAST 100");
+			
+			 // event.setCancelled(true);
+			  
+			  player.teleport(new Location(Bukkit.getWorld("world"), loc.getX(), loc.getBlockY(), 5 ));
+			   
+			  
+		   }
+	   
+		  
+		   
+	}
 }

@@ -1,7 +1,12 @@
 package Executer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -207,6 +212,31 @@ public class cvc implements CommandExecutor{
      	   FileConfiguration config = plugin.getConfig();
      	   
      	   sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] ");
+     	   
+     	   return true;
+     	   
+     	   
+        }else if((commandLabel.equalsIgnoreCase("CvC") && args[0].equalsIgnoreCase("Sell"))){
+        	
+        	FileConfiguration config = plugin.getConfig();
+     	   
+     	   sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] ");
+     	  
+     	  List<String> list = config.getStringList("Clan_1.Players.Names");
+     	   
+     	  if(sender instanceof Player){
+				
+     		 list.add(sender.getName());
+     		 
+     		// add to config
+     		config.set("Clan_1.Players.Names", list);
+     		 
+     		// save
+     		plugin.saveConfig();
+     			
+     	  } 
+     	  
+     	   
      	   
      	   return true;
      	   
