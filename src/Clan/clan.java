@@ -1,6 +1,7 @@
 package Clan;
 
-import java.lang.reflect.Array;
+import java.util.List;
+import java.util.Random;
 import java.util.logging.Logger;
 
 import org.bukkit.Bukkit;
@@ -9,7 +10,9 @@ import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -272,7 +275,18 @@ public void registerCommands(){
    
 }
 	
-@EventHandler
+int Max = 100;
+
+List<String> Clan_1 = config.getStringList("Clan_1.Players.Names");
+
+List<String> Clan_2 = config.getStringList("Clan_2.Players.Names");
+
+List<String> Clan_3 = config.getStringList("Clan_3.Players.Names");
+
+List<String> Clan_4 = config.getStringList("Clan_4.Players.Names");
+
+
+@EventHandler(priority = EventPriority.HIGHEST)
 public void playerMove(PlayerMoveEvent event) {
 
 	
@@ -282,27 +296,32 @@ public void playerMove(PlayerMoveEvent event) {
 	   Location loc = player.getLocation();
 	   
 	  
+	   if(Clan_3.contains(player.getName())){
 	   
-	   if(loc.getBlockX() > 100){
+	
+	  
+	   if(loc.getBlockX() > Max){
 		   
-		  player.sendMessage("PAST 100");
+		  player.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_RED + "You Have Left Your Town");
 		
 		 // event.setCancelled(true);
 		  
-		  player.teleport(new Location(Bukkit.getWorld("world"), 95, loc.getBlockY(), loc.getBlockZ()));
+		  player.teleport(new Location(Bukkit.getWorld("world"), Max - 5, loc.getBlockY(), loc.getBlockZ()));
 		   
+		  
 		  
 	   }
 	
 	   
 	   
-	   if(loc.getBlockZ() > 100){
+	   if(loc.getBlockZ() > Max){
 		   
-		  player.sendMessage("PAST 100");
+			  player.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_RED + "You Have Left Your Town");
+			
 		
 		 // event.setCancelled(true);
 		  
-		  player.teleport(new Location(Bukkit.getWorld("world"), loc.getX(), loc.getBlockY(), 95));
+		  player.teleport(new Location(Bukkit.getWorld("world"), loc.getX(), loc.getBlockY(), Max - 5));
 		   
 		  
 	   }
@@ -310,11 +329,11 @@ public void playerMove(PlayerMoveEvent event) {
 	   
 	   if(loc.getBlockX() * -1 > 0){
 		   
-			  player.sendMessage("PAST 100");
+			  player.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_RED + "You Have Left Your Town");
 			
 			 // event.setCancelled(true);
 			  
-			  player.teleport(new Location(Bukkit.getWorld("world"), 5 , loc.getBlockY(), loc.getBlockZ()));
+			  player.teleport(new Location(Bukkit.getWorld("world"), Max - Max + 5 , loc.getBlockY(), loc.getBlockZ()));
 			   
 			  
 		   }
@@ -323,16 +342,111 @@ public void playerMove(PlayerMoveEvent event) {
 		   
 		   if(loc.getBlockZ() * -1 > 0){
 			   
-			  player.sendMessage("PAST 100");
+				  player.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_RED + "You Have Left Your Town");
+				
 			
 			 // event.setCancelled(true);
 			  
-			  player.teleport(new Location(Bukkit.getWorld("world"), loc.getX(), loc.getBlockY(), 5 ));
+			  player.teleport(new Location(Bukkit.getWorld("world"), loc.getX(), loc.getBlockY(), Max - Max + 5));
 			   
 			  
 		   }
 	   
-		  
+	  } 
 		   
-	}
+
 }
+
+
+@EventHandler 
+
+public void OnPlayerLogin(PlayerJoinEvent event){
+	
+	
+	Player player = event.getPlayer();
+	
+	Random Random = new Random();
+
+	int pick = Random.nextInt(4);
+
+
+	if(pick == 1){
+
+
+	player.sendMessage("You Are Clan 1!");
+
+	
+	
+	 Clan_1.add(player.getName());
+		 
+		// add to config
+		config.set("Clan_1.Players.Names", Clan_1);
+		 
+		// save
+		saveConfig();
+
+	}
+
+
+	if(pick == 2){
+
+
+	player.sendMessage("You Are Clan 2!");
+
+	
+	
+	 Clan_2.add(player.getName());
+		 
+		// add to config
+		config.set("Clan_2.Players.Names", Clan_2);
+		 
+		// save
+		saveConfig();
+
+	}
+
+
+	if(pick == 3){
+
+
+	player.sendMessage("You Are Clan 3!");
+
+	
+	 Clan_3.add(player.getName());
+		 
+		// add to config
+		config.set("Clan_3.Players.Names", Clan_3);
+		 
+		// save
+		saveConfig();
+
+	}
+
+
+	if(pick == 4){
+
+
+	player.sendMessage("You Are Clan 4!");
+
+	
+	
+	 Clan_4.add(player.getName());
+		 
+		// add to config
+		config.set("Clan_4.Players.Names", Clan_4);
+		 
+		// save
+		saveConfig();
+
+	}
+
+
+	}
+
+
+	
+}
+
+
+
+
