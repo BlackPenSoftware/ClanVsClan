@@ -241,6 +241,44 @@ public class cvc implements CommandExecutor{
      	   return true;
      	   
      	   
+        }else if((commandLabel.equalsIgnoreCase("CvC") && args[0].equalsIgnoreCase("SetHome"))){
+        	
+        	FileConfiguration config = plugin.getConfig();
+        	if(sender instanceof Player){
+        		
+        	int PlayerLocX = (int) ((Player) sender).getLocation().getX();
+        	int PlayerLocY = (int) ((Player) sender).getLocation().getY();
+        	int PlayerLocZ = (int) ((Player) sender).getLocation().getZ();
+        	
+        	
+        	 if(sender.getName().equalsIgnoreCase((String) config.get("Clan_1.Admin.UserName"))){
+        		 
+        		 config.set("Clan_1.Home.X", PlayerLocX);
+        		 config.set("Clan_1.Home.Y", PlayerLocY);
+        		 config.set("Clan_1.Home.Z", PlayerLocZ);
+         		
+        		 
+        		 if(sender.getName().equalsIgnoreCase((String) config.get("Clan_2.Admin.UserName"))){
+        			 
+        			 
+        			 
+        			 if(sender.getName().equalsIgnoreCase((String) config.get("Clan_3.Admin.UserName"))){
+        				 
+        				 
+        				 
+        				 if(sender.getName().equalsIgnoreCase((String) config.get("Clan_4.Admin.UserName"))){
+        					 
+        					 
+        					 
+        				 }
+        			 }
+        			 
+        		 }
+        		 
+        	 }
+        	
+        }
+        	
         }else{
         	
         	sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan]" + ChatColor.DARK_RED + "The Command You Enterd Is Not Correct Please Try Again");

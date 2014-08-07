@@ -16,6 +16,12 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scoreboard.DisplaySlot;
+import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Score;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.ScoreboardManager;
+import org.bukkit.scoreboard.Team;
 
 import Executer.cvc;
 
@@ -79,6 +85,12 @@ public void initConfig() {
      config.addDefault("Clan_1.Admin.UserName.ClanAdmin", Clan_1Admin);
      
      config.addDefault("Clan_1.Admin.Ballance", 1000);
+     
+     config.addDefault("Clan_1.Home.X", 0);
+     
+     config.addDefault("Clan_1.Home.Y", 60);
+     
+     config.addDefault("Clan_1.Home.Z", 0);
      
      config.addDefault("Clan_1.Players.Names", Clan_1_Player_List);
      
@@ -248,7 +260,7 @@ public void configSave(){
 }
 
 
-	
+
  
 
 @Override
@@ -265,7 +277,8 @@ public void onEnable() {
 	  
 	  registerCommands();
 	  
-	 
+	
+	  
     }
 
 
@@ -289,16 +302,73 @@ List<String> Clan_4 = config.getStringList("Clan_4.Players.Names");
 @EventHandler(priority = EventPriority.HIGHEST)
 public void playerMove(PlayerMoveEvent event) {
 
-	
-	
 	Player player = event.getPlayer();
-	   
+
+	
+	// CLAN 1 BAL //
+	ScoreboardManager Clan_1_Bal_Board_Manager = Bukkit.getScoreboardManager();
+	
+	Scoreboard board = Clan_1_Bal_Board_Manager.getNewScoreboard();
+	
+	Team Clan_1_Bal_Board_Team = board.registerNewTeam("Clan_1");
+	
+	Clan_1_Bal_Board_Team.setPrefix("* Clan 1 * ");
+	
+	Objective Clan_1_Bal_Board_Objective = board.registerNewObjective("test", "dummy");
+	
+	Clan_1_Bal_Board_Objective.setDisplaySlot(DisplaySlot.SIDEBAR);
+	 
+	//Setting the display name of the scoreboard/objective
+	Clan_1_Bal_Board_Objective.setDisplayName("Balance");
+	
+	Score score = Clan_1_Bal_Board_Objective.getScore(ChatColor.BLUE + "Clan 1: "); //Get a fake offline player
+	
+	int Clan_1_Bal = getConfig().getInt("Clan_1.Admin.Ballance");
+	
+	score.setScore(Clan_1_Bal);
+	
+	//reloadConfig();
+	
+	board.resetScores(player);
+	
+	
+	
+	// CLAN 2 //
+	
+		Score Clan_2_Score = Clan_1_Bal_Board_Objective.getScore(ChatColor.BLUE + "Clan 2: "); //Get a fake offline player
+		
+		//int Clan_2_Bal = (Integer) config.get("Clan_2.Admin.Ballance");
+		
+		Clan_2_Score.setScore(999);
+		
+		
+		
+		// CLAN 3 //
+		
+		Score Clan_3_Score = Clan_1_Bal_Board_Objective.getScore(ChatColor.BLUE + "Clan 3: "); //Get a fake offline player
+		
+		//int Clan_3_Bal = (Integer) config.get("Clan_3.Admin.Ballance");
+		
+		Clan_3_Score.setScore(998);
+		
+		
+		// CLAN 4//
+		
+		Score Clan_4_Score = Clan_1_Bal_Board_Objective.getScore(ChatColor.BLUE + "Clan 4: "); //Get a fake offline player
+		
+		//int Clan_4_Bal = (Integer) config.get("Clan_4.Admin.Ballance");
+		
+		Clan_4_Score.setScore(997);
+	
+	
+	player.setScoreboard(board);
+	
+	
 	   Location loc = player.getLocation();
 	   
 	  
-	   if(Clan_3.contains(player.getName())){
+	   if(Clan_1.contains(player.getName())){
 	   
-	
 	  
 	   if(loc.getBlockX() > Max){
 		   
@@ -362,14 +432,22 @@ public void playerMove(PlayerMoveEvent event) {
 
 public void OnPlayerLogin(PlayerJoinEvent event){
 	
-	
 	Player player = event.getPlayer();
+
+	
 	
 	Random Random = new Random();
 
 	int pick = Random.nextInt(4);
 
-
+	if(!Clan_1.contains(player.getName())){
+		
+		if(!Clan_2.contains(player.getName())){
+			
+			if(!Clan_3.contains(player.getName())){
+				
+				if(!Clan_4.contains(player.getName())){
+	
 	if(pick == 1){
 
 
@@ -442,7 +520,10 @@ public void OnPlayerLogin(PlayerJoinEvent event){
 
 
 	}
-
+			}
+		}
+	}
+}
 
 	
 }
