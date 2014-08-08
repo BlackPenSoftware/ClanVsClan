@@ -11,8 +11,10 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.FileConfigurationOptions;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import Clan.clan;
 
@@ -207,6 +209,52 @@ public class cvc implements CommandExecutor{
         	return true;	
         
         
+        }else if((commandLabel.equalsIgnoreCase("CvC") && args[0].equalsIgnoreCase("Sell"))){
+        	
+        //	FileConfiguration config = plugin.getConfig();
+     	   
+     	  
+     	   
+     	  Inventory ClanSellInventory = Bukkit.createInventory(null, 18, "Clan Shop");
+     	  
+     	 ItemStack item = new ItemStack(Material.DIAMOND);
+  		ItemMeta meta = item.getItemMeta();
+  		meta.setDisplayName("Sell Diamonds");
+  		ArrayList<String> Lore = new ArrayList<String>();
+  		Lore.add("Diamonds Are Worth $500 Each");
+  		Lore.add("Click Me To Sell A Diamond");
+  		meta.setLore(Lore);
+  		item.setItemMeta(meta);
+     	  
+     	  
+  		ClanSellInventory.setItem(0, item);
+  		
+     
+     	  
+     	   
+     	  if(sender instanceof Player){
+				
+     		  Player player = (Player) sender;
+     		  
+     		 player.openInventory(ClanSellInventory);
+     		  
+     		// config.set("Clan_1.Admin.Ballance", 1000);
+     		 
+     		plugin.saveConfig();
+     			
+     		
+     		
+     		 
+     		
+     	
+     		
+     	  } 
+     	  
+     	   
+     	   
+     	   return true;
+     	   
+     	   
         }else if((commandLabel.equalsIgnoreCase("CvC") && args[0].equalsIgnoreCase("Expand") && args[1].equalsIgnoreCase("Cost"))){
         	
      	   FileConfiguration config = plugin.getConfig();
@@ -216,70 +264,134 @@ public class cvc implements CommandExecutor{
      	   return true;
      	   
      	   
-        }else if((commandLabel.equalsIgnoreCase("CvC") && args[0].equalsIgnoreCase("Sell"))){
-        	
-        	FileConfiguration config = plugin.getConfig();
-     	   
-     	   sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] ");
-     	  
-     	  List<String> list = config.getStringList("Clan_1.Players.Names");
-     	   
-     	  if(sender instanceof Player){
-				
-     		 list.add(sender.getName());
-     		 
-     		// add to config
-     		config.set("Clan_1.Players.Names", list);
-     		 
-     		// save
-     		plugin.saveConfig();
-     			
-     	  } 
-     	  
-     	   
-     	   
-     	   return true;
-     	   
-     	   
         }else if((commandLabel.equalsIgnoreCase("CvC") && args[0].equalsIgnoreCase("SetHome"))){
         	
         	FileConfiguration config = plugin.getConfig();
         	if(sender instanceof Player){
         		
-        	int PlayerLocX = (int) ((Player) sender).getLocation().getX();
-        	int PlayerLocY = (int) ((Player) sender).getLocation().getY();
-        	int PlayerLocZ = (int) ((Player) sender).getLocation().getZ();
+        		Player player = (Player) sender;
+        		
+        		Location Loc = player.getLocation();
+        		
+        	
         	
         	
         	 if(sender.getName().equalsIgnoreCase((String) config.get("Clan_1.Admin.UserName"))){
         		 
-        		 config.set("Clan_1.Home.X", PlayerLocX);
-        		 config.set("Clan_1.Home.Y", PlayerLocY);
-        		 config.set("Clan_1.Home.Z", PlayerLocZ);
+        		config.set("Clan_1.Home.X", Loc.getX());
+        		config.set("Clan_1.Home.Y", Loc.getY());
+        		config.set("Clan_1.Home.Z", Loc.getZ());
          		
-        		 
+        		plugin.saveConfig();
+        		
+        		player.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "You Have Created A Clan Home.");
+             	
+        		return true;
+        		
+        	 }
+        	 
         		 if(sender.getName().equalsIgnoreCase((String) config.get("Clan_2.Admin.UserName"))){
         			 
-        			 
-        			 
+        			 config.set("Clan_2.Home.X", Loc.getX());
+             		config.set("Clan_2.Home.Y", Loc.getY());
+             		config.set("Clan_2.Home.Z", Loc.getZ());
+              		
+             		plugin.saveConfig();
+             		
+             		player.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "You Have Created A Clan Home.");
+        		 
+             		return true;
+             		
+        		 }
+             		
         			 if(sender.getName().equalsIgnoreCase((String) config.get("Clan_3.Admin.UserName"))){
         				 
-        				 
-        				 
-        				 if(sender.getName().equalsIgnoreCase((String) config.get("Clan_4.Admin.UserName"))){
-        					 
-        					 
-        					 
-        				 }
+        				 config.set("Clan_3.Home.X", Loc.getX());
+        	        		config.set("Clan_3.Home.Y", Loc.getY());
+        	        		config.set("Clan_3.Home.Z", Loc.getZ());
+        	         		
+        	        		plugin.saveConfig();
+        	        		
+        	        		player.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "You Have Created A Clan Home.");
+        	        		
+        	        		return true;
+        	        		
         			 }
         			 
-        		 }
+        				 if(sender.getName().equalsIgnoreCase((String) config.get("Clan_4.Admin.UserName"))){
+        					 
+        					 config.set("Clan_4.Home.X", Loc.getX());
+        		        		config.set("Clan_4.Home.Y", Loc.getY());
+        		        		config.set("Clan_4.Home.Z", Loc.getZ());
+        		         		
+        		        		plugin.saveConfig();
+        		        		
+        		        		player.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "You Have Created A Clan Home.");
+        					 
+        		        		return true;
+        			
+        			 
+        				 
+        		 
+        	 }else{
+        		
+        		 player.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_RED + "You Are Not A Clan Admin. Ask The Clan Admin To Set A Clan Home.");
+             	
         		 
         	 }
-        	
+        	 
+        	 
+        	return true;
         }
         	
-        }else{
+        }else if((commandLabel.equalsIgnoreCase("CvC") && args[0].equalsIgnoreCase("Home"))){
+        	
+        	FileConfiguration config = plugin.getConfig();
+        	
+        	List<String> Clan_1 = config.getStringList("Clan_1.Players.Names");
+
+        	List<String> Clan_2 = config.getStringList("Clan_2.Players.Names");
+
+        	List<String> Clan_3 = config.getStringList("Clan_3.Players.Names");
+
+        	List<String> Clan_4 = config.getStringList("Clan_4.Players.Names");
+        	
+        	if(sender instanceof Player){
+        		
+        		Player player = (Player) sender;
+        	
+        		if(Clan_1.contains(player.getName())){
+        		
+        		player.teleport(new Location(Bukkit.getWorld("world"), config.getDouble("Clan_1.Home.X"), config.getDouble("Clan_1.Home.Y"), config.getDouble("Clan_1.Home.Z")));
+        		
+        		return true;
+        		}
+        		
+        		if(Clan_2.contains(player.getName())){
+            		
+            		player.teleport(new Location(Bukkit.getWorld("world"), config.getDouble("Clan_2.Home.X"), config.getDouble("Clan_2.Home.Y"), config.getDouble("Clan_2.Home.Z")));
+            		
+            		return true;
+            		}
+        		
+        		if(Clan_3.contains(player.getName())){
+            		
+            		player.teleport(new Location(Bukkit.getWorld("world"), config.getDouble("Clan_3.Home.X"), config.getDouble("Clan_3.Home.Y"), config.getDouble("Clan_3.Home.Z")));
+            		
+            		return true;
+            		}
+        		
+        		if(Clan_4.contains(player.getName())){
+            		
+            		player.teleport(new Location(Bukkit.getWorld("world"), config.getDouble("Clan_4.Home.X"), config.getDouble("Clan_4.Home.Y"), config.getDouble("Clan_4.Home.Z")));
+            		
+            		return true;
+            		}
+        		
+        		
+        	}
+        	
+        	else{
         	
         	sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan]" + ChatColor.DARK_RED + "The Command You Enterd Is Not Correct Please Try Again");
        
@@ -287,9 +399,9 @@ public class cvc implements CommandExecutor{
         	
         }
         
-       
-        
-    
-        return false;
+
+        return true;
     }
+		return false;
+}
 }

@@ -86,11 +86,17 @@ public void initConfig() {
      
      config.addDefault("Clan_1.Admin.Ballance", 1000);
      
-     config.addDefault("Clan_1.Home.X", 0);
      
-     config.addDefault("Clan_1.Home.Y", 60);
+     config.addDefault("Clan_1.Home.X", 0.0D);
      
-     config.addDefault("Clan_1.Home.Z", 0);
+     config.addDefault("Clan_1.Home.Y", 60.0D);
+     
+     config.addDefault("Clan_1.Home.Z", 0.0D);
+     
+     config.addDefault("Clan_1.Home.Yaw", 0.0D);
+     
+     config.addDefault("Clan_1.Home.Pitch", 0.0D);
+     
      
      config.addDefault("Clan_1.Players.Names", Clan_1_Player_List);
      
@@ -133,6 +139,18 @@ public void initConfig() {
      
      config.addDefault("Clan_2.Players.Names", Clan_2_Player_List);
      
+     
+ config.addDefault("Clan_2.Home.X", 0.0D);
+     
+     config.addDefault("Clan_2.Home.Y", 60.0D);
+     
+     config.addDefault("Clan_2.Home.Z", 0.0D);
+     
+     config.addDefault("Clan_2.Home.Yaw", 0.0D);
+     
+     config.addDefault("Clan_2.Home.Pitch", 0.0D);
+     
+     
      config.addDefault("Clan_2.Land.ClaimSize.1", true);
   	config.addDefault("Clan_2.Land.ClaimSize.1.Cost", 10000);
   	
@@ -169,6 +187,18 @@ public void initConfig() {
  	config.addDefault("Clan_3.Admin.UserName.ClanAdmin", Clan_3Admin);
  	
  	config.addDefault("Clan_3.Admin.Ballance", 100);
+ 	
+ 	
+ config.addDefault("Clan_3.Home.X", 0.0D);
+     
+     config.addDefault("Clan_3.Home.Y", 60.0D);
+     
+     config.addDefault("Clan_3.Home.Z", 0.0D);
+     
+     config.addDefault("Clan_3.Home.Yaw", 0.0D);
+     
+     config.addDefault("Clan_3.Home.Pitch", 0.0D);
+ 	
  	
  	config.addDefault("Clan_3.Players.Names", Clan_3_Player_List);
  	
@@ -208,6 +238,18 @@ public void initConfig() {
      config.addDefault("Clan_4.Admin.UserName.ClanAdmin", Clan_4Admin);
      
      config.addDefault("Clan_4.Admin.Ballance", 100);
+     
+     
+ config.addDefault("Clan_1.Home.X", 0.0D);
+     
+     config.addDefault("Clan_4.Home.Y", 60.0D);
+     
+     config.addDefault("Clan_4.Home.Z", 0.0D);
+     
+     config.addDefault("Clan_4.Home.Yaw", 0.0D);
+     
+     config.addDefault("Clan_4.Home.Pitch", 0.0D);
+     
      
      config.addDefault("Clan_4.Players.Names", Clan_4_Player_List);
      
@@ -298,11 +340,14 @@ List<String> Clan_3 = config.getStringList("Clan_3.Players.Names");
 
 List<String> Clan_4 = config.getStringList("Clan_4.Players.Names");
 
+int i = 0;
 
 @EventHandler(priority = EventPriority.HIGHEST)
 public void playerMove(PlayerMoveEvent event) {
 
 	Player player = event.getPlayer();
+
+	i = i + 1;
 
 	
 	// CLAN 1 BAL //
@@ -328,10 +373,11 @@ public void playerMove(PlayerMoveEvent event) {
 	score.setScore(Clan_1_Bal);
 	
 	//reloadConfig();
+
 	
 	board.resetScores(player);
 	
-	
+
 	
 	// CLAN 2 //
 	
@@ -367,7 +413,7 @@ public void playerMove(PlayerMoveEvent event) {
 	   Location loc = player.getLocation();
 	   
 	  
-	   if(Clan_1.contains(player.getName())){
+	   if(Clan_4.contains(player.getName())){
 	   
 	  
 	   if(loc.getBlockX() > Max){
@@ -451,7 +497,7 @@ public void OnPlayerLogin(PlayerJoinEvent event){
 	if(pick == 1){
 
 
-	player.sendMessage("You Are Clan 1!");
+	player.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "You Are Now A Member Of " + ChatColor.GOLD + "Clan 1!");
 
 	
 	
@@ -469,7 +515,8 @@ public void OnPlayerLogin(PlayerJoinEvent event){
 	if(pick == 2){
 
 
-	player.sendMessage("You Are Clan 2!");
+		player.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "You Are Now A Member Of " + ChatColor.GOLD + "Clan 2!");
+
 
 	
 	
@@ -487,7 +534,7 @@ public void OnPlayerLogin(PlayerJoinEvent event){
 	if(pick == 3){
 
 
-	player.sendMessage("You Are Clan 3!");
+		player.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "You Are Now A Member Of " + ChatColor.GOLD + "Clan 3!");
 
 	
 	 Clan_3.add(player.getName());
@@ -504,7 +551,7 @@ public void OnPlayerLogin(PlayerJoinEvent event){
 	if(pick == 4){
 
 
-	player.sendMessage("You Are Clan 4!");
+		player.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "You Are Now A Member Of " + ChatColor.GOLD + "Clan 4!");
 
 	
 	
