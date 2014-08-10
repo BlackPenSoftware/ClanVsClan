@@ -838,85 +838,12 @@ if(event.getInventory().contains(Material.DIAMOND)){
 							}
 						}			
 					}
-						
-
-
-	else if (clicked.getType() == Material.COBBLESTONE) {
-event.setCancelled(true);
-
-
-if(event.getInventory().contains(Material.COBBLESTONE)){
-    
-	if(Clan_1.contains(player.getName())){
-	
-	 player.getInventory().removeItem(new ItemStack(Material.COBBLESTONE, 1));
-	 
-	player.updateInventory();
-	
-	config.set("Clan_1.Admin.Ballance", (Integer)config.get("Clan_1.Admin.Ballance") + 500 );
-	
-	saveConfig();
-	
-	}
-	
-	if(event.getInventory().contains(Material.COBBLESTONE)){
-	    
-		if(Clan_2.contains(player.getName())){
-		
-		 player.getInventory().removeItem(new ItemStack(Material.COBBLESTONE, 1));
-		 
-		player.updateInventory();
-		
-		config.set("Clan_2.Admin.Ballance", (Integer)config.get("Clan_2.Admin.Ballance") + 500 );
-		
-		saveConfig();
-		
-		}
-		
-		
-		
-		if(event.getInventory().contains(Material.COBBLESTONE)){
-		    
-			if(Clan_3.contains(player.getName())){
-			
-			 player.getInventory().removeItem(new ItemStack(Material.COBBLESTONE, 1));
-			 
-			player.updateInventory();
-			
-			config.set("Clan_3.Admin.Ballance", (Integer)config.get("Clan_3.Admin.Ballance") + 500 );
-			
-			saveConfig();
-			
-			}
-			
-			
-			
-			if(event.getInventory().contains(Material.COBBLESTONE)){
-			    
-				if(Clan_4.contains(player.getName())){
-				
-				 player.getInventory().removeItem(new ItemStack(Material.COBBLESTONE, 1));
-				 
-				player.updateInventory();
-				
-				config.set("Clan_4.Admin.Ballance", (Integer)config.get("Clan_4.Admin.Ballance") + 500 );
-				
-				saveConfig();
-				
-				
-								}
-
-
+				}
 			}
 		}
 	}
 }
-}
-}
-}
-}
 
-}
 
-}
+
 

@@ -55,6 +55,13 @@ public class cvc implements CommandExecutor{
             
             
             	
+            }else if((commandLabel.equalsIgnoreCase("CvC") && args[0].equalsIgnoreCase("Expand"))){
+             
+            	
+            	
+            	
+            	return true;
+            	
             }else if((commandLabel.equalsIgnoreCase("CvC") && args[0].equalsIgnoreCase("setAdmin"))){
             	
             	Player playerName = Bukkit.getPlayer(args[2]);
