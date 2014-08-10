@@ -7,13 +7,16 @@ import java.util.logging.Logger;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scoreboard.DisplaySlot;
@@ -77,9 +80,14 @@ public void onDisable(){
 	System.out.println("[Clan Vs Clan] Clan Vs Clan v" + MainVersion + "." + MidVersion + "." + SubVersion + " Has Been Disabled.");
   }
 
+int Max = 100;
+int Max_2 = 100;
+int Max_3 = 100;
+int Max_4 = 100;
+
 public void initConfig() {
 
-	 
+
 	
      
      config.addDefault("Clan_1.Admin.UserName.ClanAdmin", Clan_1Admin);
@@ -100,35 +108,31 @@ public void initConfig() {
      
      config.addDefault("Clan_1.Players.Names", Clan_1_Player_List);
      
-     	config.addDefault("Clan_1.Land.ClaimSize.1", true);
-     	config.addDefault("Clan_1.Land.ClaimSize.1.Cost", 10000);
-     	
-     	config.addDefault("Clan_1.Land.ClaimSize.2", false);
-     	config.addDefault("Clan_1.Land.ClaimSize.2.Cost", 100000);
-     	
-     	config.addDefault("Clan_1.Land.ClaimSize.3", false);
-     	config.addDefault("Clan_1.Land.ClaimSize.3.Cost", 1000000);
-     	
-     	config.addDefault("Clan_1.Land.ClaimSize.4", false);
-     	config.addDefault("Clan_1.Land.ClaimSize.4.Cost", 10000000);
-     	
-     	config.addDefault("Clan_1.Land.ClaimSize.5", false);
-     	config.addDefault("Clan_1.Land.ClaimSize.5.Cost", 100000000);
-     	
-     	config.addDefault("Clan_1.Land.ClaimSize.6", false);
-     	config.addDefault("Clan_1.Land.ClaimSize.6.Cost", 1000000000);
-     	
-     	config.addDefault("Clan_1.Land.ClaimSize.7", false);
-     	config.addDefault("Clan_1.Land.ClaimSize.7.Cost", 200000000);
-     	
-     	config.addDefault("Clan_1.Land.ClaimSize.8", false);
-     	config.addDefault("Clan_1.Land.ClaimSize.8.Cost", 300000000);
-     	
-     	config.addDefault("Clan_1.Land.ClaimSize.9", false);
-     	config.addDefault("Clan_1.Land.ClaimSize.9.Cost", 400000000);
-     	
-     	config.addDefault("Clan_1.Land.ClaimSize.10", false);
-     	config.addDefault("Clan_1.Land.ClaimSize.10.Cost", 500000000);
+     
+     config.addDefault("Clan_1.Land.World.Name", "world");
+     
+
+  	config.addDefault("Clan_1.Land.ClaimSize.Size", Max);
+  	
+  	config.addDefault("Clan_1.Land.ClaimSize.1.Cost", 10000);
+
+  	config.addDefault("Clan_1.Land.ClaimSize.2.Cost", 100000);
+
+  	config.addDefault("Clan_1.Land.ClaimSize.3.Cost", 1000000);
+  
+  	config.addDefault("Clan_1.Land.ClaimSize.4.Cost", 10000000);
+
+  	config.addDefault("Clan_1.Land.ClaimSize.5.Cost", 100000000);
+
+  	config.addDefault("Clan_1.Land.ClaimSize.6.Cost", 1000000000);
+
+  	config.addDefault("Clan_1.Land.ClaimSize.7.Cost", 200000000);
+
+  	config.addDefault("Clan_1.Land.ClaimSize.8.Cost", 300000000);
+  	
+  	config.addDefault("Clan_1.Land.ClaimSize.9.Cost", 400000000);
+  	
+  	config.addDefault("Clan_1.Land.ClaimSize.10.Cost", 500000000);
      	
         
      	
@@ -138,6 +142,9 @@ public void initConfig() {
      config.addDefault("Clan_2.Admin.Ballance", 100);
      
      config.addDefault("Clan_2.Players.Names", Clan_2_Player_List);
+     
+     
+     config.addDefault("Clan_2.Land.World.Name", "Clan_2");
      
      
  config.addDefault("Clan_2.Home.X", 0.0D);
@@ -151,34 +158,28 @@ public void initConfig() {
      config.addDefault("Clan_2.Home.Pitch", 0.0D);
      
      
-     config.addDefault("Clan_2.Land.ClaimSize.1", true);
+  	config.addDefault("Clan_2.Players.Names", Clan_2_Player_List);
+
+  	config.addDefault("Clan_2.Land.ClaimSize.Size", Max_2);
+  	
   	config.addDefault("Clan_2.Land.ClaimSize.1.Cost", 10000);
-  	
-  	config.addDefault("Clan_2.Land.ClaimSize.2", false);
+
   	config.addDefault("Clan_2.Land.ClaimSize.2.Cost", 100000);
-  	
-  	config.addDefault("Clan_2.Land.ClaimSize.3", false);
+
   	config.addDefault("Clan_2.Land.ClaimSize.3.Cost", 1000000);
-  	
-  	config.addDefault("Clan_2.Land.ClaimSize.4", false);
+  
   	config.addDefault("Clan_2.Land.ClaimSize.4.Cost", 10000000);
-  	
-  	config.addDefault("Clan_2.Land.ClaimSize.5", false);
+
   	config.addDefault("Clan_2.Land.ClaimSize.5.Cost", 100000000);
-  	
-  	config.addDefault("Clan_2.Land.ClaimSize.6", false);
+
   	config.addDefault("Clan_2.Land.ClaimSize.6.Cost", 1000000000);
-  	
-  	config.addDefault("Clan_2.Land.ClaimSize.7", false);
+
   	config.addDefault("Clan_2.Land.ClaimSize.7.Cost", 200000000);
-  	
-  	config.addDefault("Clan_2.Land.ClaimSize.8", false);
+
   	config.addDefault("Clan_2.Land.ClaimSize.8.Cost", 300000000);
   	
-  	config.addDefault("Clan_2.Land.ClaimSize.9", false);
   	config.addDefault("Clan_2.Land.ClaimSize.9.Cost", 400000000);
   	
-  	config.addDefault("Clan_2.Land.ClaimSize.10", false);
   	config.addDefault("Clan_2.Land.ClaimSize.10.Cost", 500000000);
  		
   	
@@ -199,37 +200,32 @@ public void initConfig() {
      
      config.addDefault("Clan_3.Home.Pitch", 0.0D);
  	
+     
+     config.addDefault("Clan_3.Land.World.Name", "Clan_3");
+     
  	
  	config.addDefault("Clan_3.Players.Names", Clan_3_Player_List);
+
+ 	config.addDefault("Clan_3.Land.ClaimSize.Size", Max_3);
  	
- 	config.addDefault("Clan_3.Land.ClaimSize.1", true);
  	config.addDefault("Clan_3.Land.ClaimSize.1.Cost", 10000);
- 	
- 	config.addDefault("Clan_3.Land.ClaimSize.2", false);
+
  	config.addDefault("Clan_3.Land.ClaimSize.2.Cost", 100000);
- 	
- 	config.addDefault("Clan_3.Land.ClaimSize.3", false);
+
  	config.addDefault("Clan_3.Land.ClaimSize.3.Cost", 1000000);
- 	
- 	config.addDefault("Clan_3.Land.ClaimSize.4", false);
+ 
  	config.addDefault("Clan_3.Land.ClaimSize.4.Cost", 10000000);
- 	
- 	config.addDefault("Clan_3.Land.ClaimSize.5", false);
+
  	config.addDefault("Clan_3.Land.ClaimSize.5.Cost", 100000000);
- 	
- 	config.addDefault("Clan_3.Land.ClaimSize.6", false);
+;
  	config.addDefault("Clan_3.Land.ClaimSize.6.Cost", 1000000000);
- 	
- 	config.addDefault("Clan_3.Land.ClaimSize.7", false);
+
  	config.addDefault("Clan_3.Land.ClaimSize.7.Cost", 200000000);
- 	
- 	config.addDefault("Clan_3.Land.ClaimSize.8", false);
+
  	config.addDefault("Clan_3.Land.ClaimSize.8.Cost", 300000000);
  	
- 	config.addDefault("Clan_3.Land.ClaimSize.9", false);
  	config.addDefault("Clan_3.Land.ClaimSize.9.Cost", 400000000);
  	
- 	config.addDefault("Clan_3.Land.ClaimSize.10", false);
  	config.addDefault("Clan_3.Land.ClaimSize.10.Cost", 500000000);
  	
  	
@@ -251,36 +247,32 @@ public void initConfig() {
      config.addDefault("Clan_4.Home.Pitch", 0.0D);
      
      
+     config.addDefault("Clan_4.Land.World.Name", "Clan_4");
+     
+     
      config.addDefault("Clan_4.Players.Names", Clan_4_Player_List);
      
-     config.addDefault("Clan_4.Land.ClaimSize.1", true);
+
+  	config.addDefault("Clan_4.Land.ClaimSize.Size", Max_4);
+  	
   	config.addDefault("Clan_4.Land.ClaimSize.1.Cost", 10000);
-  	
-  	config.addDefault("Clan_4.Land.ClaimSize.2", false);
+
   	config.addDefault("Clan_4.Land.ClaimSize.2.Cost", 100000);
-  	
-  	config.addDefault("Clan_4.Land.ClaimSize.3", false);
+
   	config.addDefault("Clan_4.Land.ClaimSize.3.Cost", 1000000);
-  	
-  	config.addDefault("Clan_4.Land.ClaimSize.4", false);
+  
   	config.addDefault("Clan_4.Land.ClaimSize.4.Cost", 10000000);
-  	
-  	config.addDefault("Clan_4.Land.ClaimSize.5", false);
+
   	config.addDefault("Clan_4.Land.ClaimSize.5.Cost", 100000000);
-  	
-  	config.addDefault("Clan_4.Land.ClaimSize.6", false);
+
   	config.addDefault("Clan_4.Land.ClaimSize.6.Cost", 1000000000);
-  	
-  	config.addDefault("Clan_4.Land.ClaimSize.7", false);
+
   	config.addDefault("Clan_4.Land.ClaimSize.7.Cost", 200000000);
-  	
-  	config.addDefault("Clan_4.Land.ClaimSize.8", false);
+
   	config.addDefault("Clan_4.Land.ClaimSize.8.Cost", 300000000);
   	
-  	config.addDefault("Clan_4.Land.ClaimSize.9", false);
   	config.addDefault("Clan_4.Land.ClaimSize.9.Cost", 400000000);
-  	
-  	config.addDefault("Clan_4.Land.ClaimSize.10", false);
+ 
   	config.addDefault("Clan_4.Land.ClaimSize.10.Cost", 500000000);
  	
  	config.options().copyDefaults(true);
@@ -330,7 +322,7 @@ public void registerCommands(){
    
 }
 	
-int Max = 100;
+
 
 List<String> Clan_1 = config.getStringList("Clan_1.Players.Names");
 
@@ -383,9 +375,9 @@ public void playerMove(PlayerMoveEvent event) {
 	
 		Score Clan_2_Score = Clan_1_Bal_Board_Objective.getScore(ChatColor.BLUE + "Clan 2: "); //Get a fake offline player
 		
-		//int Clan_2_Bal = (Integer) config.get("Clan_2.Admin.Ballance");
+		int Clan_2_Bal = getConfig().getInt("Clan_2.Admin.Ballance");
 		
-		Clan_2_Score.setScore(999);
+		Clan_2_Score.setScore(Clan_2_Bal);
 		
 		
 		
@@ -393,27 +385,28 @@ public void playerMove(PlayerMoveEvent event) {
 		
 		Score Clan_3_Score = Clan_1_Bal_Board_Objective.getScore(ChatColor.BLUE + "Clan 3: "); //Get a fake offline player
 		
-		//int Clan_3_Bal = (Integer) config.get("Clan_3.Admin.Ballance");
+		int Clan_3_Bal = getConfig().getInt("Clan_3.Admin.Ballance");
 		
-		Clan_3_Score.setScore(998);
+		Clan_3_Score.setScore(Clan_3_Bal);
 		
 		
 		// CLAN 4//
 		
 		Score Clan_4_Score = Clan_1_Bal_Board_Objective.getScore(ChatColor.BLUE + "Clan 4: "); //Get a fake offline player
 		
-		//int Clan_4_Bal = (Integer) config.get("Clan_4.Admin.Ballance");
+		int Clan_4_Bal = getConfig().getInt("Clan_4.Admin.Ballance");
 		
-		Clan_4_Score.setScore(997);
+		Clan_4_Score.setScore(Clan_4_Bal);
 	
 	
 	player.setScoreboard(board);
 	
+
 	
 	   Location loc = player.getLocation();
 	   
 	  
-	   if(Clan_4.contains(player.getName())){
+	   if(Clan_1.contains(player.getName())){
 	   
 	  
 	   if(loc.getBlockX() > Max){
@@ -422,7 +415,7 @@ public void playerMove(PlayerMoveEvent event) {
 		
 		 // event.setCancelled(true);
 		  
-		  player.teleport(new Location(Bukkit.getWorld("world"), Max - 5, loc.getBlockY(), loc.getBlockZ()));
+		  player.teleport(new Location(Bukkit.getWorld(config.get("Clan_1.Land.World.Name").toString()), Max - 5, loc.getBlockY(), loc.getBlockZ()));
 		   
 		  
 		  
@@ -437,7 +430,7 @@ public void playerMove(PlayerMoveEvent event) {
 		
 		 // event.setCancelled(true);
 		  
-		  player.teleport(new Location(Bukkit.getWorld("world"), loc.getX(), loc.getBlockY(), Max - 5));
+		  player.teleport(new Location(Bukkit.getWorld(config.get("Clan_1.Land.World.Name").toString()), loc.getX(), loc.getBlockY(), Max - 5));
 		   
 		  
 	   }
@@ -449,7 +442,7 @@ public void playerMove(PlayerMoveEvent event) {
 			
 			 // event.setCancelled(true);
 			  
-			  player.teleport(new Location(Bukkit.getWorld("world"), Max - Max + 5 , loc.getBlockY(), loc.getBlockZ()));
+			  player.teleport(new Location(Bukkit.getWorld(config.get("Clan_1.Land.World.Name").toString()), Max - Max + 5 , loc.getBlockY(), loc.getBlockZ()));
 			   
 			  
 		   }
@@ -463,14 +456,196 @@ public void playerMove(PlayerMoveEvent event) {
 			
 			 // event.setCancelled(true);
 			  
-			  player.teleport(new Location(Bukkit.getWorld("world"), loc.getX(), loc.getBlockY(), Max - Max + 5));
+			  player.teleport(new Location(Bukkit.getWorld(config.get("Clan_1.Land.World.Name").toString()), loc.getX(), loc.getBlockY(), Max - Max + 5));
 			   
 			  
 		   }
 	   
 	  } 
-		   
+	   
+	   
 
+	   
+	   
+
+	   if(Clan_2.contains(player.getName())){
+	   
+	  
+	   if(loc.getBlockX() > Max_2){
+		   
+		  player.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_RED + "You Have Left Your Town");
+		
+		 // event.setCancelled(true);
+		  
+		  player.teleport(new Location(Bukkit.getWorld(config.get("Clan_2.Land.World.Name").toString()), Max_2 - 5, loc.getBlockY(), loc.getBlockZ()));
+		   
+		  
+		  
+	   }
+	
+	   
+	   
+	   if(loc.getBlockZ() > Max_2){
+		   
+			  player.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_RED + "You Have Left Your Town");
+			
+		
+		 // event.setCancelled(true);
+		  
+		  player.teleport(new Location(Bukkit.getWorld(config.get("Clan_2.Land.World.Name").toString()), loc.getX(), loc.getBlockY(), Max_2 - 5));
+		   
+		  
+	   }
+	   
+	   
+	   if(loc.getBlockX() * -1 > 0){
+		   
+			  player.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_RED + "You Have Left Your Town");
+			
+			 // event.setCancelled(true);
+			  
+			  player.teleport(new Location(Bukkit.getWorld(config.get("Clan_2.Land.World.Name").toString()), Max_2 - Max_2 + 5 , loc.getBlockY(), loc.getBlockZ()));
+			   
+			  
+		   }
+		
+		   
+		   
+		   if(loc.getBlockZ() * -1 > 0){
+			   
+				  player.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_RED + "You Have Left Your Town");
+				
+			
+			 // event.setCancelled(true);
+			  
+			  player.teleport(new Location(Bukkit.getWorld(config.get("Clan_2.Land.World.Name").toString()), loc.getX(), loc.getBlockY(), Max_2 - Max_2 + 5));
+			   
+			  
+		   }
+	   
+	  } 
+	   
+	  
+	   
+	   if(Clan_3.contains(player.getName())){
+		   
+			  
+		   if(loc.getBlockX() > Max_3){
+			   
+			  player.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_RED + "You Have Left Your Town");
+			
+			 // event.setCancelled(true);
+			  
+			  player.teleport(new Location(Bukkit.getWorld(config.get("Clan_3.Land.World.Name").toString()), Max_3 - 5, loc.getBlockY(), loc.getBlockZ()));
+			   
+			  
+			  
+		   }
+		
+		   
+		   
+		   if(loc.getBlockZ() > Max_3){
+			   
+				  player.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_RED + "You Have Left Your Town");
+				
+			
+			 // event.setCancelled(true);
+			  
+			  player.teleport(new Location(Bukkit.getWorld(config.get("Clan_3.Land.World.Name").toString()), loc.getX(), loc.getBlockY(), Max_3 - 5));
+			   
+			  
+		   }
+		   
+		   
+		   if(loc.getBlockX() * -1 > 0){
+			   
+				  player.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_RED + "You Have Left Your Town");
+				
+				 // event.setCancelled(true);
+				  
+				  player.teleport(new Location(Bukkit.getWorld(config.get("Clan_3.Land.World.Name").toString()), Max_3 - Max_3 + 5 , loc.getBlockY(), loc.getBlockZ()));
+				   
+				  
+			   }
+			
+			   
+			   
+			   if(loc.getBlockZ() * -1 > 0){
+				   
+					  player.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_RED + "You Have Left Your Town");
+					
+				
+				 // event.setCancelled(true);
+				  
+				  player.teleport(new Location(Bukkit.getWorld(config.get("Clan_3.Land.World.Name").toString()), loc.getX(), loc.getBlockY(), Max_3 - Max_3 + 5));
+				   
+				  
+			   }
+		   
+		  } 
+		   
+	   
+	   
+	   if(Clan_4.contains(player.getName())){
+		   
+			  
+		   if(loc.getBlockX() > Max_4){
+			   
+			  player.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_RED + "You Have Left Your Town");
+			
+			 // event.setCancelled(true);
+			  
+			  player.teleport(new Location(Bukkit.getWorld(config.get("Clan_4.Land.World.Name").toString()), Max_4 - 5, loc.getBlockY(), loc.getBlockZ()));
+			   
+			  
+			  
+		   }
+		
+		   
+		   
+		   if(loc.getBlockZ() > Max_4){
+			   
+				  player.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_RED + "You Have Left Your Town");
+				
+			
+			 // event.setCancelled(true);
+			  
+			  player.teleport(new Location(Bukkit.getWorld(config.get("Clan_4.Land.World.Name").toString()), loc.getX(), loc.getBlockY(), Max_4 - 5));
+			   
+			  
+		   }
+		   
+		   
+		   if(loc.getBlockX() * -1 > 0){
+			   
+				  player.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_RED + "You Have Left Your Town");
+				
+				 // event.setCancelled(true);
+				  
+				  player.teleport(new Location(Bukkit.getWorld(config.get("Clan_4.Land.World.Name").toString()), Max_4 - Max_4 + 5 , loc.getBlockY(), loc.getBlockZ()));
+				   
+				  
+			   }
+			
+			   
+			   
+			   if(loc.getBlockZ() * -1 > 0){
+				   
+					  player.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_RED + "You Have Left Your Town");
+					
+				
+				 // event.setCancelled(true);
+				  
+				  player.teleport(new Location(Bukkit.getWorld(config.get("Clan_4.Land.World.Name").toString()), loc.getX(), loc.getBlockY(), Max_4 - Max_4 + 5));
+				   
+				  
+			   }
+		   
+		  } 
+		   
+	   
+	   
+	   
 }
 
 
@@ -572,9 +747,176 @@ public void OnPlayerLogin(PlayerJoinEvent event){
 	}
 }
 
+
+
+
+
+@EventHandler
+public void onClick(InventoryClickEvent event) {
 	
+	
+	
+if (event.getInventory().getName().equalsIgnoreCase("Clan Shop")){
+//Makes it so the code will only work if its in the CustomInv inventory
+ItemStack clicked = event.getCurrentItem();
+//The item that was clicked
+if (clicked.getType() == Material.DIAMOND) {
+event.setCancelled(true);
+
+Player player = (Player) event.getWhoClicked();
+
+
+List<String> Clan_1 = config.getStringList("Clan_1.Players.Names");
+
+List<String> Clan_2 = config.getStringList("Clan_2.Players.Names");
+
+List<String> Clan_3 = config.getStringList("Clan_3.Players.Names");
+
+List<String> Clan_4 = config.getStringList("Clan_4.Players.Names");
+
+
+if(event.getInventory().contains(Material.DIAMOND)){
+    
+	if(Clan_1.contains(player.getName())){
+	
+	 player.getInventory().removeItem(new ItemStack(Material.DIAMOND, 1));
+	 
+	player.updateInventory();
+	
+	config.set("Clan_1.Admin.Ballance", (Integer)config.get("Clan_1.Admin.Ballance") + 500 );
+	
+	saveConfig();
+	
+	}
+	
+	if(event.getInventory().contains(Material.DIAMOND)){
+	    
+		if(Clan_2.contains(player.getName())){
+		
+		 player.getInventory().removeItem(new ItemStack(Material.DIAMOND, 1));
+		 
+		player.updateInventory();
+		
+		config.set("Clan_2.Admin.Ballance", (Integer)config.get("Clan_2.Admin.Ballance") + 500 );
+		
+		saveConfig();
+		
+		}
+		
+		
+		
+		if(event.getInventory().contains(Material.DIAMOND)){
+		    
+			if(Clan_3.contains(player.getName())){
+			
+			 player.getInventory().removeItem(new ItemStack(Material.DIAMOND, 1));
+			 
+			player.updateInventory();
+			
+			config.set("Clan_3.Admin.Ballance", (Integer)config.get("Clan_3.Admin.Ballance") + 500 );
+			
+			saveConfig();
+			
+			}
+			
+			
+			
+			if(event.getInventory().contains(Material.DIAMOND)){
+			    
+				if(Clan_4.contains(player.getName())){
+				
+				 player.getInventory().removeItem(new ItemStack(Material.DIAMOND, 1));
+				 
+				player.updateInventory();
+				
+				config.set("Clan_4.Admin.Ballance", (Integer)config.get("Clan_4.Admin.Ballance") + 500 );
+				
+				saveConfig();
+				
+				
+								}
+							}
+						}			
+					}
+						
+
+
+	else if (clicked.getType() == Material.COBBLESTONE) {
+event.setCancelled(true);
+
+
+if(event.getInventory().contains(Material.COBBLESTONE)){
+    
+	if(Clan_1.contains(player.getName())){
+	
+	 player.getInventory().removeItem(new ItemStack(Material.COBBLESTONE, 1));
+	 
+	player.updateInventory();
+	
+	config.set("Clan_1.Admin.Ballance", (Integer)config.get("Clan_1.Admin.Ballance") + 500 );
+	
+	saveConfig();
+	
+	}
+	
+	if(event.getInventory().contains(Material.COBBLESTONE)){
+	    
+		if(Clan_2.contains(player.getName())){
+		
+		 player.getInventory().removeItem(new ItemStack(Material.COBBLESTONE, 1));
+		 
+		player.updateInventory();
+		
+		config.set("Clan_2.Admin.Ballance", (Integer)config.get("Clan_2.Admin.Ballance") + 500 );
+		
+		saveConfig();
+		
+		}
+		
+		
+		
+		if(event.getInventory().contains(Material.COBBLESTONE)){
+		    
+			if(Clan_3.contains(player.getName())){
+			
+			 player.getInventory().removeItem(new ItemStack(Material.COBBLESTONE, 1));
+			 
+			player.updateInventory();
+			
+			config.set("Clan_3.Admin.Ballance", (Integer)config.get("Clan_3.Admin.Ballance") + 500 );
+			
+			saveConfig();
+			
+			}
+			
+			
+			
+			if(event.getInventory().contains(Material.COBBLESTONE)){
+			    
+				if(Clan_4.contains(player.getName())){
+				
+				 player.getInventory().removeItem(new ItemStack(Material.COBBLESTONE, 1));
+				 
+				player.updateInventory();
+				
+				config.set("Clan_4.Admin.Ballance", (Integer)config.get("Clan_4.Admin.Ballance") + 500 );
+				
+				saveConfig();
+				
+				
+								}
+
+
+			}
+		}
+	}
+}
+}
+}
+}
 }
 
+}
 
-
+}
 
