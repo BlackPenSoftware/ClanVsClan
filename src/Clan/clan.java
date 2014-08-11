@@ -32,7 +32,7 @@ import Executer.cvc;
 public class clan extends JavaPlugin implements Listener{
 
 	int MainVersion = 0;
-	int MidVersion = 2;
+	int MidVersion = 3;
 	int SubVersion = 0;
 	
 	String MinecraftVersion = "1.7.9";
@@ -80,10 +80,6 @@ public void onDisable(){
 	System.out.println("[Clan Vs Clan] Clan Vs Clan v" + MainVersion + "." + MidVersion + "." + SubVersion + " Has Been Disabled.");
   }
 
-int Max = 100;
-int Max_2 = 100;
-int Max_3 = 100;
-int Max_4 = 100;
 
 public void initConfig() {
 
@@ -147,7 +143,7 @@ public void initConfig() {
      config.addDefault("Clan_2.Land.World.Name", "Clan_2");
      
      
- config.addDefault("Clan_2.Home.X", 0.0D);
+     config.addDefault("Clan_2.Home.X", 0.0D);
      
      config.addDefault("Clan_2.Home.Y", 60.0D);
      
@@ -190,7 +186,7 @@ public void initConfig() {
  	config.addDefault("Clan_3.Admin.Ballance", 100);
  	
  	
- config.addDefault("Clan_3.Home.X", 0.0D);
+ 	config.addDefault("Clan_3.Home.X", 0.0D);
      
      config.addDefault("Clan_3.Home.Y", 60.0D);
      
@@ -236,7 +232,7 @@ public void initConfig() {
      config.addDefault("Clan_4.Admin.Ballance", 100);
      
      
- config.addDefault("Clan_1.Home.X", 0.0D);
+     config.addDefault("Clan_1.Home.X", 0.0D);
      
      config.addDefault("Clan_4.Home.Y", 60.0D);
      
@@ -295,7 +291,43 @@ public void configSave(){
 
 
 
+int Max = 100;
+int Max_2 = 100;
+int Max_3 = 100;
+int Max_4 = 100;
  
+public void Max_100(){
+	
+	Max = Max + 100;
+	
+	saveConfig();
+	
+}
+
+public void Max_2_100(){
+	
+	Max_2 = Max_2 + 100;
+	
+	saveConfig();
+	
+}
+
+public void Max_3_100(){
+	
+	Max_3 = Max_3 + 100;
+
+	saveConfig();
+	
+}
+
+public void Max_4_100(){
+	
+	Max_4 = Max_4 + 100;
+	
+	saveConfig();
+	
+}
+
 
 @Override
 public void onEnable() {
@@ -649,6 +681,8 @@ public void playerMove(PlayerMoveEvent event) {
 }
 
 
+
+
 @EventHandler 
 
 public void OnPlayerLogin(PlayerJoinEvent event){
@@ -843,7 +877,3 @@ if(event.getInventory().contains(Material.DIAMOND)){
 		}
 	}
 }
-
-
-
-

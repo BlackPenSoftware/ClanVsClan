@@ -1,6 +1,7 @@
 package Executer;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.bukkit.Bukkit;
@@ -55,9 +56,118 @@ public class cvc implements CommandExecutor{
             
             
             	
-            }else if((commandLabel.equalsIgnoreCase("CvC") && args[0].equalsIgnoreCase("Expand"))){
+            }else if((commandLabel.equalsIgnoreCase("CvC") && args[0].equalsIgnoreCase("Switch") && args[1].equalsIgnoreCase("Clan") && Bukkit.getPlayer(args[2]) != null)){
              
+            	// NEEDS TO BE FINISED //
             	
+            	
+            	FileConfiguration config = plugin.getConfig();
+            	
+            	//List<String> Clan_1 = config.getStringList("Clan_1.Players.Names");
+
+            	//List<String> Clan_2 = config.getStringList("Clan_2.Players.Names");
+
+            	List<String> Clan_3 = config.getStringList("Clan_3.Players.Names");
+
+            	//List<String> Clan_4 = config.getStringList("Clan_4.Players.Names");
+            	
+            	Player Player_To_Clan = Bukkit.getPlayer(args[2]);
+            	
+            	if(sender.getName().equalsIgnoreCase((String) config.get("Clan_3.Admin.UserName"))){
+            		
+            		sender.sendMessage("YO");
+            		
+            		if(Clan_3.contains(Player_To_Clan.toString())){
+            			
+            			Clan_3.remove(Player_To_Clan.toString());
+            			
+            			plugin.saveConfig();
+            			
+            			plugin.reloadConfig();
+            			
+            			
+            			
+            		}
+            		
+            		
+            		
+            		}
+            	
+            			if(sender.getName() == config.get("Clan_2.Admin.UserName.ClanAdmin")){
+            		
+            		
+            		
+            				}
+
+            					if(sender.getName() == config.get("Clan_3.Admin.UserName.ClanAdmin")){
+	
+	
+	
+            							}
+
+            								if(sender.getName() == config.get("Clan_4.Admin.UserName.ClanAdmin")){
+	
+	
+	
+            										}
+            	
+            	
+            	
+               	return true;
+               	
+               }else if((commandLabel.equalsIgnoreCase("CvC") && args[0].equalsIgnoreCase("Expand"))){
+             
+            	   FileConfiguration config = plugin.getConfig();
+            	   
+            	   sender.sendMessage("1");
+            	   
+            	   if(sender.getName().equalsIgnoreCase((String) config.get("Clan_1.Admin.UserName"))){
+            		   
+            		   sender.sendMessage("2");
+            		   
+            		   int Clan1_Bal = (Integer)config.get("Clan_1.Admin.Ballance"); 
+            		   
+            		   //if(Clan1_Bal > (Integer)config.get("Clan_1.Land.ClaimSize")){
+            			   
+            			   sender.sendMessage("3");
+            			   
+            			   plugin.Max_100();
+            			   
+            			   Clan1_Bal = Clan1_Bal - 100;
+            			   
+            			   plugin.saveConfig();
+            			   
+            			  
+                		   
+            			 
+            		 //  }
+            			
+            		  
+            		   
+            	   }
+            	   
+            	   
+            	   if(sender.getName() == config.get("Clan_2.Admin.UserName.ClanAdmin")){
+            		   
+            		 // int  Clan2_Bal = (Integer)config.get("Clan_2.Admin.Ballance");
+            		   
+            	   }
+            	   
+            	   
+            	   if(sender.getName() == config.get("Clan_3.Admin.UserName.ClanAdmin")){
+            		   
+            		   //int Clan3_Bal = (Integer)config.get("Clan_3.Admin.Ballance");
+            		   
+            	   }
+            	   
+            	   
+            	   if(sender.getName() == config.get("Clan_4.Admin.UserName.ClanAdmin")){
+            		   
+            		//  int Clan4_Bal = (Integer)config.get("Clan_4.Admin.Ballance");
+            		   
+            	   }
+            	   
+            	   
             	
             	
             	return true;
@@ -274,177 +384,19 @@ public class cvc implements CommandExecutor{
      	   return true;
      	   
      	   
-        }else if((commandLabel.equalsIgnoreCase("CvC") && args[0].equalsIgnoreCase("Class") && args[1].equalsIgnoreCase("Join"))){
+        }else if((commandLabel.equalsIgnoreCase("CvC") && args[0].equalsIgnoreCase("EnlargeCost"))){
         	
-        	FileConfiguration config = plugin.getConfig();
-        	
-        	
-        	List<String> Clan_1 = config.getStringList("Clan_1.Players.Names");
-
-        	List<String> Clan_2 = config.getStringList("Clan_2.Players.Names");
-
-        	List<String> Clan_3 = config.getStringList("Clan_3.Players.Names");
-
-        	List<String> Clan_4 = config.getStringList("Clan_4.Players.Names");
+        	sender.sendMessage("CVC 1");
         	
         	
-     	   
-     	  if(sender instanceof Player){
-          	  
-          	
-     		  
-     		  Player player = (Player) sender;
-     		 
-     		 if(Clan_1.contains(player.getName())){
-     			 
-     			if(args[2].equalsIgnoreCase("Archer")){
-        			 
-        			 config.set("Clan_1.Players.PlayerClass." + player.getDisplayName() + ".Class", "Archer");
-        			 
-        			 player.sendMessage("You Are Now An Archer");
-        			 
-        			
-        			 
-        		 }
-     			
-     			if(args[2].equalsIgnoreCase("Miner")){
-       			 
-       			 config.set("Clan_1.Players.PlayerClass." + player.getDisplayName() + ".Class", "Miner");
-       			 
-       			 player.sendMessage("You Are Now A Miner");
-       			 
-       			 ItemStack item = new ItemStack(Material.IRON_PICKAXE);
-  	       		ItemMeta meta = item.getItemMeta();
-  	       		meta.setDisplayName("Miners Pick");
-  	       		item.setItemMeta(meta);
-  			 
-  			 player.getInventory().addItem(item);
-       			 
-       		 }
- 
-     			 
-     		 }
-     		 
-     		if(Clan_2.contains(player.getName())){
-     			
-     			if(args[2].equalsIgnoreCase("Archer")){
-       			 
-       			 config.set("Clan_2.PlayerClass.PlayerClass." + player.getDisplayName() + ".Class", "Archer");
-       			 
-       			 player.sendMessage("You Are Now An Archer");
-       			 
-       			 
-       			 
-       		 }
-    			
-    			if(args[2].equalsIgnoreCase("Miner")){
-      			 
-      			 config.set("Clan_2.PlayerClass.PlayerClass." + player.getDisplayName() + ".Class", "Miner");
-      			 
-      			 player.sendMessage("You Are Now A Miner");
-
-       			 
-       			 ItemStack item = new ItemStack(Material.IRON_PICKAXE);
-  	       		ItemMeta meta = item.getItemMeta();
-  	       		meta.setDisplayName("Miners Pick");
-  	       		item.setItemMeta(meta);
-  			 
-  			 player.getInventory().addItem(item);
-      			 
-      		 }
-     			
-     		}
-     		
-     		if(Clan_3.contains(player.getName())){
-     		
-     			if(args[2].equalsIgnoreCase("Archer")){
-       			 
-       			 config.set("Clan_3.PlayerClass.PlayerClass." + player.getDisplayName() + ".Class", "Archer");
-       			 
-       			 player.sendMessage("You Are Now An Archer");
-       			 
-       			 
-       			 
-       		 }
-    			
-    			if(args[2].equalsIgnoreCase("Miner")){
-      			 
-      			 config.set("Clan_3.PlayerClass.PlayerClass." + player.getDisplayName() + ".Class", "Miner");
-      			 
-      			 player.sendMessage("You Are Now A Miner");
-      			 
-
-       			 
-       			 ItemStack item = new ItemStack(Material.IRON_PICKAXE);
-  	       		ItemMeta meta = item.getItemMeta();
-  	       		meta.setDisplayName("Miners Pick");
-  	       		item.setItemMeta(meta);
-  			 
-  			 player.getInventory().addItem(item);
-      		 }
-     			
-     		
-     		}
-     		
-     		if(Clan_4.contains(player.getName())){
-     			
-     			if(args[2].equalsIgnoreCase("Archer")){
-       			 
-       			 config.set("Clan_4.PlayerClass.PlayerClass." + player.getDisplayName() + ".Class", "Archer");
-       			 
-       			 player.sendMessage("You Are Now An Archer");
-       			 
-       			 
-       			 
-       		 }
-    			
-    			if(args[2].equalsIgnoreCase("Miner")){
-      			 
-      			 config.set("Clan_4.PlayerClass.PlayerClass." + player.getDisplayName() + ".Class", "Miner");
-      			 
-      			 player.sendMessage("You Are Now A Miner");
-      			 
-      			 
-
-       			 
-       			 ItemStack item = new ItemStack(Material.IRON_PICKAXE);
-  	       		ItemMeta meta = item.getItemMeta();
-  	       		meta.setDisplayName("Miners Pick");
-  	       		item.setItemMeta(meta);
-  			 
-  			 player.getInventory().addItem(item);
-      		 }
-     			
-     			
-     		}
-     		
-     		  
-     		
-     		 
-     		plugin.saveConfig();
-     			
-     		
-     		
-     		  }
-     		
-     	
-     		
-     	  
-     	  
-     	   
-     	   
-     	   return true;
-     	   
-     	   
-        }else if((commandLabel.equalsIgnoreCase("CvC") && args[0].equalsIgnoreCase("Expand") && args[1].equalsIgnoreCase("Cost"))){
+        	return true;
         	
-     	   //FileConfiguration config = plugin.getConfig();
-     	   
-     	   sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] ");
-     	   
-     	   return true;
-     	   
-     	   
+        }else if((commandLabel.equalsIgnoreCase("CvC") && args[0].equalsIgnoreCase("Enlarge"))){
+
+        	
+        	
+        	return true;
+        	
         }else if((commandLabel.equalsIgnoreCase("CvC") && args[0].equalsIgnoreCase("SetHome"))){
         	
         	FileConfiguration config = plugin.getConfig();
