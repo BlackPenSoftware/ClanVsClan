@@ -1,7 +1,7 @@
 package Executer;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import org.bukkit.Bukkit;
@@ -30,6 +30,7 @@ public class cvc implements CommandExecutor{
  
     }
  
+ 
     int Bal = 1000;
     
  
@@ -42,8 +43,6 @@ public class cvc implements CommandExecutor{
                   sender.sendMessage(ChatColor.GOLD + "==================[CvC 1 / 2]===================");
 
 				  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GREEN + "/CvC SetAdmin (Clan Number / Name) (Player Name)" + ChatColor.DARK_PURPLE + " This Command Is Used To Assign Clan Admins.");
-
-				  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GREEN + "/CvC Claim (Clan Number / Name) " + ChatColor.DARK_PURPLE + "This Command Allows For Admins To Set The Main Starting Claim For Clans.");
 				  
 				  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GREEN + "/CvC ExpandCost " + ChatColor.DARK_PURPLE + "This Command Allows For The Admins Of The Clan To Check How Much It Will Cost To Expand Their Claim To The Next Size."); 
 				  
@@ -56,123 +55,279 @@ public class cvc implements CommandExecutor{
             
             
             	
-            }else if((commandLabel.equalsIgnoreCase("CvC") && args[0].equalsIgnoreCase("Switch") && args[1].equalsIgnoreCase("Clan") && Bukkit.getPlayer(args[2]) != null)){
-             
-            	// NEEDS TO BE FINISED //
-            	
-            	
-            	FileConfiguration config = plugin.getConfig();
-            	
-            	//List<String> Clan_1 = config.getStringList("Clan_1.Players.Names");
-
-            	//List<String> Clan_2 = config.getStringList("Clan_2.Players.Names");
-
-            	List<String> Clan_3 = config.getStringList("Clan_3.Players.Names");
-
-            	//List<String> Clan_4 = config.getStringList("Clan_4.Players.Names");
-            	
-            	Player Player_To_Clan = Bukkit.getPlayer(args[2]);
-            	
-            	if(sender.getName().equalsIgnoreCase((String) config.get("Clan_3.Admin.UserName"))){
-            		
-            		sender.sendMessage("YO");
-            		
-            		if(Clan_3.contains(Player_To_Clan.toString())){
-            			
-            			Clan_3.remove(Player_To_Clan.toString());
-            			
-            			plugin.saveConfig();
-            			
-            			plugin.reloadConfig();
-            			
-            			
-            			
-            		}
-            		
-            		
-            		
-            		}
-            	
-            			if(sender.getName() == config.get("Clan_2.Admin.UserName.ClanAdmin")){
-            		
-            		
-            		
-            				}
-
-            					if(sender.getName() == config.get("Clan_3.Admin.UserName.ClanAdmin")){
-	
-	
-	
-            							}
-
-            								if(sender.getName() == config.get("Clan_4.Admin.UserName.ClanAdmin")){
-	
-	
-	
-            										}
-            	
-            	
-            	
-               	return true;
-               	
-               }else if((commandLabel.equalsIgnoreCase("CvC") && args[0].equalsIgnoreCase("Expand"))){
+            }else if((commandLabel.equalsIgnoreCase("CvC") && args[0].equalsIgnoreCase("Expand"))){
              
             	   FileConfiguration config = plugin.getConfig();
             	   
-            	   sender.sendMessage("1");
+            	  
+            	   if( (Integer)config.get("Clan_1.Land.ClaimSize.Size") >= 1000 ){
+            		   
+        			   sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Your Clan Is Already At Max Size: " + (Integer)config.get("Clan_1.Land.ClaimSize.Size") + "x" + (Integer)config.get("Clan_1.Land.ClaimSize.Size"));
+          			 
+        				return true;
+        			   
+        		   
+        		   }
+            	   
+            	   if( (Integer)config.get("Clan_2.Land.ClaimSize.Size") >= 1000){
+            		   
+        			   sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Your Clan Is Already At Max Size: " + (Integer)config.get("Clan_2.Land.ClaimSize.Size") + "x" + (Integer)config.get("Clan_2.Land.ClaimSize.Size"));
+          			 
+        		   
+        				return true;
+        			   
+        		   }
+  
+  
+  
+            	   if( (Integer)config.get("Clan_3.Land.ClaimSize.Size") >= 1000){
+	   
+            		   	sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Your Clan Is Already At Max Size: " + (Integer)config.get("Clan_3.Land.ClaimSize.Size") + "x" + (Integer)config.get("Clan_3.Land.ClaimSize.Size"));
+		 
+            			return true;
+  
+            	   }
+  
+  
+  
+            	   if( (Integer)config.get("Clan_4.Land.ClaimSize.Size") >= 1000){
+	   
+            		   		sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Your Clan Is Already At Max Size: " + (Integer)config.get("Clan_4.Land.ClaimSize.Size") + "x" + (Integer)config.get("Clan_4.Land.ClaimSize.Size"));
+		 
+            		   		return true;
+            		   		
+  
+            	   }
+            	   
+            	   
             	   
             	   if(sender.getName().equalsIgnoreCase((String) config.get("Clan_1.Admin.UserName"))){
             		   
-            		   sender.sendMessage("2");
+
             		   
-            		   int Clan1_Bal = (Integer)config.get("Clan_1.Admin.Ballance"); 
+            		   //int Clan_1_Bal = plugin.getConfig().getInt("Clan_1.Admin.Ballance");
             		   
-            		   //if(Clan1_Bal > (Integer)config.get("Clan_1.Land.ClaimSize")){
+            		   int bal = plugin.getConfig().getInt("Clan_1.Admin.Ballance");
+            		   
+            		   //int claim = plugin.getConfig().getInt("Clan_1.Land.ClaimSize");
+            		   
+            		   if( bal >= (Integer)config.get("Clan_1.Land.ClaimSize.Size") * 500 && (Integer)config.get("Clan_1.Land.ClaimSize.Size") < 1000){
             			   
-            			   sender.sendMessage("3");
             			   
-            			   plugin.Max_100();
+            			 
             			   
-            			   Clan1_Bal = Clan1_Bal - 100;
+            			   config.set("Clan_1.Admin.Ballance", (Integer)config.get("Clan_1.Admin.Ballance") - (Integer)config.get("Clan_1.Land.ClaimSize.Size") * 500);
+            			  
             			   
+            			   config.set("Clan_1.Land.ClaimSize.Size", (Integer)config.get("Clan_1.Land.ClaimSize.Size") + 100);
+            			   
+            			
             			   plugin.saveConfig();
             			   
             			  
-                		   
+                		   sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "You Have Expanded Your Clan's Claim To " + (Integer)config.get("Clan_1.Land.ClaimSize.Size") + "x" + (Integer)config.get("Clan_1.Land.ClaimSize.Size"));
             			 
-            		 //  }
-            			
+            	
+                		return true;
             		  
             		   
             	   }
             	   
             	   
-            	   if(sender.getName() == config.get("Clan_2.Admin.UserName.ClanAdmin")){
-            		   
-            		 // int  Clan2_Bal = (Integer)config.get("Clan_2.Admin.Ballance");
-            		   
+            	   
+            	   
+                		   if(sender.getName().equalsIgnoreCase((String) config.get("Clan_2.Admin.UserName"))){
+                    		   
+
+                    		   
+                    		   //int Clan_1_Bal = plugin.getConfig().getInt("Clan_1.Admin.Ballance");
+                    		   
+                    		   int bal_2 = plugin.getConfig().getInt("Clan_2.Admin.Ballance");
+                    		   
+                    		   //int claim = plugin.getConfig().getInt("Clan_1.Land.ClaimSize");
+                    		   
+                    		   if( bal_2 >= (Integer)config.get("Clan_2.Land.ClaimSize.Size") * 500 && (Integer)config.get("Clan_2.Land.ClaimSize.Size") < 1000){
+                    			   
+                    			   
+                    			 
+                    			   
+                    			   config.set("Clan_2.Admin.Ballance", (Integer)config.get("Clan_2.Admin.Ballance") - (Integer)config.get("Clan_2.Land.ClaimSize.Size") * 500);
+                    			  
+                    			   
+                    			   config.set("Clan_2.Land.ClaimSize.Size", (Integer)config.get("Clan_2.Land.ClaimSize.Size") + 100);
+                    			   
+                    			
+                    			   plugin.saveConfig();
+                    			   
+                    			  
+                        		   sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "You Have Expanded Your Clan's Claim To " + (Integer)config.get("Clan_2.Land.ClaimSize.Size") + "x" + (Integer)config.get("Clan_2.Land.ClaimSize.Size"));
+                    			 
+                    	
+                        			return true;
+                    		  
+                    		   
+                    	   }
+            	   
+            	   
+                    		   if(sender.getName().equalsIgnoreCase((String) config.get("Clan_3.Admin.UserName"))){
+                        		   
+
+                        		   
+                        		   //int Clan_1_Bal = plugin.getConfig().getInt("Clan_1.Admin.Ballance");
+                        		   
+                        		   int bal_3 = plugin.getConfig().getInt("Clan_3.Admin.Ballance");
+                        		   
+                        		   //int claim = plugin.getConfig().getInt("Clan_1.Land.ClaimSize");
+                        		   
+                        		   if( bal_3 >= (Integer)config.get("Clan_3.Land.ClaimSize.Size") * 500 && (Integer)config.get("Clan_3.Land.ClaimSize.Size") < 1000){
+                        			   
+                        			   
+                        			 
+                        			   
+                        			   config.set("Clan_3.Admin.Ballance", (Integer)config.get("Clan_3.Admin.Ballance") - (Integer)config.get("Clan_3.Land.ClaimSize.Size") * 500);
+                        			  
+                        			   
+                        			   config.set("Clan_3.Land.ClaimSize.Size", (Integer)config.get("Clan_3.Land.ClaimSize.Size") + 100);
+                        			   
+                        			
+                        			   plugin.saveConfig();
+                        			   
+                        			  
+                            		   sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "You Have Expanded Your Clan's Claim To " + (Integer)config.get("Clan_3.Land.ClaimSize.Size") + "x" + (Integer)config.get("Clan_3.Land.ClaimSize.Size"));
+                        			 
+                        	
+                            			return true;
+                        		  
+                        		   
+                        	   }
+                        		   
+                        		   if(sender.getName().equalsIgnoreCase((String) config.get("Clan_4.Admin.UserName"))){
+                            		   
+
+                            		   
+                            		   //int Clan_1_Bal = plugin.getConfig().getInt("Clan_1.Admin.Ballance");
+                            		   
+                            		   int bal_4 = plugin.getConfig().getInt("Clan_4.Admin.Ballance");
+                            		   
+                            		   //int claim = plugin.getConfig().getInt("Clan_1.Land.ClaimSize");
+                            		   
+                            		   if( bal_4 >= (Integer)config.get("Clan_4.Land.ClaimSize.Size") * 500 && (Integer)config.get("Clan_4.Land.ClaimSize.Size") < 1000){
+                            			   
+                            			   
+                            			 
+                            			   
+                            			   config.set("Clan_4.Admin.Ballance", (Integer)config.get("Clan_4.Admin.Ballance") - (Integer)config.get("Clan_4.Land.ClaimSize.Size") * 500);
+                            			  
+                            			   
+                            			   config.set("Clan_4.Land.ClaimSize.Size", (Integer)config.get("Clan_4.Land.ClaimSize.Size") + 100);
+                            			   
+                            			
+                            			   plugin.saveConfig();
+                            			   
+                            			  
+                                		   sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "You Have Expanded Your Clan's Claim To " + (Integer)config.get("Clan_4.Land.ClaimSize.Size") + "x" + (Integer)config.get("Clan_4.Land.ClaimSize.Size"));
+                            			 
+                            	
+                                		
+                                			return true;
+                            		   
+                            	   }
+                            		   
+                            		   
+                        		   }
+                    		   }
+                	
+                		   }
+                	
             	   }
-            	   
-            	   
-            	   if(sender.getName() == config.get("Clan_3.Admin.UserName.ClanAdmin")){
-            		   
-            		   //int Clan3_Bal = (Integer)config.get("Clan_3.Admin.Ballance");
-            		   
-            	   }
-            	   
-            	   
-            	   if(sender.getName() == config.get("Clan_4.Admin.UserName.ClanAdmin")){
-            		   
-            		//  int Clan4_Bal = (Integer)config.get("Clan_4.Admin.Ballance");
-            		   
-            	   }
-            	   
-            	   
-            	
-            	
-            	return true;
-            	
-            }else if((commandLabel.equalsIgnoreCase("CvC") && args[0].equalsIgnoreCase("setAdmin"))){
+                		   
+                		   return true;
+                		   
+                		   
+          
+            }else if((commandLabel.equalsIgnoreCase("CvC") && args[0].equalsIgnoreCase("ExpandCost"))){
+                
+         	   FileConfiguration config = plugin.getConfig();
+         	 
+         	  List<String> Clan_1 = config.getStringList("Clan_1.Players.Names");
+
+         		List<String> Clan_2 = config.getStringList("Clan_2.Players.Names");
+
+         		List<String> Clan_3 = config.getStringList("Clan_3.Players.Names");
+
+         		List<String> Clan_4 = config.getStringList("Clan_4.Players.Names");
+         		
+         		if(Clan_1.contains(sender.getName())){
+         			
+         			int ClaimSize_1 = (Integer)config.get("Clan_1.Land.ClaimSize.Size");
+         			
+         			if(ClaimSize_1 < 1000){
+         			
+         			sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + " To Expand Your Clans Claim To " + ChatColor.GOLD + ClaimSize_1 + ChatColor.DARK_PURPLE + "x" + ChatColor.GOLD + ClaimSize_1 + ChatColor.DARK_PURPLE + " Your Clan Needs " + ChatColor.GOLD + "$" + (ClaimSize_1 + 100) * 500);
+         			
+         			
+         			}else{
+         				
+         				sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Your Clan Is At Max Size");
+         				
+         			}
+         			 return true;
+         		}
+         		
+         			if(Clan_2.contains(sender.getName())){
+         			
+         				int ClaimSize_2 = (Integer)config.get("Clan_2.Land.ClaimSize.Size");
+             			
+             			if(ClaimSize_2 < 1000){
+             			
+             			sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + " To Expand Your Clans Claim To " + ChatColor.GOLD + ClaimSize_2 + ChatColor.DARK_PURPLE + "x" + ChatColor.GOLD + ClaimSize_2 + ChatColor.DARK_PURPLE + " Your Clan Needs " + ChatColor.GOLD + "$" + (ClaimSize_2 + 100) * 500);
+             			
+             			
+             			}else{
+             				
+             				sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Your Clan Is At Max Size");
+             				
+             			}
+             			 return true;
+         				}
+
+         					if(Clan_3.contains(sender.getName())){
+		
+         						int ClaimSize_3 = (Integer)config.get("Clan_3.Land.ClaimSize.Size");
+         	         			
+         	         			if(ClaimSize_3 < 1000){
+         	         			
+         	         			sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + " To Expand Your Clans Claim To " + ChatColor.GOLD + ClaimSize_3 + ChatColor.DARK_PURPLE + "x" + ChatColor.GOLD + ClaimSize_3 + ChatColor.DARK_PURPLE + " Your Clan Needs " + ChatColor.GOLD + "$" + (ClaimSize_3 + 100) * 500);
+         	         			
+         	         			
+         	         			}else{
+         	         				
+         	         				sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Your Clan Is At Max Size");
+         	         				
+         	         			}
+         	         			 return true;
+         						}
+
+         							if(Clan_4.contains(sender.getName())){
+		
+         								int ClaimSize_4 = (Integer)config.get("Clan_4.Land.ClaimSize.Size");
+         			         			
+         			         			if(ClaimSize_4 < 1000){
+         			         			
+         			         			sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + " To Expand Your Clans Claim To " + ChatColor.GOLD + ClaimSize_4 + ChatColor.DARK_PURPLE + "x" + ChatColor.GOLD + ClaimSize_4 + ChatColor.DARK_PURPLE + " Your Clan Needs " + ChatColor.GOLD + "$" + (ClaimSize_4 + 100) * 500);
+         			         			
+         			         			
+         			         			}else{
+         			         				
+         			         				sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Your Clan Is At Max Size");
+         			         				
+         			         			}
+         			         			 return true;
+         								}
+         	   
+         	   return true;
+         							
+            }else if((commandLabel.equalsIgnoreCase("CvC") && args[0].equalsIgnoreCase("setAdmin") && sender.isOp())){
             	
             	Player playerName = Bukkit.getPlayer(args[2]);
             	
@@ -271,10 +426,7 @@ public class cvc implements CommandExecutor{
        	 		sender.sendMessage(ChatColor.GOLD + "==================[CvC 2 / 2]===================");
        	 
 			  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GREEN + "/CvC Expand " + ChatColor.DARK_PURPLE + "This Command Allows For The Admins Of The Clan To Expand Their Claim.");
-			  
-			  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GREEN + "/CvC Bal " + ChatColor.DARK_PURPLE + "This Command Allows For The Admins Of A Clan To Check The Amount Of Money The Clan Has.");
-			  
-			  
+			   
 			  sender.sendMessage(ChatColor.GOLD + "================================================");
        	
        return true;	
@@ -326,14 +478,18 @@ public class cvc implements CommandExecutor{
         	return true;	
         
         
-        }else if((commandLabel.equalsIgnoreCase("CvC") && args[0].equalsIgnoreCase("Sell"))){
+        }else if((commandLabel.equalsIgnoreCase("CvC") && args[0].equalsIgnoreCase("Shop"))){
         	
         //	FileConfiguration config = plugin.getConfig();
      	   
-     	  
+
+        	
      	   
-     	  Inventory ClanSellInventory = Bukkit.createInventory(null, 18, "Clan Shop");
-     	  
+     	  Inventory ClanSellInventory = Bukkit.createInventory(null, 18, "Clan Sell");
+
+     	
+     	 
+     	 
      	 ItemStack item = new ItemStack(Material.DIAMOND);
   		ItemMeta meta = item.getItemMeta();
   		meta.setDisplayName("Sell Diamonds");
@@ -348,18 +504,145 @@ public class cvc implements CommandExecutor{
    		ItemMeta Cobblemeta = Cobbleitem.getItemMeta();
    		Cobblemeta.setDisplayName("Sell Cobble Stone");
    		ArrayList<String> CobbleLore = new ArrayList<String>();
-   		CobbleLore.add("Diamonds Are Worth $32 For 32");
+   		CobbleLore.add("Cobblstone Is Worth $32 For 32");
    		CobbleLore.add("Click Me To Sell 32x Cobble Stone");
    		Cobblemeta.setLore(CobbleLore);
    		Cobbleitem.setItemMeta(Cobblemeta);
   		
      	  
+   	 ItemStack Iron_Ore = new ItemStack(Material.IRON_ORE);
+		ItemMeta Iron_Ore_Meta = Iron_Ore.getItemMeta();
+		Iron_Ore_Meta.setDisplayName("Sell Iron Ore");
+		ArrayList<String> Iron_Ore_Lore = new ArrayList<String>();
+		Iron_Ore_Lore.add("Iron Ore Is Worth $100");
+		Iron_Ore_Lore.add("Click Me To Sell 32x Iron Ore");
+		Iron_Ore_Meta.setLore(Iron_Ore_Lore);
+		Iron_Ore.setItemMeta(Iron_Ore_Meta);
+	
+		
+		ItemStack Gold_Ore = new ItemStack(Material.GOLD_ORE);
+		ItemMeta Gold_Ore_Meta = Gold_Ore.getItemMeta();
+		Gold_Ore_Meta.setDisplayName("Sell Gold Ore");
+		ArrayList<String> Gold_Ore_Lore = new ArrayList<String>();
+		Gold_Ore_Lore.add("Gold Ore Is Worth $150");
+		Gold_Ore_Lore.add("Click Me To Sell 8x Gold Ore");
+		Gold_Ore_Meta.setLore(Gold_Ore_Lore);
+		Gold_Ore.setItemMeta(Gold_Ore_Meta);
+		
+		
+		ItemStack Lapis_Ore = new ItemStack(Material.LAPIS_ORE);
+		ItemMeta Lapis_Ore_Meta = Lapis_Ore.getItemMeta();
+		Lapis_Ore_Meta.setDisplayName("Sell Lapis Ore");
+		ArrayList<String> Lapis_Ore_Lore = new ArrayList<String>();
+		Lapis_Ore_Lore.add("Lapis Ore Is Worth $300");
+		Lapis_Ore_Lore.add("Click Me To Sell 1x Lapis Ore");
+		Lapis_Ore_Meta.setLore(Lapis_Ore_Lore);
+		Lapis_Ore.setItemMeta(Lapis_Ore_Meta);
+		
+		
+		ItemStack RedStone_Ore = new ItemStack(Material.REDSTONE_ORE);
+		ItemMeta RedStone_Ore_Meta = RedStone_Ore.getItemMeta();
+		RedStone_Ore_Meta.setDisplayName("Sell RedStone Ore");
+		ArrayList<String> RedStone_Ore_Lore = new ArrayList<String>();
+		RedStone_Ore_Lore.add("Iron Ore Is Worth $400");
+		RedStone_Ore_Lore.add("Click Me To Sell 8x RedStone Ore");
+		RedStone_Ore_Meta.setLore(RedStone_Ore_Lore);
+		RedStone_Ore.setItemMeta(RedStone_Ore_Meta);
+		
+		ItemStack Iron_Ingot = new ItemStack(Material.IRON_INGOT);
+		ItemMeta Iron_Ingot_Meta = Iron_Ingot.getItemMeta();
+		Iron_Ore_Meta.setDisplayName("Sell Iron Ore");
+		ArrayList<String> Iron_Ingot_Lore = new ArrayList<String>();
+		Iron_Ingot_Lore.add("Iron Ingot Is Worth $150");
+		Iron_Ingot_Lore.add("Click Me To Sell 8x Iron Ingot");
+		Iron_Ingot_Meta.setLore(Iron_Ingot_Lore);
+		Iron_Ingot.setItemMeta(Iron_Ingot_Meta);
+		
+		
+		ItemStack Gold_Ingots = new ItemStack(Material.GOLD_INGOT);
+		ItemMeta Gold_Ingots_Meta = Gold_Ingots.getItemMeta();
+		Gold_Ingots_Meta.setDisplayName("Sell Gold Ingots");
+		ArrayList<String> Gold_Ingots_Lore = new ArrayList<String>();
+		Gold_Ingots_Lore.add("Gold Ingot Is Worth $250");
+		Gold_Ingots_Lore.add("Click Me To Sell 8x Gold Ingot");
+		Gold_Ingots_Meta.setLore(Gold_Ingots_Lore);
+		Gold_Ingots.setItemMeta(Gold_Ingots_Meta);
+		
+		
+		ItemStack RedStone = new ItemStack(Material.REDSTONE);
+		ItemMeta RedStone_Meta = RedStone.getItemMeta();
+		RedStone_Meta.setDisplayName("Sell RedStone");
+		ArrayList<String> RedStone_Lore = new ArrayList<String>();
+		RedStone_Lore.add("RedStone Is Worth $300");
+		RedStone_Lore.add("Click Me To Sell 8x RedStone");
+		RedStone_Meta.setLore(RedStone_Lore);
+		RedStone.setItemMeta(RedStone_Meta);
+		
+		
+		ItemStack Obsidian = new ItemStack(Material.OBSIDIAN);
+		ItemMeta Obsidian_Meta = Obsidian.getItemMeta();
+		Obsidian_Meta.setDisplayName("Sell Obsidian");
+		ArrayList<String> Obsidian_Lore = new ArrayList<String>();
+		Obsidian_Lore.add("Obsidian Is Worth $400");
+		Obsidian_Lore.add("Click Me To Sell 8x Obsidian");
+		Obsidian_Meta.setLore(Obsidian_Lore);
+		Obsidian.setItemMeta(Obsidian_Meta);
+		
+		
+		ItemStack GlowStone_Block = new ItemStack(Material.GLOWSTONE);
+		ItemMeta GlowStone_Block_Meta = Obsidian.getItemMeta();
+		GlowStone_Block_Meta.setDisplayName("Sell Obsidian");
+		ArrayList<String> GlowStone_Block_Lore = new ArrayList<String>();
+		GlowStone_Block_Lore.add("GlowStone Blocks Is Worth $600");
+		GlowStone_Block_Lore.add("Click Me To Sell 8x GlowStone Blocks");
+		GlowStone_Block_Meta.setLore(GlowStone_Block_Lore);
+		GlowStone_Block.setItemMeta(GlowStone_Block_Meta);
+		
+		
+		ItemStack BlazeRod = new ItemStack(Material.BLAZE_ROD);
+		ItemMeta BlazeRod_Meta = BlazeRod.getItemMeta();
+		BlazeRod_Meta.setDisplayName("Sell Blaze Rods");
+		ArrayList<String> BlazeRod_Lore = new ArrayList<String>();
+		BlazeRod_Lore.add("Blaze Rods Is Worth $800");
+		BlazeRod_Lore.add("Click Me To Sell 8x Blaze Rods");
+		BlazeRod_Meta.setLore(BlazeRod_Lore);
+		BlazeRod.setItemMeta(BlazeRod_Meta);
+		
+
+		
+   		// Puts The Items In The Inventories //
+		
+		// Row One //
+		
   		ClanSellInventory.setItem(0, item);
   		
   		ClanSellInventory.setItem(1, Cobbleitem);
   		
-     
-     	  
+  		ClanSellInventory.setItem(2, Iron_Ore);
+  		
+  		ClanSellInventory.setItem(3, Gold_Ore);
+  		
+  		ClanSellInventory.setItem(4, Lapis_Ore);
+  		
+  		ClanSellInventory.setItem(5, RedStone_Ore);
+  		
+  		ClanSellInventory.setItem(6, Iron_Ingot);
+  		
+  		ClanSellInventory.setItem(7, Gold_Ingots);
+  		
+  		ClanSellInventory.setItem(8, RedStone);
+  		
+  		
+  		// Row Two //
+  		
+
+  		
+  		ClanSellInventory.setItem(12, Obsidian);
+  		
+  		ClanSellInventory.setItem(13, GlowStone_Block);
+  		
+  		ClanSellInventory.setItem(14, BlazeRod);
+ 
      	   
      	  if(sender instanceof Player){
 				

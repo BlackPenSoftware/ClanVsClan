@@ -84,6 +84,7 @@ public void onDisable(){
 public void initConfig() {
 
 
+	config.addDefault("Claims.Price.InTenThousands", 5);
 	
      
      config.addDefault("Clan_1.Admin.UserName.ClanAdmin", Clan_1Admin);
@@ -110,25 +111,7 @@ public void initConfig() {
 
   	config.addDefault("Clan_1.Land.ClaimSize.Size", Max);
   	
-  	config.addDefault("Clan_1.Land.ClaimSize.1.Cost", 10000);
 
-  	config.addDefault("Clan_1.Land.ClaimSize.2.Cost", 100000);
-
-  	config.addDefault("Clan_1.Land.ClaimSize.3.Cost", 1000000);
-  
-  	config.addDefault("Clan_1.Land.ClaimSize.4.Cost", 10000000);
-
-  	config.addDefault("Clan_1.Land.ClaimSize.5.Cost", 100000000);
-
-  	config.addDefault("Clan_1.Land.ClaimSize.6.Cost", 1000000000);
-
-  	config.addDefault("Clan_1.Land.ClaimSize.7.Cost", 200000000);
-
-  	config.addDefault("Clan_1.Land.ClaimSize.8.Cost", 300000000);
-  	
-  	config.addDefault("Clan_1.Land.ClaimSize.9.Cost", 400000000);
-  	
-  	config.addDefault("Clan_1.Land.ClaimSize.10.Cost", 500000000);
      	
         
      	
@@ -158,25 +141,7 @@ public void initConfig() {
 
   	config.addDefault("Clan_2.Land.ClaimSize.Size", Max_2);
   	
-  	config.addDefault("Clan_2.Land.ClaimSize.1.Cost", 10000);
 
-  	config.addDefault("Clan_2.Land.ClaimSize.2.Cost", 100000);
-
-  	config.addDefault("Clan_2.Land.ClaimSize.3.Cost", 1000000);
-  
-  	config.addDefault("Clan_2.Land.ClaimSize.4.Cost", 10000000);
-
-  	config.addDefault("Clan_2.Land.ClaimSize.5.Cost", 100000000);
-
-  	config.addDefault("Clan_2.Land.ClaimSize.6.Cost", 1000000000);
-
-  	config.addDefault("Clan_2.Land.ClaimSize.7.Cost", 200000000);
-
-  	config.addDefault("Clan_2.Land.ClaimSize.8.Cost", 300000000);
-  	
-  	config.addDefault("Clan_2.Land.ClaimSize.9.Cost", 400000000);
-  	
-  	config.addDefault("Clan_2.Land.ClaimSize.10.Cost", 500000000);
  		
   	
   	
@@ -204,25 +169,7 @@ public void initConfig() {
 
  	config.addDefault("Clan_3.Land.ClaimSize.Size", Max_3);
  	
- 	config.addDefault("Clan_3.Land.ClaimSize.1.Cost", 10000);
 
- 	config.addDefault("Clan_3.Land.ClaimSize.2.Cost", 100000);
-
- 	config.addDefault("Clan_3.Land.ClaimSize.3.Cost", 1000000);
- 
- 	config.addDefault("Clan_3.Land.ClaimSize.4.Cost", 10000000);
-
- 	config.addDefault("Clan_3.Land.ClaimSize.5.Cost", 100000000);
-;
- 	config.addDefault("Clan_3.Land.ClaimSize.6.Cost", 1000000000);
-
- 	config.addDefault("Clan_3.Land.ClaimSize.7.Cost", 200000000);
-
- 	config.addDefault("Clan_3.Land.ClaimSize.8.Cost", 300000000);
- 	
- 	config.addDefault("Clan_3.Land.ClaimSize.9.Cost", 400000000);
- 	
- 	config.addDefault("Clan_3.Land.ClaimSize.10.Cost", 500000000);
  	
  	
  	
@@ -250,26 +197,7 @@ public void initConfig() {
      
 
   	config.addDefault("Clan_4.Land.ClaimSize.Size", Max_4);
-  	
-  	config.addDefault("Clan_4.Land.ClaimSize.1.Cost", 10000);
 
-  	config.addDefault("Clan_4.Land.ClaimSize.2.Cost", 100000);
-
-  	config.addDefault("Clan_4.Land.ClaimSize.3.Cost", 1000000);
-  
-  	config.addDefault("Clan_4.Land.ClaimSize.4.Cost", 10000000);
-
-  	config.addDefault("Clan_4.Land.ClaimSize.5.Cost", 100000000);
-
-  	config.addDefault("Clan_4.Land.ClaimSize.6.Cost", 1000000000);
-
-  	config.addDefault("Clan_4.Land.ClaimSize.7.Cost", 200000000);
-
-  	config.addDefault("Clan_4.Land.ClaimSize.8.Cost", 300000000);
-  	
-  	config.addDefault("Clan_4.Land.ClaimSize.9.Cost", 400000000);
- 
-  	config.addDefault("Clan_4.Land.ClaimSize.10.Cost", 500000000);
  	
  	config.options().copyDefaults(true);
  		
@@ -298,7 +226,9 @@ int Max_4 = 100;
  
 public void Max_100(){
 	
-	Max = Max + 100;
+	//Max = Max + 100;
+	
+	//config.get("Clan_1.Land.ClaimSize.Size");
 	
 	saveConfig();
 	
@@ -308,6 +238,8 @@ public void Max_2_100(){
 	
 	Max_2 = Max_2 + 100;
 	
+	config.set("Clan_2.Land.ClaimSize.Size", Max_2);
+	
 	saveConfig();
 	
 }
@@ -316,6 +248,8 @@ public void Max_3_100(){
 	
 	Max_3 = Max_3 + 100;
 
+	config.set("Clan_3.Land.ClaimSize.Size", Max_3);
+	
 	saveConfig();
 	
 }
@@ -323,6 +257,8 @@ public void Max_3_100(){
 public void Max_4_100(){
 	
 	Max_4 = Max_4 + 100;
+	
+	config.set("Clan_4.Land.ClaimSize.Size", Max_4);
 	
 	saveConfig();
 	
@@ -441,13 +377,13 @@ public void playerMove(PlayerMoveEvent event) {
 	   if(Clan_1.contains(player.getName())){
 	   
 	  
-	   if(loc.getBlockX() > Max){
+	   if(loc.getBlockX() > (Integer)config.get("Clan_1.Land.ClaimSize.Size")){
 		   
 		  player.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_RED + "You Have Left Your Town");
 		
 		 // event.setCancelled(true);
 		  
-		  player.teleport(new Location(Bukkit.getWorld(config.get("Clan_1.Land.World.Name").toString()), Max - 5, loc.getBlockY(), loc.getBlockZ()));
+		  player.teleport(new Location(Bukkit.getWorld(config.get("Clan_1.Land.World.Name").toString()), (Integer)config.get("Clan_1.Land.ClaimSize.Size") - 5, loc.getBlockY(), loc.getBlockZ()));
 		   
 		  
 		  
@@ -455,14 +391,14 @@ public void playerMove(PlayerMoveEvent event) {
 	
 	   
 	   
-	   if(loc.getBlockZ() > Max){
+	   if(loc.getBlockZ() > (Integer)config.get("Clan_1.Land.ClaimSize.Size")){
 		   
 			  player.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_RED + "You Have Left Your Town");
 			
 		
 		 // event.setCancelled(true);
 		  
-		  player.teleport(new Location(Bukkit.getWorld(config.get("Clan_1.Land.World.Name").toString()), loc.getX(), loc.getBlockY(), Max - 5));
+		  player.teleport(new Location(Bukkit.getWorld(config.get("Clan_1.Land.World.Name").toString()), loc.getX(), loc.getBlockY(), (Integer)config.get("Clan_1.Land.ClaimSize.Size") - 5));
 		   
 		  
 	   }
@@ -474,7 +410,7 @@ public void playerMove(PlayerMoveEvent event) {
 			
 			 // event.setCancelled(true);
 			  
-			  player.teleport(new Location(Bukkit.getWorld(config.get("Clan_1.Land.World.Name").toString()), Max - Max + 5 , loc.getBlockY(), loc.getBlockZ()));
+			  player.teleport(new Location(Bukkit.getWorld(config.get("Clan_1.Land.World.Name").toString()), (Integer)config.get("Clan_1.Land.ClaimSize.Size") - (Integer)config.get("Clan_1.Land.ClaimSize.Size") + 5 , loc.getBlockY(), loc.getBlockZ()));
 			   
 			  
 		   }
@@ -488,7 +424,7 @@ public void playerMove(PlayerMoveEvent event) {
 			
 			 // event.setCancelled(true);
 			  
-			  player.teleport(new Location(Bukkit.getWorld(config.get("Clan_1.Land.World.Name").toString()), loc.getX(), loc.getBlockY(), Max - Max + 5));
+			  player.teleport(new Location(Bukkit.getWorld(config.get("Clan_1.Land.World.Name").toString()), loc.getX(), loc.getBlockY(), (Integer)config.get("Clan_1.Land.ClaimSize.Size") - (Integer)config.get("Clan_1.Land.ClaimSize.Size") + 5));
 			   
 			  
 		   }
@@ -705,7 +641,8 @@ public void OnPlayerLogin(PlayerJoinEvent event){
 	
 	if(pick == 1){
 
-
+		
+		
 	player.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "You Are Now A Member Of " + ChatColor.GOLD + "Clan 1!");
 
 	
@@ -723,6 +660,9 @@ public void OnPlayerLogin(PlayerJoinEvent event){
 
 	if(pick == 2){
 
+		
+		
+		
 
 		player.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "You Are Now A Member Of " + ChatColor.GOLD + "Clan 2!");
 
@@ -745,7 +685,7 @@ public void OnPlayerLogin(PlayerJoinEvent event){
 
 		player.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "You Are Now A Member Of " + ChatColor.GOLD + "Clan 3!");
 
-	
+		
 	 Clan_3.add(player.getName());
 		 
 		// add to config
@@ -759,7 +699,7 @@ public void OnPlayerLogin(PlayerJoinEvent event){
 
 	if(pick == 4){
 
-
+		
 		player.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "You Are Now A Member Of " + ChatColor.GOLD + "Clan 4!");
 
 	
@@ -790,24 +730,25 @@ public void onClick(InventoryClickEvent event) {
 	
 	
 	
-if (event.getInventory().getName().equalsIgnoreCase("Clan Shop")){
+if (event.getInventory().getName().equalsIgnoreCase("Clan Sell")){
+	
+	Player player = (Player) event.getWhoClicked();
+
+
+	List<String> Clan_1 = config.getStringList("Clan_1.Players.Names");
+
+	List<String> Clan_2 = config.getStringList("Clan_2.Players.Names");
+
+	List<String> Clan_3 = config.getStringList("Clan_3.Players.Names");
+
+	List<String> Clan_4 = config.getStringList("Clan_4.Players.Names");
+
+	
 //Makes it so the code will only work if its in the CustomInv inventory
 ItemStack clicked = event.getCurrentItem();
 //The item that was clicked
 if (clicked.getType() == Material.DIAMOND) {
 event.setCancelled(true);
-
-Player player = (Player) event.getWhoClicked();
-
-
-List<String> Clan_1 = config.getStringList("Clan_1.Players.Names");
-
-List<String> Clan_2 = config.getStringList("Clan_2.Players.Names");
-
-List<String> Clan_3 = config.getStringList("Clan_3.Players.Names");
-
-List<String> Clan_4 = config.getStringList("Clan_4.Players.Names");
-
 
 if(event.getInventory().contains(Material.DIAMOND)){
     
@@ -872,8 +813,894 @@ if(event.getInventory().contains(Material.DIAMOND)){
 							}
 						}			
 					}
-				}
 			}
+
+
+}
+		
+if (clicked.getType() == Material.COBBLESTONE) {
+event.setCancelled(true);
+
+if(event.getInventory().contains(Material.COBBLESTONE)){
+    
+	if(Clan_1.contains(player.getName())){
+	
+		if(player.getInventory().contains(Material.COBBLESTONE, 32)){
+		
+	 player.getInventory().removeItem(new ItemStack(Material.COBBLESTONE, 32));
+	 
+	player.updateInventory();
+	
+	config.set("Clan_1.Admin.Ballance", (Integer)config.get("Clan_1.Admin.Ballance") + 32 );
+	
+	saveConfig();
+	
 		}
 	}
+	
+	if(event.getInventory().contains(Material.COBBLESTONE)){
+	    
+		if(Clan_2.contains(player.getName())){
+		
+			if(player.getInventory().contains(Material.COBBLESTONE, 32)){
+			
+		 player.getInventory().removeItem(new ItemStack(Material.COBBLESTONE, 32));
+		 
+		player.updateInventory();
+		
+		config.set("Clan_2.Admin.Ballance", (Integer)config.get("Clan_2.Admin.Ballance") + 32);
+		
+		saveConfig();
+		
+		}
+	}
+		
+		
+		if(event.getInventory().contains(Material.COBBLESTONE)){
+		    
+			if(Clan_3.contains(player.getName())){
+			
+				if(player.getInventory().contains(Material.COBBLESTONE, 32)){
+				
+			 player.getInventory().removeItem(new ItemStack(Material.COBBLESTONE, 32));
+			 
+			player.updateInventory();
+			
+			config.set("Clan_3.Admin.Ballance", (Integer)config.get("Clan_3.Admin.Ballance") + 32 );
+			
+			saveConfig();
+			
+			}
+		}
+			
+			
+			if(event.getInventory().contains(Material.COBBLESTONE)){
+			    
+				if(Clan_4.contains(player.getName())){
+				
+					if(player.getInventory().contains(Material.COBBLESTONE, 32)){
+					
+				 player.getInventory().removeItem(new ItemStack(Material.COBBLESTONE, 32));
+				 
+				player.updateInventory();
+				
+				config.set("Clan_4.Admin.Ballance", (Integer)config.get("Clan_4.Admin.Ballance") + 32 );
+				
+				saveConfig();
+				
+										}
+									}
+								}
+							}
+						}
+					}
+
 }
+
+if (clicked.getType() == Material.IRON_ORE) {
+event.setCancelled(true);
+
+if(event.getInventory().contains(Material.IRON_ORE)){
+    
+	if(Clan_1.contains(player.getName())){
+	
+		if(player.getInventory().contains(Material.IRON_ORE, 8)){
+		
+	 player.getInventory().removeItem(new ItemStack(Material.IRON_ORE, 8));
+	 
+	player.updateInventory();
+	
+	config.set("Clan_1.Admin.Ballance", (Integer)config.get("Clan_1.Admin.Ballance") + 100 );
+	
+	saveConfig();
+	
+		}
+	}
+	
+	if(event.getInventory().contains(Material.IRON_ORE)){
+	    
+		if(Clan_2.contains(player.getName())){
+		
+			if(player.getInventory().contains(Material.IRON_ORE, 8)){
+			
+		 player.getInventory().removeItem(new ItemStack(Material.IRON_ORE, 8));
+		 
+		player.updateInventory();
+		
+		config.set("Clan_2.Admin.Ballance", (Integer)config.get("Clan_2.Admin.Ballance") + 100);
+		
+		saveConfig();
+		
+		}
+	}
+		
+		
+		if(event.getInventory().contains(Material.IRON_ORE)){
+		    
+			if(Clan_3.contains(player.getName())){
+			
+				if(player.getInventory().contains(Material.IRON_ORE, 8)){
+				
+			 player.getInventory().removeItem(new ItemStack(Material.IRON_ORE, 8));
+			 
+			player.updateInventory();
+			
+			config.set("Clan_3.Admin.Ballance", (Integer)config.get("Clan_3.Admin.Ballance") + 100 );
+			
+			saveConfig();
+			
+			}
+		}
+			
+			
+			if(event.getInventory().contains(Material.IRON_ORE)){
+			    
+				if(Clan_4.contains(player.getName())){
+				
+					if(player.getInventory().contains(Material.IRON_ORE, 8)){
+					
+				 player.getInventory().removeItem(new ItemStack(Material.IRON_ORE, 8));
+				 
+				player.updateInventory();
+				
+				config.set("Clan_4.Admin.Ballance", (Integer)config.get("Clan_4.Admin.Ballance") + 100 );
+				
+				saveConfig();
+				
+										}
+									}
+								}
+							}
+						}
+					}
+
+}
+
+if (clicked.getType() == Material.GOLD_ORE) {
+event.setCancelled(true);
+
+if(event.getInventory().contains(Material.GOLD_ORE)){
+    
+	if(Clan_1.contains(player.getName())){
+	
+		if(player.getInventory().contains(Material.GOLD_ORE, 8)){
+		
+	 player.getInventory().removeItem(new ItemStack(Material.GOLD_ORE, 8));
+	 
+	player.updateInventory();
+	
+	config.set("Clan_1.Admin.Ballance", (Integer)config.get("Clan_1.Admin.Ballance") + 150 );
+	
+	saveConfig();
+	
+		}
+	}
+	
+	if(event.getInventory().contains(Material.GOLD_ORE)){
+	    
+		if(Clan_2.contains(player.getName())){
+		
+			if(player.getInventory().contains(Material.GOLD_ORE, 8)){
+			
+		 player.getInventory().removeItem(new ItemStack(Material.GOLD_ORE, 8));
+		 
+		player.updateInventory();
+		
+		config.set("Clan_2.Admin.Ballance", (Integer)config.get("Clan_2.Admin.Ballance") + 150);
+		
+		saveConfig();
+		
+		}
+	}
+		
+		
+		if(event.getInventory().contains(Material.GOLD_ORE)){
+		    
+			if(Clan_3.contains(player.getName())){
+			
+				if(player.getInventory().contains(Material.GOLD_ORE, 8)){
+				
+			 player.getInventory().removeItem(new ItemStack(Material.GOLD_ORE, 8));
+			 
+			player.updateInventory();
+			
+			config.set("Clan_3.Admin.Ballance", (Integer)config.get("Clan_3.Admin.Ballance") + 150 );
+			
+			saveConfig();
+			
+			}
+		}
+			
+			
+			if(event.getInventory().contains(Material.GOLD_ORE)){
+			    
+				if(Clan_4.contains(player.getName())){
+				
+					if(player.getInventory().contains(Material.GOLD_ORE, 8)){
+					
+				 player.getInventory().removeItem(new ItemStack(Material.GOLD_ORE, 8));
+				 
+				player.updateInventory();
+				
+				config.set("Clan_4.Admin.Ballance", (Integer)config.get("Clan_4.Admin.Ballance") + 150 );
+				
+				saveConfig();
+				
+										}
+									}
+								}
+							}
+						}
+					}
+
+
+}
+
+				
+
+
+if (clicked.getType() == Material.LAPIS_ORE) {
+event.setCancelled(true);
+
+if(event.getInventory().contains(Material.LAPIS_ORE)){
+    
+	if(Clan_1.contains(player.getName())){
+	
+		if(player.getInventory().contains(Material.LAPIS_ORE, 1)){
+		
+	 player.getInventory().removeItem(new ItemStack(Material.LAPIS_ORE, 1));
+	 
+	player.updateInventory();
+	
+	config.set("Clan_1.Admin.Ballance", (Integer)config.get("Clan_1.Admin.Ballance") + 300 );
+	
+	saveConfig();
+	
+		}
+	}
+	
+	if(event.getInventory().contains(Material.LAPIS_ORE)){
+	    
+		if(Clan_2.contains(player.getName())){
+		
+			if(player.getInventory().contains(Material.LAPIS_ORE, 1)){
+			
+		 player.getInventory().removeItem(new ItemStack(Material.LAPIS_ORE, 1));
+		 
+		player.updateInventory();
+		
+		config.set("Clan_2.Admin.Ballance", (Integer)config.get("Clan_2.Admin.Ballance") + 300);
+		
+		saveConfig();
+		
+		}
+	}
+		
+		
+		if(event.getInventory().contains(Material.LAPIS_ORE)){
+		    
+			if(Clan_3.contains(player.getName())){
+			
+				if(player.getInventory().contains(Material.LAPIS_ORE, 1)){
+				
+			 player.getInventory().removeItem(new ItemStack(Material.LAPIS_ORE, 1));
+			 
+			player.updateInventory();
+			
+			config.set("Clan_3.Admin.Ballance", (Integer)config.get("Clan_3.Admin.Ballance") + 300 );
+			
+			saveConfig();
+			
+			}
+		}
+			
+			
+			if(event.getInventory().contains(Material.LAPIS_ORE)){
+			    
+				if(Clan_4.contains(player.getName())){
+				
+					if(player.getInventory().contains(Material.LAPIS_ORE, 1)){
+					
+				 player.getInventory().removeItem(new ItemStack(Material.LAPIS_ORE, 1));
+				 
+				player.updateInventory();
+				
+				config.set("Clan_4.Admin.Ballance", (Integer)config.get("Clan_4.Admin.Ballance") + 300 );
+				
+				saveConfig();
+				
+										}
+									}
+								}
+							}
+						}
+					}
+
+}
+
+if (clicked.getType() == Material.REDSTONE_ORE) {
+event.setCancelled(true);
+
+if(event.getInventory().contains(Material.REDSTONE_ORE)){
+    
+	if(Clan_1.contains(player.getName())){
+	
+		if(player.getInventory().contains(Material.REDSTONE_ORE, 8)){
+		
+	 player.getInventory().removeItem(new ItemStack(Material.REDSTONE_ORE, 8));
+	 
+	player.updateInventory();
+	
+	config.set("Clan_1.Admin.Ballance", (Integer)config.get("Clan_1.Admin.Ballance") + 400 );
+	
+	saveConfig();
+	
+		}
+	}
+	
+	if(event.getInventory().contains(Material.REDSTONE_ORE)){
+	    
+		if(Clan_2.contains(player.getName())){
+		
+			if(player.getInventory().contains(Material.REDSTONE_ORE, 8)){
+			
+		 player.getInventory().removeItem(new ItemStack(Material.REDSTONE_ORE, 8));
+		 
+		player.updateInventory();
+		
+		config.set("Clan_2.Admin.Ballance", (Integer)config.get("Clan_2.Admin.Ballance") + 400);
+		
+		saveConfig();
+		
+		}
+	}
+		
+		
+		if(event.getInventory().contains(Material.REDSTONE_ORE)){
+		    
+			if(Clan_3.contains(player.getName())){
+			
+				if(player.getInventory().contains(Material.REDSTONE_ORE, 8)){
+				
+			 player.getInventory().removeItem(new ItemStack(Material.REDSTONE_ORE, 8));
+			 
+			player.updateInventory();
+			
+			config.set("Clan_3.Admin.Ballance", (Integer)config.get("Clan_3.Admin.Ballance") + 400 );
+			
+			saveConfig();
+			
+			}
+		}
+			
+			
+			if(event.getInventory().contains(Material.REDSTONE_ORE)){
+			    
+				if(Clan_4.contains(player.getName())){
+				
+					if(player.getInventory().contains(Material.REDSTONE_ORE, 8)){
+					
+				 player.getInventory().removeItem(new ItemStack(Material.REDSTONE_ORE, 8));
+				 
+				player.updateInventory();
+				
+				config.set("Clan_4.Admin.Ballance", (Integer)config.get("Clan_4.Admin.Ballance") + 400 );
+				
+				saveConfig();
+				
+										}
+									}
+								}
+							}
+						}
+					}
+}
+
+
+if (clicked.getType() == Material.IRON_INGOT) {
+event.setCancelled(true);
+
+if(event.getInventory().contains(Material.IRON_INGOT)){
+    
+	if(Clan_1.contains(player.getName())){
+	
+		if(player.getInventory().contains(Material.IRON_INGOT, 8)){
+		
+	 player.getInventory().removeItem(new ItemStack(Material.IRON_INGOT, 8));
+	 
+	player.updateInventory();
+	
+	config.set("Clan_1.Admin.Ballance", (Integer)config.get("Clan_1.Admin.Ballance") + 150 );
+	
+	saveConfig();
+	
+		}
+	}
+	
+	if(event.getInventory().contains(Material.IRON_INGOT)){
+	    
+		if(Clan_2.contains(player.getName())){
+		
+			if(player.getInventory().contains(Material.IRON_INGOT, 8)){
+			
+		 player.getInventory().removeItem(new ItemStack(Material.IRON_INGOT, 8));
+		 
+		player.updateInventory();
+		
+		config.set("Clan_2.Admin.Ballance", (Integer)config.get("Clan_2.Admin.Ballance") + 150);
+		
+		saveConfig();
+		
+		}
+	}
+		
+		
+		if(event.getInventory().contains(Material.IRON_INGOT)){
+		    
+			if(Clan_3.contains(player.getName())){
+			
+				if(player.getInventory().contains(Material.IRON_INGOT, 8)){
+				
+			 player.getInventory().removeItem(new ItemStack(Material.IRON_INGOT, 8));
+			 
+			player.updateInventory();
+			
+			config.set("Clan_3.Admin.Ballance", (Integer)config.get("Clan_3.Admin.Ballance") + 150 );
+			
+			saveConfig();
+			
+			}
+		}
+			
+			
+			if(event.getInventory().contains(Material.IRON_INGOT)){
+			    
+				if(Clan_4.contains(player.getName())){
+				
+					if(player.getInventory().contains(Material.IRON_INGOT, 8)){
+					
+				 player.getInventory().removeItem(new ItemStack(Material.IRON_INGOT, 8));
+				 
+				player.updateInventory();
+				
+				config.set("Clan_4.Admin.Ballance", (Integer)config.get("Clan_4.Admin.Ballance") + 150 );
+				
+				saveConfig();
+				
+										}
+									}
+								}
+							}
+						}
+					}
+
+}
+
+
+
+
+if (clicked.getType() == Material.GOLD_INGOT) {
+event.setCancelled(true);
+
+if(event.getInventory().contains(Material.GOLD_INGOT)){
+    
+	if(Clan_1.contains(player.getName())){
+	
+		if(player.getInventory().contains(Material.GOLD_INGOT, 8)){
+		
+	 player.getInventory().removeItem(new ItemStack(Material.GOLD_INGOT, 8));
+	 
+	player.updateInventory();
+	
+	config.set("Clan_1.Admin.Ballance", (Integer)config.get("Clan_1.Admin.Ballance") + 250 );
+	
+	saveConfig();
+	
+		}
+	}
+	
+	if(event.getInventory().contains(Material.GOLD_INGOT)){
+	    
+		if(Clan_2.contains(player.getName())){
+		
+			if(player.getInventory().contains(Material.GOLD_INGOT, 8)){
+			
+		 player.getInventory().removeItem(new ItemStack(Material.GOLD_INGOT, 8));
+		 
+		player.updateInventory();
+		
+		config.set("Clan_2.Admin.Ballance", (Integer)config.get("Clan_2.Admin.Ballance") + 250);
+		
+		saveConfig();
+		
+		}
+	}
+		
+		
+		if(event.getInventory().contains(Material.GOLD_INGOT)){
+		    
+			if(Clan_3.contains(player.getName())){
+			
+				if(player.getInventory().contains(Material.GOLD_INGOT, 8)){
+				
+			 player.getInventory().removeItem(new ItemStack(Material.GOLD_INGOT, 8));
+			 
+			player.updateInventory();
+			
+			config.set("Clan_3.Admin.Ballance", (Integer)config.get("Clan_3.Admin.Ballance") + 250 );
+			
+			saveConfig();
+			
+			}
+		}
+			
+			
+			if(event.getInventory().contains(Material.GOLD_INGOT)){
+			    
+				if(Clan_4.contains(player.getName())){
+				
+					if(player.getInventory().contains(Material.GOLD_INGOT, 8)){
+					
+				 player.getInventory().removeItem(new ItemStack(Material.GOLD_INGOT, 8));
+				 
+				player.updateInventory();
+				
+				config.set("Clan_4.Admin.Ballance", (Integer)config.get("Clan_4.Admin.Ballance") + 250 );
+				
+				saveConfig();
+				
+										}
+									}
+								}
+							}
+						}
+					}
+
+}
+
+
+if (clicked.getType() == Material.REDSTONE) {
+event.setCancelled(true);
+
+if(event.getInventory().contains(Material.REDSTONE)){
+    
+	if(Clan_1.contains(player.getName())){
+	
+		if(player.getInventory().contains(Material.REDSTONE, 8)){
+		
+	 player.getInventory().removeItem(new ItemStack(Material.REDSTONE, 8));
+	 
+	player.updateInventory();
+	
+	config.set("Clan_1.Admin.Ballance", (Integer)config.get("Clan_1.Admin.Ballance") + 300 );
+	
+	saveConfig();
+	
+		}
+	}
+	
+	if(event.getInventory().contains(Material.REDSTONE)){
+	    
+		if(Clan_2.contains(player.getName())){
+		
+			if(player.getInventory().contains(Material.REDSTONE, 8)){
+			
+		 player.getInventory().removeItem(new ItemStack(Material.REDSTONE, 8));
+		 
+		player.updateInventory();
+		
+		config.set("Clan_2.Admin.Ballance", (Integer)config.get("Clan_2.Admin.Ballance") + 300);
+		
+		saveConfig();
+		
+		}
+	}
+		
+		
+		if(event.getInventory().contains(Material.GOLD_INGOT)){
+		    
+			if(Clan_3.contains(player.getName())){
+			
+				if(player.getInventory().contains(Material.GOLD_INGOT, 8)){
+				
+			 player.getInventory().removeItem(new ItemStack(Material.GOLD_INGOT, 8));
+			 
+			player.updateInventory();
+			
+			config.set("Clan_3.Admin.Ballance", (Integer)config.get("Clan_3.Admin.Ballance") + 300 );
+			
+			saveConfig();
+			
+			}
+		}
+			
+			
+			if(event.getInventory().contains(Material.REDSTONE)){
+			    
+				if(Clan_4.contains(player.getName())){
+				
+					if(player.getInventory().contains(Material.REDSTONE, 8)){
+					
+				 player.getInventory().removeItem(new ItemStack(Material.REDSTONE, 8));
+				 
+				player.updateInventory();
+				
+				config.set("Clan_4.Admin.Ballance", (Integer)config.get("Clan_4.Admin.Ballance") + 300 );
+				
+				saveConfig();
+				
+										}
+									}
+								}
+							}
+						}
+					}
+}
+
+
+if (clicked.getType() == Material.OBSIDIAN) {
+event.setCancelled(true);
+
+if(event.getInventory().contains(Material.OBSIDIAN)){
+    
+	if(Clan_1.contains(player.getName())){
+	
+		if(player.getInventory().contains(Material.OBSIDIAN, 8)){
+		
+	 player.getInventory().removeItem(new ItemStack(Material.OBSIDIAN, 8));
+	 
+	player.updateInventory();
+	
+	config.set("Clan_1.Admin.Ballance", (Integer)config.get("Clan_1.Admin.Ballance") + 400 );
+	
+	saveConfig();
+	
+		}
+	}
+	
+	if(event.getInventory().contains(Material.OBSIDIAN)){
+	    
+		if(Clan_2.contains(player.getName())){
+		
+			if(player.getInventory().contains(Material.OBSIDIAN, 8)){
+			
+		 player.getInventory().removeItem(new ItemStack(Material.OBSIDIAN, 8));
+		 
+		player.updateInventory();
+		
+		config.set("Clan_2.Admin.Ballance", (Integer)config.get("Clan_2.Admin.Ballance") + 400);
+		
+		saveConfig();
+		
+		}
+	}
+		
+		
+		if(event.getInventory().contains(Material.OBSIDIAN)){
+		    
+			if(Clan_3.contains(player.getName())){
+			
+				if(player.getInventory().contains(Material.OBSIDIAN, 8)){
+				
+			 player.getInventory().removeItem(new ItemStack(Material.OBSIDIAN, 8));
+			 
+			player.updateInventory();
+			
+			config.set("Clan_3.Admin.Ballance", (Integer)config.get("Clan_3.Admin.Ballance") + 400 );
+			
+			saveConfig();
+			
+			}
+		}
+			
+			
+			if(event.getInventory().contains(Material.OBSIDIAN)){
+			    
+				if(Clan_4.contains(player.getName())){
+				
+					if(player.getInventory().contains(Material.OBSIDIAN, 8)){
+					
+				 player.getInventory().removeItem(new ItemStack(Material.OBSIDIAN, 8));
+				 
+				player.updateInventory();
+				
+				config.set("Clan_4.Admin.Ballance", (Integer)config.get("Clan_4.Admin.Ballance") + 400 );
+				
+				saveConfig();
+				
+										}
+									}
+								}
+							}
+						}
+					}
+}
+
+
+if (clicked.getType() == Material.GLOWSTONE) {
+event.setCancelled(true);
+
+if(event.getInventory().contains(Material.GLOWSTONE)){
+    
+	if(Clan_1.contains(player.getName())){
+	
+		if(player.getInventory().contains(Material.GLOWSTONE, 8)){
+		
+	 player.getInventory().removeItem(new ItemStack(Material.GLOWSTONE, 8));
+	 
+	player.updateInventory();
+	
+	config.set("Clan_1.Admin.Ballance", (Integer)config.get("Clan_1.Admin.Ballance") + 600 );
+	
+	saveConfig();
+	
+		}
+	}
+	
+	if(event.getInventory().contains(Material.GLOWSTONE)){
+	    
+		if(Clan_2.contains(player.getName())){
+		
+			if(player.getInventory().contains(Material.GLOWSTONE, 8)){
+			
+		 player.getInventory().removeItem(new ItemStack(Material.GLOWSTONE, 8));
+		 
+		player.updateInventory();
+		
+		config.set("Clan_2.Admin.Ballance", (Integer)config.get("Clan_2.Admin.Ballance") + 600);
+		
+		saveConfig();
+		
+		}
+	}
+		
+		
+		if(event.getInventory().contains(Material.GLOWSTONE)){
+		    
+			if(Clan_3.contains(player.getName())){
+			
+				if(player.getInventory().contains(Material.GLOWSTONE, 8)){
+				
+			 player.getInventory().removeItem(new ItemStack(Material.GLOWSTONE, 8));
+			 
+			player.updateInventory();
+			
+			config.set("Clan_3.Admin.Ballance", (Integer)config.get("Clan_3.Admin.Ballance") + 600 );
+			
+			saveConfig();
+			
+			}
+		}
+			
+			
+			if(event.getInventory().contains(Material.GLOWSTONE)){
+			    
+				if(Clan_4.contains(player.getName())){
+				
+					if(player.getInventory().contains(Material.GLOWSTONE, 8)){
+					
+				 player.getInventory().removeItem(new ItemStack(Material.GLOWSTONE, 8));
+				 
+				player.updateInventory();
+				
+				config.set("Clan_4.Admin.Ballance", (Integer)config.get("Clan_4.Admin.Ballance") + 600 );
+				
+				saveConfig();
+				
+										}
+									}
+								}
+							}
+						}
+					}
+
+}
+
+if (clicked.getType() == Material.BLAZE_ROD) {
+event.setCancelled(true);
+
+if(event.getInventory().contains(Material.BLAZE_ROD)){
+    
+	if(Clan_1.contains(player.getName())){
+	
+		if(player.getInventory().contains(Material.BLAZE_ROD, 8)){
+		
+	 player.getInventory().removeItem(new ItemStack(Material.BLAZE_ROD, 8));
+	 
+	player.updateInventory();
+	
+	config.set("Clan_1.Admin.Ballance", (Integer)config.get("Clan_1.Admin.Ballance") + 800 );
+	
+	saveConfig();
+	
+		}
+	}
+	
+	if(event.getInventory().contains(Material.BLAZE_ROD)){
+	    
+		if(Clan_2.contains(player.getName())){
+		
+			if(player.getInventory().contains(Material.BLAZE_ROD, 8)){
+			
+		 player.getInventory().removeItem(new ItemStack(Material.BLAZE_ROD, 8));
+		 
+		player.updateInventory();
+		
+		config.set("Clan_2.Admin.Ballance", (Integer)config.get("Clan_2.Admin.Ballance") + 800);
+		
+		saveConfig();
+		
+		}
+	}
+		
+		
+		if(event.getInventory().contains(Material.BLAZE_ROD)){
+		    
+			if(Clan_3.contains(player.getName())){
+			
+				if(player.getInventory().contains(Material.BLAZE_ROD, 8)){
+				
+			 player.getInventory().removeItem(new ItemStack(Material.BLAZE_ROD, 8));
+			 
+			player.updateInventory();
+			
+			config.set("Clan_3.Admin.Ballance", (Integer)config.get("Clan_3.Admin.Ballance") + 800 );
+			
+			saveConfig();
+			
+			}
+		}
+			
+			
+			if(event.getInventory().contains(Material.BLAZE_ROD)){
+			    
+				if(Clan_4.contains(player.getName())){
+				
+					if(player.getInventory().contains(Material.BLAZE_ROD, 8)){
+					
+				 player.getInventory().removeItem(new ItemStack(Material.BLAZE_ROD, 8));
+				 
+				player.updateInventory();
+				
+				config.set("Clan_4.Admin.Ballance", (Integer)config.get("Clan_4.Admin.Ballance") + 800 );
+				
+				saveConfig();
+				
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+														}
+
+
+													}
+												}
+											}
+										
+									
+								
+							
+					
+
