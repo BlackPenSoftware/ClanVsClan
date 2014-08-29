@@ -1,7 +1,6 @@
 package Executer;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import org.bukkit.Bukkit;
@@ -23,7 +22,7 @@ import Clan.clan;
 
 public class cvc implements CommandExecutor{
 	 
-    @SuppressWarnings("unused")
+	
     private clan plugin;
     public cvc(clan plugin){
         this.plugin = plugin;
@@ -38,7 +37,8 @@ public class cvc implements CommandExecutor{
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
         if((commandLabel.equalsIgnoreCase("CvC") && args.length == 0)){
             if(sender instanceof Player){
-            	Player player = (Player) sender;
+            	@SuppressWarnings("unused")
+				Player player = (Player) sender;
   
                   sender.sendMessage(ChatColor.GOLD + "==================[CvC 1 / 2]===================");
 
@@ -329,7 +329,9 @@ public class cvc implements CommandExecutor{
          							
             }else if((commandLabel.equalsIgnoreCase("CvC") && args[0].equalsIgnoreCase("setAdmin") && sender.isOp())){
             	
-            	Player playerName = Bukkit.getPlayer(args[2]);
+            	
+            	@SuppressWarnings("deprecation")
+				Player playerName = Bukkit.getPlayer(args[2]);
             	
             	   FileConfiguration config = plugin.getConfig();
             	   

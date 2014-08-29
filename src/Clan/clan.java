@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.logging.Logger;
 
+import net.minecraft.server.v1_7_R3.MinecraftServer;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -31,20 +33,56 @@ import Executer.cvc;
 
 public class clan extends JavaPlugin implements Listener{
 
-	int MainVersion = 0;
-	int MidVersion = 3;
+	/**
+	 * 
+	 * Sets Up The Version System So That It Only Needs To Be Changed Here And In The Plugin.yml
+	 * 
+	 */
+	
+	int MainVersion = 1;
+	int MidVersion = 0;
 	int SubVersion = 0;
 	
-	String MinecraftVersion = "1.7.9";
+	/**
+	 * 
+	 * String That Tells What Minecraft Version The Plugin Is Used For Called Directly From THe Server
+	 * 
+	 */
+	
+	String MinecraftVersion = MinecraftServer.getServer().getVersion();
+	
+	/**
+	 * 
+	 * Sets Up The Default Names For The Admins In Config.yml
+	 * 
+	 */
 	
 	 String Clan_1Admin = "Admin";
 	 String Clan_2Admin = "Admin";
 	 String Clan_3Admin = "Admin";
 	 String Clan_4Admin = "Admin";
 	
+	 /**
+	  * 
+	  * Setup Default Player Names For Config.yml
+	  * 
+	  */
+	 
 	 String PlayerLogName = "Player";
 	 
+	 /**
+	  * 
+	  * Gets The Config.yml File and Sets It To A Sting 
+	  * 
+	  */
+	 
 	 FileConfiguration config = getConfig();
+	 
+	 /**
+	  * 
+	  * Creates The String Array For The Clan PLayer Lists
+	  * 
+	  */
 	 
 	public String[][] Clan_1_Player_List = {
 			
@@ -71,8 +109,46 @@ public class clan extends JavaPlugin implements Listener{
 	};
 	
 	 
+	/**
+	 * 
+	 * Sets Up A Logger To Tell When A Player Logs In 
+	 * 
+	 */
+	
 	public final Logger logger = Logger.getLogger("Minecraft");
 	
+	
+	/**
+	 * 
+	 * Runs On Startup 
+	 * Prints License Information To Console 
+	 * 
+	 */
+	
+	@Override
+	public void onEnable() {
+	    
+	       initConfig();
+		  
+		  System.out.println("[Clan Vs Clan] " + "Clan Vs Clan v" + MainVersion + "." + MidVersion + "." + SubVersion + " Is Running.");
+		  System.out.println("[Clan Vs Clan] " + "**** THIS IS A LICENSED COPY DO NOT DISTRIBUTE ****");
+		  System.out.println("[Clan Vs Clan] " + "This Version Is To Be Used With Minecraft Version " + MinecraftVersion);
+		  
+		  PluginManager pm = getServer().getPluginManager();
+		  pm.registerEvents(this, this);
+		  
+		  registerCommands();
+		  
+		
+		  
+	    }
+	
+	/**
+	 * 
+	 * On System Disable 
+	 * Prints Out To Console That The Plugin Has Stopped
+	 * 
+	 */
 	
 	
 public void onDisable(){
@@ -265,23 +341,7 @@ public void Max_4_100(){
 }
 
 
-@Override
-public void onEnable() {
-    
-       initConfig();
-	  
-	  System.out.println(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_RED + "Clan Vs Clan v" + MainVersion + "." + MidVersion + "." + SubVersion + " Is Running.");
-	  System.out.println(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_RED + "**** THIS IS A DEVELOPMENT BUILD USE WITH CAUTION ****");
-	  System.out.println(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_RED+ "This Version Is To Be Used With Minecraft Version " + MinecraftVersion);
-	  
-	  PluginManager pm = getServer().getPluginManager();
-	  pm.registerEvents(this, this);
-	  
-	  registerCommands();
-	  
-	
-	  
-    }
+
 
 
 public void registerCommands(){
@@ -302,6 +362,7 @@ List<String> Clan_4 = config.getStringList("Clan_4.Players.Names");
 
 int i = 0;
 
+@SuppressWarnings("deprecation")
 @EventHandler(priority = EventPriority.HIGHEST)
 public void playerMove(PlayerMoveEvent event) {
 
