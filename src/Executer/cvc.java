@@ -553,7 +553,7 @@ public class cvc implements CommandExecutor{
 		
 		ItemStack Iron_Ingot = new ItemStack(Material.IRON_INGOT);
 		ItemMeta Iron_Ingot_Meta = Iron_Ingot.getItemMeta();
-		Iron_Ore_Meta.setDisplayName("Sell Iron Ore");
+		Iron_Ingot_Meta.setDisplayName("Sell Iron Ingots");
 		ArrayList<String> Iron_Ingot_Lore = new ArrayList<String>();
 		Iron_Ingot_Lore.add("Iron Ingot Is Worth $150");
 		Iron_Ingot_Lore.add("Click Me To Sell 8x Iron Ingot");

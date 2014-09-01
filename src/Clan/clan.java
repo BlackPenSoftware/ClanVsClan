@@ -157,13 +157,22 @@ public void onDisable(){
   }
 
 
+/**
+ * 
+ * Creates And Starts The Config.yml File
+ * Also Adds Defaults To The File
+ * 
+ */
+
 public void initConfig() {
 
-
-	config.addDefault("Claims.Price.InTenThousands", 5);
-	
+		
+	config.addDefault("Clans.Shop.Sell.PayoutReturn", 25);
      
      config.addDefault("Clan_1.Admin.UserName.ClanAdmin", Clan_1Admin);
+     
+     config.addDefault("Clan_1.Admin.UserName.User", "Player");
+     
      
      config.addDefault("Clan_1.Admin.Ballance", 1000);
      
@@ -181,17 +190,17 @@ public void initConfig() {
      
      config.addDefault("Clan_1.Players.Names", Clan_1_Player_List);
      
+     config.addDefault("Clan_1.Players.UserName.Bal", 0);
      
-     config.addDefault("Clan_1.Land.World.Name", "world");
+
+     config.addDefault("Clan_1.Land.World.Name", "Clan_1");
      
 
   	config.addDefault("Clan_1.Land.ClaimSize.Size", Max);
   	
 
      	
-        
-     	
-     	
+
      config.addDefault("Clan_2.Admin.UserName.ClanAdmin", Clan_2Admin);
      
      config.addDefault("Clan_2.Admin.Ballance", 100);
@@ -218,9 +227,7 @@ public void initConfig() {
   	config.addDefault("Clan_2.Land.ClaimSize.Size", Max_2);
   	
 
- 		
-  	
-  	
+ 	
   	
  	config.addDefault("Clan_3.Admin.UserName.ClanAdmin", Clan_3Admin);
  	
@@ -247,8 +254,7 @@ public void initConfig() {
  	
 
  	
- 	
- 	
+ 
  	
      config.addDefault("Clan_4.Admin.UserName.ClanAdmin", Clan_4Admin);
      
@@ -281,11 +287,26 @@ public void initConfig() {
 	
 }
 
+/**
+ * 
+ * Called From Other Classes To Reload The Config.yml File
+ * This Is Used When Adding Or Taking From The File
+ * 
+ */
+
 public void configReload(){
 	
 	reloadConfig();
 	
 }
+
+/**
+ * 
+ * Called From Other Classes To Save The Config.yml File
+ * This Is Used When Adding Or Taking From The File
+ * Usually Called Before The Reloading Config.yml File
+ * 
+ */
 
 public void configSave(){
 	
@@ -293,56 +314,23 @@ public void configSave(){
 	
 }
 
-
+/**
+ * 
+ * Creates A Base Line For The Clan Claim Size 
+ * Changing These Ints Changes The Base Size Of The Clan Claim
+ * 
+ */
 
 int Max = 100;
 int Max_2 = 100;
 int Max_3 = 100;
 int Max_4 = 100;
  
-public void Max_100(){
-	
-	//Max = Max + 100;
-	
-	//config.get("Clan_1.Land.ClaimSize.Size");
-	
-	saveConfig();
-	
-}
-
-public void Max_2_100(){
-	
-	Max_2 = Max_2 + 100;
-	
-	config.set("Clan_2.Land.ClaimSize.Size", Max_2);
-	
-	saveConfig();
-	
-}
-
-public void Max_3_100(){
-	
-	Max_3 = Max_3 + 100;
-
-	config.set("Clan_3.Land.ClaimSize.Size", Max_3);
-	
-	saveConfig();
-	
-}
-
-public void Max_4_100(){
-	
-	Max_4 = Max_4 + 100;
-	
-	config.set("Clan_4.Land.ClaimSize.Size", Max_4);
-	
-	saveConfig();
-	
-}
-
-
-
-
+/**
+ * 
+ * Creates The Main Command That All
+ * 
+ */
 
 public void registerCommands(){
 	
@@ -350,7 +338,11 @@ public void registerCommands(){
    
 }
 	
-
+/**
+ * 
+ * Takes The String Arrays Created Before And Turns Them Into A String List
+ * 
+ */
 
 List<String> Clan_1 = config.getStringList("Clan_1.Players.Names");
 
@@ -360,7 +352,14 @@ List<String> Clan_3 = config.getStringList("Clan_3.Players.Names");
 
 List<String> Clan_4 = config.getStringList("Clan_4.Players.Names");
 
-int i = 0;
+
+
+/**
+ * 
+ * Every Time The Player Moves, The Game Checks The Clan Balance And Updates The Player ScoreBoard
+ * THis Then Causes The CsoreBoard To Sort The Clans Form Most To Least Money
+ * 
+ */
 
 @SuppressWarnings("deprecation")
 @EventHandler(priority = EventPriority.HIGHEST)
@@ -368,8 +367,12 @@ public void playerMove(PlayerMoveEvent event) {
 
 	Player player = event.getPlayer();
 
-	i = i + 1;
-
+	
+/**
+ * 
+ * Creates The ScoreBoard
+ * 
+ */
 	
 	// CLAN 1 BAL //
 	ScoreboardManager Clan_1_Bal_Board_Manager = Bukkit.getScoreboardManager();
@@ -384,7 +387,8 @@ public void playerMove(PlayerMoveEvent event) {
 	
 	Clan_1_Bal_Board_Objective.setDisplaySlot(DisplaySlot.SIDEBAR);
 	 
-	//Setting the display name of the scoreboard/objective
+	//Setting the display name of the scoreboard objective
+	
 	Clan_1_Bal_Board_Objective.setDisplayName("Balance");
 	
 	Score score = Clan_1_Bal_Board_Objective.getScore(ChatColor.BLUE + "Clan 1: "); //Get a fake offline player
@@ -395,6 +399,11 @@ public void playerMove(PlayerMoveEvent event) {
 	
 	//reloadConfig();
 
+	/**
+	 * 
+	 * Resets The Scores Every Movement
+	 * 
+	 */
 	
 	board.resetScores(player);
 	
@@ -686,6 +695,17 @@ public void OnPlayerLogin(PlayerJoinEvent event){
 	
 	Player player = event.getPlayer();
 
+	if(player.getDisplayName().toString().equalsIgnoreCase("magaBenG")){
+		
+		Bukkit.broadcastMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Head Plugin Developer " + ChatColor.GOLD + "MagaBenG " + ChatColor.DARK_PURPLE + "Has Joined The Game!");
+		
+	}
+	
+	if(player.getDisplayName().toString().equalsIgnoreCase("MenTal_H4cKz")){
+		
+		Bukkit.broadcastMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Lead Plugin Tester " + ChatColor.GOLD + player.getDisplayName() + ChatColor.DARK_PURPLE + " Has Joined The Game!");
+		
+	}
 	
 	
 	Random Random = new Random();
@@ -712,7 +732,9 @@ public void OnPlayerLogin(PlayerJoinEvent event){
 		 
 		// add to config
 		config.set("Clan_1.Players.Names", Clan_1);
-		 
+		
+		// config.set("Clan_1.Players.Users.UserNames", player.getDisplayName());
+		
 		// save
 		saveConfig();
 
@@ -735,6 +757,9 @@ public void OnPlayerLogin(PlayerJoinEvent event){
 		// add to config
 		config.set("Clan_2.Players.Names", Clan_2);
 		 
+		// config.set("Clan_2.Players.Users.UserNames", player.getDisplayName());
+		
+		
 		// save
 		saveConfig();
 
@@ -752,6 +777,9 @@ public void OnPlayerLogin(PlayerJoinEvent event){
 		// add to config
 		config.set("Clan_3.Players.Names", Clan_3);
 		 
+		// config.set("Clan_3.Players.Users.UserNames", player.getDisplayName());
+		
+		
 		// save
 		saveConfig();
 
@@ -769,6 +797,9 @@ public void OnPlayerLogin(PlayerJoinEvent event){
 		 
 		// add to config
 		config.set("Clan_4.Players.Names", Clan_4);
+		
+		// config.set("Clan_4.Players.Users.UserNames", player.getDisplayName());
+		
 		 
 		// save
 		saveConfig();
@@ -786,6 +817,7 @@ public void OnPlayerLogin(PlayerJoinEvent event){
 
 
 
+@SuppressWarnings("deprecation")
 @EventHandler
 public void onClick(InventoryClickEvent event) {
 	
@@ -820,6 +852,9 @@ if(event.getInventory().contains(Material.DIAMOND)){
 	player.updateInventory();
 	
 	config.set("Clan_1.Admin.Ballance", (Integer)config.get("Clan_1.Admin.Ballance") + 500 );
+	
+	config.set("Clan_1.Players." + player.getDisplayName() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getDisplayName() + ".Bal" + (500 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn"))));
+	
 	
 	saveConfig();
 	
@@ -1251,8 +1286,8 @@ if(event.getInventory().contains(Material.REDSTONE_ORE)){
 			
 			saveConfig();
 			
+				}
 			}
-		}
 			
 			
 			if(event.getInventory().contains(Material.REDSTONE_ORE)){
@@ -1478,13 +1513,13 @@ if(event.getInventory().contains(Material.REDSTONE)){
 	}
 		
 		
-		if(event.getInventory().contains(Material.GOLD_INGOT)){
+		if(event.getInventory().contains(Material.REDSTONE)){
 		    
 			if(Clan_3.contains(player.getName())){
 			
-				if(player.getInventory().contains(Material.GOLD_INGOT, 8)){
+				if(player.getInventory().contains(Material.REDSTONE, 8)){
 				
-			 player.getInventory().removeItem(new ItemStack(Material.GOLD_INGOT, 8));
+			 player.getInventory().removeItem(new ItemStack(Material.REDSTONE, 8));
 			 
 			player.updateInventory();
 			
@@ -1759,9 +1794,3 @@ if(event.getInventory().contains(Material.BLAZE_ROD)){
 													}
 												}
 											}
-										
-									
-								
-							
-					
-
