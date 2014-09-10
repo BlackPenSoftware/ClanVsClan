@@ -11,6 +11,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -33,6 +34,12 @@ public class cvc implements CommandExecutor{
     int Bal = 1000;
     
  
+  public static Inventory ClanSellInventory = Bukkit.createInventory(null, 18, "Clan Sell");
+	  
+  public static Inventory ClanBuyInventory = Bukkit.createInventory(null, 18, "Clan Buy");
+	 
+  public static Inventory ClanMainInventory = Bukkit.createInventory(null, 18, "Clan Main");
+    
     
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
         if((commandLabel.equalsIgnoreCase("CvC") && args.length == 0)){
@@ -54,6 +61,18 @@ public class cvc implements CommandExecutor{
             return true;
             
             
+            	
+            }else if((commandLabel.equalsIgnoreCase("CvC") && args[0].equalsIgnoreCase("Bal"))){
+            	
+            	 FileConfiguration config = plugin.getConfig(); 
+            	 
+            	if(sender instanceof Player){
+            	
+            		 sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Your Personal Balance Is " + ChatColor.GREEN + "$" + config.get("Clan_1.Players." + sender.getName().toString() + ".Bal"));
+            		 
+            	 }
+            	
+            	return true;
             	
             }else if((commandLabel.equalsIgnoreCase("CvC") && args[0].equalsIgnoreCase("Expand"))){
              
@@ -484,10 +503,10 @@ public class cvc implements CommandExecutor{
         	
         //	FileConfiguration config = plugin.getConfig();
      	   
-
+        	 if(sender instanceof Player){
         	
      	   
-     	  Inventory ClanSellInventory = Bukkit.createInventory(null, 18, "Clan Sell");
+     	
 
      	
      	 
@@ -612,6 +631,125 @@ public class cvc implements CommandExecutor{
 		
 
 		
+		 ItemStack PaperBuy = new ItemStack(Material.ANVIL);
+	  		ItemMeta PaperBuymeta = PaperBuy.getItemMeta();
+	  		PaperBuymeta.setDisplayName("Go To Buy");
+	  		PaperBuy.setItemMeta(PaperBuymeta);
+		
+	  		 ItemStack PaperSell = new ItemStack(Material.PAPER);
+		  		ItemMeta PaperSellmeta = PaperSell.getItemMeta();
+		  		PaperSellmeta.setDisplayName("Go To Sell");
+		  		PaperSell.setItemMeta(PaperSellmeta);
+		  		
+		  		
+		  		
+		  		// Buy Menu
+		  		
+		  		
+		  		ItemStack DiamondHead = new ItemStack(Material.DIAMOND_HELMET);
+				ItemMeta DiamondHead_Meta = DiamondHead.getItemMeta();
+				DiamondHead_Meta.setDisplayName("Diamond Helmet");
+				ArrayList<String> DiamondHeadLore = new ArrayList<String>();
+				DiamondHeadLore.add("This Helmet Costs $2000");
+				DiamondHeadLore.add("Click Me To Buy!");
+				DiamondHead_Meta.setLore(DiamondHeadLore);
+				DiamondHead.setItemMeta(DiamondHead_Meta);
+				DiamondHead.addEnchantment(Enchantment.OXYGEN, 3);
+		  		DiamondHead.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
+		  		
+		  	
+			  		
+			  		ItemStack DiamondChest = new ItemStack(Material.DIAMOND_CHESTPLATE);
+			  		ItemMeta DiamondChestMeta = DiamondChest.getItemMeta();
+			  		DiamondChestMeta.setDisplayName("Diamond Chestplate");
+			  		DiamondChest.setItemMeta(DiamondChestMeta);
+					ArrayList<String> DiamondChest_Lore = new ArrayList<String>();
+			  		DiamondChest_Lore.add("This Helmet Costs $5000");
+			  		DiamondChest_Lore.add("Click Me To Buy!");
+			  		DiamondChest.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
+			  		DiamondChest.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
+			  		DiamondChest.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
+	  		
+			  		
+			  		ItemStack DiamondLegs = new ItemStack(Material.DIAMOND_LEGGINGS);
+			  		ItemMeta DiamondLegsMeta = DiamondLegs.getItemMeta();
+			  		DiamondLegsMeta.setDisplayName("Diamond Chestplate");
+			  		DiamondLegs.setItemMeta(DiamondLegsMeta);
+					ArrayList<String> DiamondLegs_Lore = new ArrayList<String>();
+			  		DiamondLegs_Lore.add("This Helmet Costs $3500");
+			  		DiamondLegs_Lore.add("Click Me To Buy!");
+			  		DiamondLegs.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
+			  		DiamondLegs.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
+			  		DiamondLegs.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
+			  		
+			  		
+			  		
+			  		ItemStack DiamondBoots = new ItemStack(Material.DIAMOND_BOOTS);
+			  		ItemMeta DiamondBootsMeta = DiamondBoots.getItemMeta();
+			  		DiamondBootsMeta.setDisplayName("Diamond Boots");
+			  		DiamondBoots.setItemMeta(DiamondBootsMeta);
+					ArrayList<String> DiamondBoots_Lore = new ArrayList<String>();
+			  		DiamondBoots_Lore.add("This Helmet Costs $3200");
+			  		DiamondBoots_Lore.add("Click Me To Buy!");
+			  		DiamondBoots.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
+			  		DiamondBoots.addEnchantment(Enchantment.PROTECTION_FALL, 4);
+			  		
+			  		
+			  		ItemStack DiamondSword = new ItemStack(Material.DIAMOND_SWORD);
+			  		ItemMeta DiamondSwordMeta = DiamondSword.getItemMeta();
+			  		DiamondSwordMeta.setDisplayName("Diamond Sword");
+			  		DiamondSword.setItemMeta(DiamondSwordMeta);
+					ArrayList<String> DiamondSword_Lore = new ArrayList<String>();
+			  		DiamondSword_Lore.add("This Sword Costs $10000");
+			  		DiamondSword_Lore.add("Click Me To Buy!");
+			  		DiamondSword.addEnchantment(Enchantment.DAMAGE_ALL, 5);
+			  		DiamondSword.addEnchantment(Enchantment.DURABILITY, 3);
+			  		DiamondSword.addEnchantment(Enchantment.FIRE_ASPECT, 2);
+			  		DiamondSword.addEnchantment(Enchantment.LOOT_BONUS_MOBS, 3);
+			  		
+			  		
+			  		ItemStack DiamondPickAxe = new ItemStack(Material.DIAMOND_PICKAXE);
+			  		ItemMeta DiamondPickAxeMeta = DiamondPickAxe.getItemMeta();
+			  		DiamondPickAxeMeta.setDisplayName("Diamond Pickaxe");
+			  		DiamondPickAxe.setItemMeta(DiamondPickAxeMeta);
+					ArrayList<String> DiamondPickAxe_Lore = new ArrayList<String>();
+			  		DiamondPickAxe_Lore.add("This Pickaxe Costs $10000");
+			  		DiamondPickAxe_Lore.add("Click Me To Buy!");
+			  		DiamondPickAxe.addEnchantment(Enchantment.DIG_SPEED, 5);
+			  		DiamondPickAxe.addEnchantment(Enchantment.DURABILITY, 3);
+			  		DiamondPickAxe.addEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 2);
+			  		
+			  		
+			  		
+			  		ItemStack DiamondAxe = new ItemStack(Material.DIAMOND_AXE);
+			  		ItemMeta DiamondAxeMeta = DiamondAxe.getItemMeta();
+			  		DiamondAxeMeta.setDisplayName("Diamond Axe");
+			  		DiamondAxe.setItemMeta(DiamondAxeMeta);
+					ArrayList<String> DiamondAxe_Lore = new ArrayList<String>();
+			  		DiamondAxe_Lore.add("This axe Costs $10000");
+			  		DiamondAxe_Lore.add("Click Me To Buy!");
+			  		DiamondAxe.addEnchantment(Enchantment.DIG_SPEED, 5);
+			  		DiamondAxe.addEnchantment(Enchantment.DURABILITY, 3);
+			  		DiamondAxe.addEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 2);
+			  		
+			  		
+			  		
+			  		ItemStack DiamondShovel = new ItemStack(Material.DIAMOND_SPADE);
+			  		ItemMeta DiamondShovelMeta = DiamondShovel.getItemMeta();
+			  		DiamondShovelMeta.setDisplayName("Diamond Spade");
+			  		DiamondShovel.setItemMeta(DiamondShovelMeta);
+					ArrayList<String> DiamondShovel_Lore = new ArrayList<String>();
+			  		DiamondShovel_Lore.add("This Shovel Costs $10000");
+			  		DiamondShovel_Lore.add("Click Me To Buy!");
+			  		DiamondShovel.addEnchantment(Enchantment.DIG_SPEED, 5);
+			  		DiamondShovel.addEnchantment(Enchantment.DURABILITY, 3);
+			  		DiamondShovel.addEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 2);
+			  		
+			  		
+			  		
+			  		
+			  		
+		
    		// Puts The Items In The Inventories //
 		
 		// Row One //
@@ -644,13 +782,41 @@ public class cvc implements CommandExecutor{
   		ClanSellInventory.setItem(13, GlowStone_Block);
   		
   		ClanSellInventory.setItem(14, BlazeRod);
- 
+  		
+  		ClanSellInventory.setItem(17, PaperBuy);
+  		
+  		
+  		ClanMainInventory.setItem(4, PaperBuy);
+  		
+  		ClanMainInventory.setItem(13, PaperSell);
+  		
+  		
+  		
+  		ClanBuyInventory.setItem(17, PaperSell);
      	   
-     	  if(sender instanceof Player){
-				
+  		
+     	 ClanBuyInventory.setItem(2, DiamondHead);
+		
+     	 ClanBuyInventory.setItem(3, DiamondChest);
+     	 
+     	ClanBuyInventory.setItem(4, DiamondLegs);
+     	
+     	ClanBuyInventory.setItem(5, DiamondBoots);
+     	
+     	ClanBuyInventory.setItem(6, DiamondSword);
+     	
+     	ClanBuyInventory.setItem(12, DiamondPickAxe);
+     	
+     	ClanBuyInventory.setItem(13, DiamondAxe);
+     	
+     	ClanBuyInventory.setItem(14, DiamondShovel);
+     	
+     	
+     	
+     	 
      		  Player player = (Player) sender;
      		  
-     		 player.openInventory(ClanSellInventory);
+     		 player.openInventory(ClanMainInventory);
      		  
      		// config.set("Clan_1.Admin.Ballance", 1000);
      		 

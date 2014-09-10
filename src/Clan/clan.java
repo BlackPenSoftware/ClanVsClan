@@ -154,6 +154,7 @@ public class clan extends JavaPlugin implements Listener{
 public void onDisable(){
 
 	System.out.println("[Clan Vs Clan] Clan Vs Clan v" + MainVersion + "." + MidVersion + "." + SubVersion + " Has Been Disabled.");
+	
   }
 
 
@@ -167,7 +168,7 @@ public void onDisable(){
 public void initConfig() {
 
 		
-	config.addDefault("Clans.Shop.Sell.PayoutReturn", 25);
+	config.addDefault("Clans.Shop.Sell.PayoutReturn", 3);
      
      config.addDefault("Clan_1.Admin.UserName.ClanAdmin", Clan_1Admin);
      
@@ -733,7 +734,7 @@ public void OnPlayerLogin(PlayerJoinEvent event){
 		// add to config
 		config.set("Clan_1.Players.Names", Clan_1);
 		
-		// config.set("Clan_1.Players.Users.UserNames", player.getDisplayName());
+		config.addDefault("Clan_1.Players." + player.getDisplayName() + ".Bal", 0);
 		
 		// save
 		saveConfig();
@@ -759,6 +760,7 @@ public void OnPlayerLogin(PlayerJoinEvent event){
 		 
 		// config.set("Clan_2.Players.Users.UserNames", player.getDisplayName());
 		
+		config.addDefault("Clan_2.Players." + player.getDisplayName() + ".Bal", 0);
 		
 		// save
 		saveConfig();
@@ -779,6 +781,7 @@ public void OnPlayerLogin(PlayerJoinEvent event){
 		 
 		// config.set("Clan_3.Players.Users.UserNames", player.getDisplayName());
 		
+		config.addDefault("Clan_3.Players." + player.getDisplayName() + ".Bal", 0);
 		
 		// save
 		saveConfig();
@@ -800,7 +803,8 @@ public void OnPlayerLogin(PlayerJoinEvent event){
 		
 		// config.set("Clan_4.Players.Users.UserNames", player.getDisplayName());
 		
-		 
+		config.addDefault("Clan_4.Players." + player.getDisplayName() + ".Bal", 0); 
+		
 		// save
 		saveConfig();
 
@@ -822,8 +826,362 @@ public void OnPlayerLogin(PlayerJoinEvent event){
 public void onClick(InventoryClickEvent event) {
 	
 	
+	if(event.getInventory().getName().equalsIgnoreCase("Clan Main")){
+	
+		Player player = (Player) event.getWhoClicked();
+		ItemStack clicked = event.getCurrentItem();
+		
+		if (clicked.getType() == Material.ANVIL) {
+			event.setCancelled(true);
+			
+     		  
+	     		player.openInventory(cvc.ClanBuyInventory);
+			
+			}
+
+		if (clicked.getType() == Material.PAPER) {
+			event.setCancelled(true);
+			
+				player.openInventory(cvc.ClanSellInventory);
+			
+			}
+		
+		
+	}
+	
+	
+	if (event.getInventory().getName().equalsIgnoreCase("Clan Buy")){
+		
+
+		
+		Player player = (Player) event.getWhoClicked();
+
+
+		List<String> Clan_1 = config.getStringList("Clan_1.Players.Names");
+
+		List<String> Clan_2 = config.getStringList("Clan_2.Players.Names");
+
+		List<String> Clan_3 = config.getStringList("Clan_3.Players.Names");
+
+		List<String> Clan_4 = config.getStringList("Clan_4.Players.Names");
+
+		ItemStack clicked = event.getCurrentItem();
+		
+		if (clicked.getType() == Material.PAPER) {
+			event.setCancelled(true);
+			
+				player.openInventory(cvc.ClanSellInventory);
+			
+			}
+		
+		if (clicked.getType() == Material.DIAMOND_HELMET) {
+			event.setCancelled(true);
+			
+			if(Clan_1.contains(player.getDisplayName()) && ((Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") >= 3500)){
+			
+				config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") - 3500); 
+				
+				
+				
+				saveConfig();
+				
+				}
+			
+			if(Clan_2.contains(player.getDisplayName()) && ((Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") >= 3500)){
+				
+				config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") - 3500); 
+				
+				saveConfig();
+				
+				}
+			
+			if(Clan_3.contains(player.getDisplayName()) && ((Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") >= 3500)){
+				
+				config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") - 3500); 
+				
+				saveConfig();
+				
+				}
+			
+			if(Clan_4.contains(player.getDisplayName()) && ((Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") >= 3500)){
+				
+				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") - 3500); 
+				
+				saveConfig();
+				
+				}
+			}
+		
+		if (clicked.getType() == Material.DIAMOND_CHESTPLATE) {
+			event.setCancelled(true);
+			
+			if(Clan_1.contains(player.getDisplayName()) && ((Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") >= 5000)){
+				
+				config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") - 5000); 
+				
+				saveConfig();
+				
+				}
+			
+			if(Clan_2.contains(player.getDisplayName()) && ((Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") >= 5000)){
+				
+				config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") - 5000); 
+				
+				saveConfig();
+				
+				}
+			
+			if(Clan_3.contains(player.getDisplayName()) && ((Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") >= 5000)){
+				
+				config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") - 5000); 
+				
+				saveConfig();
+				
+				}
+			
+			if(Clan_4.contains(player.getDisplayName()) && ((Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") >= 5000)){
+				
+				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") - 5000); 
+				
+				saveConfig();
+				
+				}
+			
+			
+			}
+		
+		if (clicked.getType() == Material.DIAMOND_LEGGINGS) {
+			event.setCancelled(true);
+			
+			
+			if(Clan_1.contains(player.getDisplayName()) && ((Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") >= 3500)){
+				
+				config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") - 3500); 
+				
+				saveConfig();
+				
+				}
+			
+			if(Clan_2.contains(player.getDisplayName()) && ((Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") >= 3500)){
+				
+				config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") - 3500); 
+				
+				saveConfig();
+				
+				}
+			
+			if(Clan_3.contains(player.getDisplayName()) && ((Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") >= 3500)){
+				
+				config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") - 3500); 
+				
+				saveConfig();
+				
+				}
+			
+			if(Clan_4.contains(player.getDisplayName()) && ((Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") >= 3500)){
+				
+				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") - 3500); 
+				
+				saveConfig();
+				
+				}
+			
+			
+			}
+		
+		if (clicked.getType() == Material.DIAMOND_BOOTS) {
+			event.setCancelled(true);
+			
+				
+			if(Clan_1.contains(player.getDisplayName()) && ((Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") >= 3200)){
+				
+				config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") - 3200); 
+				
+				saveConfig();
+				
+				}
+			
+			if(Clan_2.contains(player.getDisplayName()) && ((Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") >= 3200)){
+				
+				config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") - 3200); 
+				
+				saveConfig();
+				
+				}
+			
+			if(Clan_3.contains(player.getDisplayName()) && ((Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") >= 3200)){
+				
+				config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") - 3200); 
+				
+				saveConfig();
+				
+				}
+			
+			if(Clan_4.contains(player.getDisplayName()) && ((Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") >= 3200)){
+				
+				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") - 3200); 
+				
+				saveConfig();
+				
+				}
+			
+			
+			}
+		
+		if (clicked.getType() == Material.DIAMOND_SWORD) {
+			event.setCancelled(true);
+			
+			if(Clan_1.contains(player.getDisplayName()) && ((Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") >= 10000)){
+				
+				config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") - 10000); 
+				
+				saveConfig();
+				
+				}
+			
+			if(Clan_2.contains(player.getDisplayName()) && ((Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") >= 10000)){
+				
+				config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") - 10000); 
+				
+				saveConfig();
+				
+				}
+			
+			if(Clan_3.contains(player.getDisplayName()) && ((Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") >= 10000)){
+				
+				config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") - 10000); 
+				
+				saveConfig();
+				
+				}
+			
+			if(Clan_4.contains(player.getDisplayName()) && ((Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") >= 10000)){
+				
+				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") - 10000); 
+				
+				saveConfig();
+				
+				}
+			
+			}
+		
+		if (clicked.getType() == Material.DIAMOND_PICKAXE) {
+			event.setCancelled(true);
+			
+		if(Clan_1.contains(player.getDisplayName()) && ((Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") >= 10000)){
+				
+				config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") - 10000); 
+				
+				saveConfig();
+				
+				}
+			
+			if(Clan_2.contains(player.getDisplayName()) && ((Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") >= 10000)){
+				
+				config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") - 10000); 
+				
+				saveConfig();
+				
+				}
+			
+			if(Clan_3.contains(player.getDisplayName()) && ((Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") >= 10000)){
+				
+				config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") - 10000); 
+				
+				saveConfig();
+				
+				}
+			
+			if(Clan_4.contains(player.getDisplayName()) && ((Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") >= 10000)){
+				
+				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") - 10000); 
+				
+				saveConfig();
+				
+				}
+			
+			}
+		
+		if (clicked.getType() == Material.DIAMOND_AXE) {
+			event.setCancelled(true);
+			
+		if(Clan_1.contains(player.getDisplayName()) && ((Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") >= 10000)){
+				
+				config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") - 10000); 
+				
+				saveConfig();
+				
+				}
+			
+			if(Clan_2.contains(player.getDisplayName()) && ((Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") >= 10000)){
+				
+				config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") - 10000); 
+				
+				saveConfig();
+				
+				}
+			
+			if(Clan_3.contains(player.getDisplayName()) && ((Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") >= 10000)){
+				
+				config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") - 10000); 
+				
+				saveConfig();
+				
+				}
+			
+			if(Clan_4.contains(player.getDisplayName()) && ((Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") >= 10000)){
+				
+				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") - 10000); 
+				
+				saveConfig();
+				
+				}
+			
+			}
+		
+		if (clicked.getType() == Material.DIAMOND_SPADE) {
+			event.setCancelled(true);
+			
+		if(Clan_1.contains(player.getDisplayName()) && ((Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") >= 10000)){
+				
+				config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") - 10000); 
+				
+				saveConfig();
+				
+				}
+			
+			if(Clan_2.contains(player.getDisplayName()) && ((Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") >= 10000)){
+				
+				config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") - 10000); 
+				
+				saveConfig();
+				
+				}
+			
+			if(Clan_3.contains(player.getDisplayName()) && ((Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") >= 10000)){
+				
+				config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") - 10000); 
+				
+				saveConfig();
+				
+				}
+			
+			if(Clan_4.contains(player.getDisplayName()) && ((Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") >= 10000)){
+				
+				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") - 10000); 
+				
+				saveConfig();
+				
+				}
+			
+			}
+		
+		
+	}
 	
 if (event.getInventory().getName().equalsIgnoreCase("Clan Sell")){
+	
+	
 	
 	Player player = (Player) event.getWhoClicked();
 
@@ -840,6 +1198,16 @@ if (event.getInventory().getName().equalsIgnoreCase("Clan Sell")){
 //Makes it so the code will only work if its in the CustomInv inventory
 ItemStack clicked = event.getCurrentItem();
 //The item that was clicked
+
+
+if (clicked.getType() == Material.ANVIL) {
+	event.setCancelled(true);
+	
+		  
+ 		player.openInventory(cvc.ClanBuyInventory);
+	
+	}
+
 if (clicked.getType() == Material.DIAMOND) {
 event.setCancelled(true);
 
@@ -853,7 +1221,9 @@ if(event.getInventory().contains(Material.DIAMOND)){
 	
 	config.set("Clan_1.Admin.Ballance", (Integer)config.get("Clan_1.Admin.Ballance") + 500 );
 	
-	config.set("Clan_1.Players." + player.getDisplayName() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getDisplayName() + ".Bal" + (500 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn"))));
+	
+	
+	config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") + (500 * (Integer)config.get("Clans.Shop.Sell.PayoutReturn"))); 
 	
 	
 	saveConfig();
@@ -869,6 +1239,9 @@ if(event.getInventory().contains(Material.DIAMOND)){
 		player.updateInventory();
 		
 		config.set("Clan_2.Admin.Ballance", (Integer)config.get("Clan_2.Admin.Ballance") + 500 );
+		
+		config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") + (500 * (Integer)config.get("Clans.Shop.Sell.PayoutReturn"))); 
+		
 		
 		saveConfig();
 		
@@ -886,6 +1259,9 @@ if(event.getInventory().contains(Material.DIAMOND)){
 			
 			config.set("Clan_3.Admin.Ballance", (Integer)config.get("Clan_3.Admin.Ballance") + 500 );
 			
+			config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") + (500 * (Integer)config.get("Clans.Shop.Sell.PayoutReturn"))); 
+			
+		
 			saveConfig();
 			
 			}
@@ -901,6 +1277,9 @@ if(event.getInventory().contains(Material.DIAMOND)){
 				player.updateInventory();
 				
 				config.set("Clan_4.Admin.Ballance", (Integer)config.get("Clan_4.Admin.Ballance") + 500 );
+				
+				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") + (500 * (Integer)config.get("Clans.Shop.Sell.PayoutReturn"))); 
+				
 				
 				saveConfig();
 				
@@ -929,6 +1308,9 @@ if(event.getInventory().contains(Material.COBBLESTONE)){
 	
 	config.set("Clan_1.Admin.Ballance", (Integer)config.get("Clan_1.Admin.Ballance") + 32 );
 	
+	config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") + (32 * (Integer)config.get("Clans.Shop.Sell.PayoutReturn"))); 
+	
+	
 	saveConfig();
 	
 		}
@@ -945,6 +1327,8 @@ if(event.getInventory().contains(Material.COBBLESTONE)){
 		player.updateInventory();
 		
 		config.set("Clan_2.Admin.Ballance", (Integer)config.get("Clan_2.Admin.Ballance") + 32);
+		
+		config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") + (32 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 		
 		saveConfig();
 		
@@ -964,6 +1348,8 @@ if(event.getInventory().contains(Material.COBBLESTONE)){
 			
 			config.set("Clan_3.Admin.Ballance", (Integer)config.get("Clan_3.Admin.Ballance") + 32 );
 			
+			config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") + (32 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+			
 			saveConfig();
 			
 			}
@@ -981,6 +1367,8 @@ if(event.getInventory().contains(Material.COBBLESTONE)){
 				player.updateInventory();
 				
 				config.set("Clan_4.Admin.Ballance", (Integer)config.get("Clan_4.Admin.Ballance") + 32 );
+				
+				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") + (32 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 				
 				saveConfig();
 				
@@ -1008,6 +1396,8 @@ if(event.getInventory().contains(Material.IRON_ORE)){
 	
 	config.set("Clan_1.Admin.Ballance", (Integer)config.get("Clan_1.Admin.Ballance") + 100 );
 	
+	config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") + (100 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+	
 	saveConfig();
 	
 		}
@@ -1024,6 +1414,8 @@ if(event.getInventory().contains(Material.IRON_ORE)){
 		player.updateInventory();
 		
 		config.set("Clan_2.Admin.Ballance", (Integer)config.get("Clan_2.Admin.Ballance") + 100);
+		
+		config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") + (100 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 		
 		saveConfig();
 		
@@ -1043,6 +1435,8 @@ if(event.getInventory().contains(Material.IRON_ORE)){
 			
 			config.set("Clan_3.Admin.Ballance", (Integer)config.get("Clan_3.Admin.Ballance") + 100 );
 			
+			config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") + (100 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+			
 			saveConfig();
 			
 			}
@@ -1060,6 +1454,8 @@ if(event.getInventory().contains(Material.IRON_ORE)){
 				player.updateInventory();
 				
 				config.set("Clan_4.Admin.Ballance", (Integer)config.get("Clan_4.Admin.Ballance") + 100 );
+				
+				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") + (100 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 				
 				saveConfig();
 				
@@ -1087,6 +1483,8 @@ if(event.getInventory().contains(Material.GOLD_ORE)){
 	
 	config.set("Clan_1.Admin.Ballance", (Integer)config.get("Clan_1.Admin.Ballance") + 150 );
 	
+	config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") + (150 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+	
 	saveConfig();
 	
 		}
@@ -1103,6 +1501,8 @@ if(event.getInventory().contains(Material.GOLD_ORE)){
 		player.updateInventory();
 		
 		config.set("Clan_2.Admin.Ballance", (Integer)config.get("Clan_2.Admin.Ballance") + 150);
+		
+		config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") + (150 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 		
 		saveConfig();
 		
@@ -1122,6 +1522,8 @@ if(event.getInventory().contains(Material.GOLD_ORE)){
 			
 			config.set("Clan_3.Admin.Ballance", (Integer)config.get("Clan_3.Admin.Ballance") + 150 );
 			
+			config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") + (150 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+			
 			saveConfig();
 			
 			}
@@ -1139,6 +1541,8 @@ if(event.getInventory().contains(Material.GOLD_ORE)){
 				player.updateInventory();
 				
 				config.set("Clan_4.Admin.Ballance", (Integer)config.get("Clan_4.Admin.Ballance") + 150 );
+				
+				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") + (150 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 				
 				saveConfig();
 				
@@ -1170,6 +1574,8 @@ if(event.getInventory().contains(Material.LAPIS_ORE)){
 	
 	config.set("Clan_1.Admin.Ballance", (Integer)config.get("Clan_1.Admin.Ballance") + 300 );
 	
+	config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") + (300 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+	
 	saveConfig();
 	
 		}
@@ -1186,6 +1592,8 @@ if(event.getInventory().contains(Material.LAPIS_ORE)){
 		player.updateInventory();
 		
 		config.set("Clan_2.Admin.Ballance", (Integer)config.get("Clan_2.Admin.Ballance") + 300);
+		
+		config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") + (300 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 		
 		saveConfig();
 		
@@ -1205,6 +1613,8 @@ if(event.getInventory().contains(Material.LAPIS_ORE)){
 			
 			config.set("Clan_3.Admin.Ballance", (Integer)config.get("Clan_3.Admin.Ballance") + 300 );
 			
+			config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") + (300 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+			
 			saveConfig();
 			
 			}
@@ -1222,6 +1632,8 @@ if(event.getInventory().contains(Material.LAPIS_ORE)){
 				player.updateInventory();
 				
 				config.set("Clan_4.Admin.Ballance", (Integer)config.get("Clan_4.Admin.Ballance") + 300 );
+				
+				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") + (300 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 				
 				saveConfig();
 				
@@ -1249,6 +1661,8 @@ if(event.getInventory().contains(Material.REDSTONE_ORE)){
 	
 	config.set("Clan_1.Admin.Ballance", (Integer)config.get("Clan_1.Admin.Ballance") + 400 );
 	
+	config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") + (400 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+	
 	saveConfig();
 	
 		}
@@ -1265,6 +1679,8 @@ if(event.getInventory().contains(Material.REDSTONE_ORE)){
 		player.updateInventory();
 		
 		config.set("Clan_2.Admin.Ballance", (Integer)config.get("Clan_2.Admin.Ballance") + 400);
+		
+		config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") + (400 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 		
 		saveConfig();
 		
@@ -1284,6 +1700,8 @@ if(event.getInventory().contains(Material.REDSTONE_ORE)){
 			
 			config.set("Clan_3.Admin.Ballance", (Integer)config.get("Clan_3.Admin.Ballance") + 400 );
 			
+			config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") + (400 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+			
 			saveConfig();
 			
 				}
@@ -1301,6 +1719,8 @@ if(event.getInventory().contains(Material.REDSTONE_ORE)){
 				player.updateInventory();
 				
 				config.set("Clan_4.Admin.Ballance", (Integer)config.get("Clan_4.Admin.Ballance") + 400 );
+				
+				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") + (400 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 				
 				saveConfig();
 				
@@ -1328,6 +1748,8 @@ if(event.getInventory().contains(Material.IRON_INGOT)){
 	
 	config.set("Clan_1.Admin.Ballance", (Integer)config.get("Clan_1.Admin.Ballance") + 150 );
 	
+	config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") + (150 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+	
 	saveConfig();
 	
 		}
@@ -1344,6 +1766,8 @@ if(event.getInventory().contains(Material.IRON_INGOT)){
 		player.updateInventory();
 		
 		config.set("Clan_2.Admin.Ballance", (Integer)config.get("Clan_2.Admin.Ballance") + 150);
+		
+		config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") + (150 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 		
 		saveConfig();
 		
@@ -1363,6 +1787,8 @@ if(event.getInventory().contains(Material.IRON_INGOT)){
 			
 			config.set("Clan_3.Admin.Ballance", (Integer)config.get("Clan_3.Admin.Ballance") + 150 );
 			
+			config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") + (150 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+			
 			saveConfig();
 			
 			}
@@ -1380,6 +1806,8 @@ if(event.getInventory().contains(Material.IRON_INGOT)){
 				player.updateInventory();
 				
 				config.set("Clan_4.Admin.Ballance", (Integer)config.get("Clan_4.Admin.Ballance") + 150 );
+				
+				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") + (150 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 				
 				saveConfig();
 				
@@ -1410,6 +1838,8 @@ if(event.getInventory().contains(Material.GOLD_INGOT)){
 	
 	config.set("Clan_1.Admin.Ballance", (Integer)config.get("Clan_1.Admin.Ballance") + 250 );
 	
+	config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") + (250 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+	
 	saveConfig();
 	
 		}
@@ -1426,6 +1856,8 @@ if(event.getInventory().contains(Material.GOLD_INGOT)){
 		player.updateInventory();
 		
 		config.set("Clan_2.Admin.Ballance", (Integer)config.get("Clan_2.Admin.Ballance") + 250);
+		
+		config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") + (250 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 		
 		saveConfig();
 		
@@ -1445,6 +1877,8 @@ if(event.getInventory().contains(Material.GOLD_INGOT)){
 			
 			config.set("Clan_3.Admin.Ballance", (Integer)config.get("Clan_3.Admin.Ballance") + 250 );
 			
+			config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") + (250 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+			
 			saveConfig();
 			
 			}
@@ -1462,6 +1896,8 @@ if(event.getInventory().contains(Material.GOLD_INGOT)){
 				player.updateInventory();
 				
 				config.set("Clan_4.Admin.Ballance", (Integer)config.get("Clan_4.Admin.Ballance") + 250 );
+				
+				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") + (250 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 				
 				saveConfig();
 				
@@ -1490,6 +1926,8 @@ if(event.getInventory().contains(Material.REDSTONE)){
 	
 	config.set("Clan_1.Admin.Ballance", (Integer)config.get("Clan_1.Admin.Ballance") + 300 );
 	
+	config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") + (300 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+	
 	saveConfig();
 	
 		}
@@ -1506,6 +1944,8 @@ if(event.getInventory().contains(Material.REDSTONE)){
 		player.updateInventory();
 		
 		config.set("Clan_2.Admin.Ballance", (Integer)config.get("Clan_2.Admin.Ballance") + 300);
+		
+		config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") + (300 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 		
 		saveConfig();
 		
@@ -1525,6 +1965,8 @@ if(event.getInventory().contains(Material.REDSTONE)){
 			
 			config.set("Clan_3.Admin.Ballance", (Integer)config.get("Clan_3.Admin.Ballance") + 300 );
 			
+			config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") + (300 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+			
 			saveConfig();
 			
 			}
@@ -1542,6 +1984,8 @@ if(event.getInventory().contains(Material.REDSTONE)){
 				player.updateInventory();
 				
 				config.set("Clan_4.Admin.Ballance", (Integer)config.get("Clan_4.Admin.Ballance") + 300 );
+				
+				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") + (300 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 				
 				saveConfig();
 				
@@ -1569,6 +2013,8 @@ if(event.getInventory().contains(Material.OBSIDIAN)){
 	
 	config.set("Clan_1.Admin.Ballance", (Integer)config.get("Clan_1.Admin.Ballance") + 400 );
 	
+	config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") + (400 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+	
 	saveConfig();
 	
 		}
@@ -1585,6 +2031,8 @@ if(event.getInventory().contains(Material.OBSIDIAN)){
 		player.updateInventory();
 		
 		config.set("Clan_2.Admin.Ballance", (Integer)config.get("Clan_2.Admin.Ballance") + 400);
+		
+		config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") + (400 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 		
 		saveConfig();
 		
@@ -1604,6 +2052,8 @@ if(event.getInventory().contains(Material.OBSIDIAN)){
 			
 			config.set("Clan_3.Admin.Ballance", (Integer)config.get("Clan_3.Admin.Ballance") + 400 );
 			
+			config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") + (400 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+			
 			saveConfig();
 			
 			}
@@ -1621,6 +2071,8 @@ if(event.getInventory().contains(Material.OBSIDIAN)){
 				player.updateInventory();
 				
 				config.set("Clan_4.Admin.Ballance", (Integer)config.get("Clan_4.Admin.Ballance") + 400 );
+				
+				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") + (400 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 				
 				saveConfig();
 				
@@ -1648,6 +2100,8 @@ if(event.getInventory().contains(Material.GLOWSTONE)){
 	
 	config.set("Clan_1.Admin.Ballance", (Integer)config.get("Clan_1.Admin.Ballance") + 600 );
 	
+	config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") + (600 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+	
 	saveConfig();
 	
 		}
@@ -1664,6 +2118,8 @@ if(event.getInventory().contains(Material.GLOWSTONE)){
 		player.updateInventory();
 		
 		config.set("Clan_2.Admin.Ballance", (Integer)config.get("Clan_2.Admin.Ballance") + 600);
+		
+		config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") + (600 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 		
 		saveConfig();
 		
@@ -1683,6 +2139,8 @@ if(event.getInventory().contains(Material.GLOWSTONE)){
 			
 			config.set("Clan_3.Admin.Ballance", (Integer)config.get("Clan_3.Admin.Ballance") + 600 );
 			
+			config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") + (600 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+			
 			saveConfig();
 			
 			}
@@ -1700,6 +2158,8 @@ if(event.getInventory().contains(Material.GLOWSTONE)){
 				player.updateInventory();
 				
 				config.set("Clan_4.Admin.Ballance", (Integer)config.get("Clan_4.Admin.Ballance") + 600 );
+				
+				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") + (600 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 				
 				saveConfig();
 				
@@ -1727,6 +2187,8 @@ if(event.getInventory().contains(Material.BLAZE_ROD)){
 	
 	config.set("Clan_1.Admin.Ballance", (Integer)config.get("Clan_1.Admin.Ballance") + 800 );
 	
+	config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") + (800 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+	
 	saveConfig();
 	
 		}
@@ -1743,6 +2205,8 @@ if(event.getInventory().contains(Material.BLAZE_ROD)){
 		player.updateInventory();
 		
 		config.set("Clan_2.Admin.Ballance", (Integer)config.get("Clan_2.Admin.Ballance") + 800);
+		
+		config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") + (800 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 		
 		saveConfig();
 		
@@ -1762,6 +2226,8 @@ if(event.getInventory().contains(Material.BLAZE_ROD)){
 			
 			config.set("Clan_3.Admin.Ballance", (Integer)config.get("Clan_3.Admin.Ballance") + 800 );
 			
+			config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") + (800 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+			
 			saveConfig();
 			
 			}
@@ -1779,6 +2245,8 @@ if(event.getInventory().contains(Material.BLAZE_ROD)){
 				player.updateInventory();
 				
 				config.set("Clan_4.Admin.Ballance", (Integer)config.get("Clan_4.Admin.Ballance") + 800 );
+				
+				config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") + (800 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 				
 				saveConfig();
 				
