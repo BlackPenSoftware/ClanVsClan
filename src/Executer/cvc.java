@@ -64,12 +64,34 @@ public class cvc implements CommandExecutor{
             	
             }else if((commandLabel.equalsIgnoreCase("CvC") && args[0].equalsIgnoreCase("Bal"))){
             	
-            	 FileConfiguration config = plugin.getConfig(); 
+            	FileConfiguration config = plugin.getConfig(); 
+            	
+            	List<String> Clan_1 = config.getStringList("Clan_1.Players.Names");
+
+        		List<String> Clan_2 = config.getStringList("Clan_2.Players.Names");
+
+        		List<String> Clan_3 = config.getStringList("Clan_3.Players.Names");
+
+        		List<String> Clan_4 = config.getStringList("Clan_4.Players.Names");
+            	
+            	 
             	 
             	if(sender instanceof Player){
-            	
-            		 sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Your Personal Balance Is " + ChatColor.GREEN + "$" + config.get("Clan_1.Players." + sender.getName().toString() + ".Bal"));
-            		 
+            		if(Clan_1.contains(((Player) sender).getDisplayName())){
+            			sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Your Personal Balance Is " + ChatColor.GREEN + "$" + config.get("Clan_1.Players." + sender.getName().toString() + ".Bal"));
+            		}
+            		
+            		if(Clan_2.contains(((Player) sender).getDisplayName())){
+            			sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Your Personal Balance Is " + ChatColor.GREEN + "$" + config.get("Clan_2.Players." + sender.getName().toString() + ".Bal"));
+            		}
+            		
+            		if(Clan_3.contains(((Player) sender).getDisplayName())){
+            			sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Your Personal Balance Is " + ChatColor.GREEN + "$" + config.get("Clan_3.Players." + sender.getName().toString() + ".Bal"));
+            		}
+            		
+            		if(Clan_4.contains(((Player) sender).getDisplayName())){
+            			sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Your Personal Balance Is " + ChatColor.GREEN + "$" + config.get("Clan_4.Players." + sender.getName().toString() + ".Bal"));
+            		}
             	 }
             	
             	return true;
@@ -656,6 +678,7 @@ public class cvc implements CommandExecutor{
 				DiamondHead.setItemMeta(DiamondHead_Meta);
 				DiamondHead.addEnchantment(Enchantment.OXYGEN, 3);
 		  		DiamondHead.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
+		  		DiamondHead.addEnchantment(Enchantment.WATER_WORKER, 1);
 		  		
 		  	
 			  		

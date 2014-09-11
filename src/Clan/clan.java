@@ -1,5 +1,6 @@
 package Clan;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.logging.Logger;
@@ -11,6 +12,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -19,6 +21,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scoreboard.DisplaySlot;
@@ -867,6 +870,109 @@ public void onClick(InventoryClickEvent event) {
 
 		ItemStack clicked = event.getCurrentItem();
 		
+		
+		ItemStack DiamondHead = new ItemStack(Material.DIAMOND_HELMET);
+		ItemMeta DiamondHead_Meta = DiamondHead.getItemMeta();
+		DiamondHead_Meta.setDisplayName("Diamond Helmet");
+		ArrayList<String> DiamondHeadLore = new ArrayList<String>();
+		DiamondHeadLore.add("This Helmet Costs $2000");
+		DiamondHeadLore.add("Click Me To Buy!");
+		DiamondHead_Meta.setLore(DiamondHeadLore);
+		DiamondHead.setItemMeta(DiamondHead_Meta);
+		DiamondHead.addEnchantment(Enchantment.OXYGEN, 3);
+  		DiamondHead.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
+  		DiamondHead.addEnchantment(Enchantment.WATER_WORKER, 1);
+  		
+  	
+	  		
+	  		ItemStack DiamondChest = new ItemStack(Material.DIAMOND_CHESTPLATE);
+	  		ItemMeta DiamondChestMeta = DiamondChest.getItemMeta();
+	  		DiamondChestMeta.setDisplayName("Diamond Chestplate");
+	  		DiamondChest.setItemMeta(DiamondChestMeta);
+			ArrayList<String> DiamondChest_Lore = new ArrayList<String>();
+	  		DiamondChest_Lore.add("This Helmet Costs $5000");
+	  		DiamondChest_Lore.add("Click Me To Buy!");
+	  		DiamondChest.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
+	  		DiamondChest.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
+	  		DiamondChest.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
+		
+	  		
+	  		ItemStack DiamondLegs = new ItemStack(Material.DIAMOND_LEGGINGS);
+	  		ItemMeta DiamondLegsMeta = DiamondLegs.getItemMeta();
+	  		DiamondLegsMeta.setDisplayName("Diamond Chestplate");
+	  		DiamondLegs.setItemMeta(DiamondLegsMeta);
+			ArrayList<String> DiamondLegs_Lore = new ArrayList<String>();
+	  		DiamondLegs_Lore.add("This Helmet Costs $3500");
+	  		DiamondLegs_Lore.add("Click Me To Buy!");
+	  		DiamondLegs.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
+	  		DiamondLegs.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
+	  		DiamondLegs.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
+	  		
+	  		
+	  		
+	  		ItemStack DiamondBoots = new ItemStack(Material.DIAMOND_BOOTS);
+	  		ItemMeta DiamondBootsMeta = DiamondBoots.getItemMeta();
+	  		DiamondBootsMeta.setDisplayName("Diamond Boots");
+	  		DiamondBoots.setItemMeta(DiamondBootsMeta);
+			ArrayList<String> DiamondBoots_Lore = new ArrayList<String>();
+	  		DiamondBoots_Lore.add("This Helmet Costs $3200");
+	  		DiamondBoots_Lore.add("Click Me To Buy!");
+	  		DiamondBoots.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
+	  		DiamondBoots.addEnchantment(Enchantment.PROTECTION_FALL, 4);
+	  		
+	  		
+	  		ItemStack DiamondSword = new ItemStack(Material.DIAMOND_SWORD);
+	  		ItemMeta DiamondSwordMeta = DiamondSword.getItemMeta();
+	  		DiamondSwordMeta.setDisplayName("Diamond Sword");
+	  		DiamondSword.setItemMeta(DiamondSwordMeta);
+			ArrayList<String> DiamondSword_Lore = new ArrayList<String>();
+	  		DiamondSword_Lore.add("This Sword Costs $10000");
+	  		DiamondSword_Lore.add("Click Me To Buy!");
+	  		DiamondSword.addEnchantment(Enchantment.DAMAGE_ALL, 5);
+	  		DiamondSword.addEnchantment(Enchantment.DURABILITY, 3);
+	  		DiamondSword.addEnchantment(Enchantment.FIRE_ASPECT, 2);
+	  		DiamondSword.addEnchantment(Enchantment.LOOT_BONUS_MOBS, 3);
+	  		
+	  		
+	  		ItemStack DiamondPickAxe = new ItemStack(Material.DIAMOND_PICKAXE);
+	  		ItemMeta DiamondPickAxeMeta = DiamondPickAxe.getItemMeta();
+	  		DiamondPickAxeMeta.setDisplayName("Diamond Pickaxe");
+	  		DiamondPickAxe.setItemMeta(DiamondPickAxeMeta);
+			ArrayList<String> DiamondPickAxe_Lore = new ArrayList<String>();
+	  		DiamondPickAxe_Lore.add("This Pickaxe Costs $10000");
+	  		DiamondPickAxe_Lore.add("Click Me To Buy!");
+	  		DiamondPickAxe.addEnchantment(Enchantment.DIG_SPEED, 5);
+	  		DiamondPickAxe.addEnchantment(Enchantment.DURABILITY, 3);
+	  		DiamondPickAxe.addEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 2);
+	  		
+	  		
+	  		
+	  		ItemStack DiamondAxe = new ItemStack(Material.DIAMOND_AXE);
+	  		ItemMeta DiamondAxeMeta = DiamondAxe.getItemMeta();
+	  		DiamondAxeMeta.setDisplayName("Diamond Axe");
+	  		DiamondAxe.setItemMeta(DiamondAxeMeta);
+			ArrayList<String> DiamondAxe_Lore = new ArrayList<String>();
+	  		DiamondAxe_Lore.add("This axe Costs $10000");
+	  		DiamondAxe_Lore.add("Click Me To Buy!");
+	  		DiamondAxe.addEnchantment(Enchantment.DIG_SPEED, 5);
+	  		DiamondAxe.addEnchantment(Enchantment.DURABILITY, 3);
+	  		DiamondAxe.addEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 2);
+	  		
+	  		
+	  		
+	  		ItemStack DiamondShovel = new ItemStack(Material.DIAMOND_SPADE);
+	  		ItemMeta DiamondShovelMeta = DiamondShovel.getItemMeta();
+	  		DiamondShovelMeta.setDisplayName("Diamond Spade");
+	  		DiamondShovel.setItemMeta(DiamondShovelMeta);
+			ArrayList<String> DiamondShovel_Lore = new ArrayList<String>();
+	  		DiamondShovel_Lore.add("This Shovel Costs $10000");
+	  		DiamondShovel_Lore.add("Click Me To Buy!");
+	  		DiamondShovel.addEnchantment(Enchantment.DIG_SPEED, 5);
+	  		DiamondShovel.addEnchantment(Enchantment.DURABILITY, 3);
+	  		DiamondShovel.addEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 2);
+	  		
+		
+		
 		if (clicked.getType() == Material.PAPER) {
 			event.setCancelled(true);
 			
@@ -880,8 +986,17 @@ public void onClick(InventoryClickEvent event) {
 			if(Clan_1.contains(player.getDisplayName()) && ((Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") >= 3500)){
 			
 				config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") - 3500); 
+			
+				if (player.getInventory().firstEmpty() == -1){
+				    // if inventory is full, drop it to the ground (item is a ItemStack)
+				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondHead);
+				} else{
+				    // if there is a empty place, put it in
+				    int newItemSlot = player.getInventory().firstEmpty();
+				    player.getInventory().setItem(newItemSlot, DiamondHead);
+				 }
 				
-				
+				 player.updateInventory();
 				
 				saveConfig();
 				
@@ -891,6 +1006,17 @@ public void onClick(InventoryClickEvent event) {
 				
 				config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") - 3500); 
 				
+				if (player.getInventory().firstEmpty() == -1){
+				    // if inventory is full, drop it to the ground (item is a ItemStack)
+				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondHead);
+				} else{
+				    // if there is a empty place, put it in
+				    int newItemSlot = player.getInventory().firstEmpty();
+				    player.getInventory().setItem(newItemSlot, DiamondHead);
+				 }
+				
+				 player.updateInventory();
+				
 				saveConfig();
 				
 				}
@@ -899,6 +1025,17 @@ public void onClick(InventoryClickEvent event) {
 				
 				config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") - 3500); 
 				
+				if (player.getInventory().firstEmpty() == -1){
+				    // if inventory is full, drop it to the ground (item is a ItemStack)
+				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondHead);
+				} else{
+				    // if there is a empty place, put it in
+				    int newItemSlot = player.getInventory().firstEmpty();
+				    player.getInventory().setItem(newItemSlot, DiamondHead);
+				 }
+				
+				 player.updateInventory();
+				
 				saveConfig();
 				
 				}
@@ -906,6 +1043,17 @@ public void onClick(InventoryClickEvent event) {
 			if(Clan_4.contains(player.getDisplayName()) && ((Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") >= 3500)){
 				
 				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") - 3500); 
+				
+				if (player.getInventory().firstEmpty() == -1){
+				    // if inventory is full, drop it to the ground (item is a ItemStack)
+				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondHead);
+				} else{
+				    // if there is a empty place, put it in
+				    int newItemSlot = player.getInventory().firstEmpty();
+				    player.getInventory().setItem(newItemSlot, DiamondHead);
+				 }
+				
+				 player.updateInventory();
 				
 				saveConfig();
 				
@@ -919,6 +1067,17 @@ public void onClick(InventoryClickEvent event) {
 				
 				config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") - 5000); 
 				
+				if (player.getInventory().firstEmpty() == -1){
+				    // if inventory is full, drop it to the ground (item is a ItemStack)
+				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondChest);
+				} else{
+				    // if there is a empty place, put it in
+				    int newItemSlot = player.getInventory().firstEmpty();
+				    player.getInventory().setItem(newItemSlot, DiamondChest);
+				 }
+				
+				 player.updateInventory();
+				
 				saveConfig();
 				
 				}
@@ -926,6 +1085,17 @@ public void onClick(InventoryClickEvent event) {
 			if(Clan_2.contains(player.getDisplayName()) && ((Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") >= 5000)){
 				
 				config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") - 5000); 
+				
+				if (player.getInventory().firstEmpty() == -1){
+				    // if inventory is full, drop it to the ground (item is a ItemStack)
+				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondChest);
+				} else{
+				    // if there is a empty place, put it in
+				    int newItemSlot = player.getInventory().firstEmpty();
+				    player.getInventory().setItem(newItemSlot, DiamondChest);
+				 }
+				
+				 player.updateInventory();
 				
 				saveConfig();
 				
@@ -935,6 +1105,17 @@ public void onClick(InventoryClickEvent event) {
 				
 				config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") - 5000); 
 				
+				if (player.getInventory().firstEmpty() == -1){
+				    // if inventory is full, drop it to the ground (item is a ItemStack)
+				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondChest);
+				} else{
+				    // if there is a empty place, put it in
+				    int newItemSlot = player.getInventory().firstEmpty();
+				    player.getInventory().setItem(newItemSlot, DiamondChest);
+				 }
+				
+				 player.updateInventory();
+				
 				saveConfig();
 				
 				}
@@ -942,6 +1123,17 @@ public void onClick(InventoryClickEvent event) {
 			if(Clan_4.contains(player.getDisplayName()) && ((Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") >= 5000)){
 				
 				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") - 5000); 
+				
+				if (player.getInventory().firstEmpty() == -1){
+				    // if inventory is full, drop it to the ground (item is a ItemStack)
+				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondChest);
+				} else{
+				    // if there is a empty place, put it in
+				    int newItemSlot = player.getInventory().firstEmpty();
+				    player.getInventory().setItem(newItemSlot, DiamondChest);
+				 }
+				
+				 player.updateInventory();
 				
 				saveConfig();
 				
@@ -958,6 +1150,17 @@ public void onClick(InventoryClickEvent event) {
 				
 				config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") - 3500); 
 				
+				if (player.getInventory().firstEmpty() == -1){
+				    // if inventory is full, drop it to the ground (item is a ItemStack)
+				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondLegs);
+				} else{
+				    // if there is a empty place, put it in
+				    int newItemSlot = player.getInventory().firstEmpty();
+				    player.getInventory().setItem(newItemSlot, DiamondLegs);
+				 }
+				
+				 player.updateInventory();
+				
 				saveConfig();
 				
 				}
@@ -965,6 +1168,17 @@ public void onClick(InventoryClickEvent event) {
 			if(Clan_2.contains(player.getDisplayName()) && ((Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") >= 3500)){
 				
 				config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") - 3500); 
+				
+				if (player.getInventory().firstEmpty() == -1){
+				    // if inventory is full, drop it to the ground (item is a ItemStack)
+				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondLegs);
+				} else{
+				    // if there is a empty place, put it in
+				    int newItemSlot = player.getInventory().firstEmpty();
+				    player.getInventory().setItem(newItemSlot, DiamondLegs);
+				 }
+				
+				 player.updateInventory();
 				
 				saveConfig();
 				
@@ -974,6 +1188,17 @@ public void onClick(InventoryClickEvent event) {
 				
 				config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") - 3500); 
 				
+				if (player.getInventory().firstEmpty() == -1){
+				    // if inventory is full, drop it to the ground (item is a ItemStack)
+				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondLegs);
+				} else{
+				    // if there is a empty place, put it in
+				    int newItemSlot = player.getInventory().firstEmpty();
+				    player.getInventory().setItem(newItemSlot, DiamondLegs);
+				 }
+				
+				 player.updateInventory();
+				
 				saveConfig();
 				
 				}
@@ -981,6 +1206,17 @@ public void onClick(InventoryClickEvent event) {
 			if(Clan_4.contains(player.getDisplayName()) && ((Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") >= 3500)){
 				
 				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") - 3500); 
+				
+				if (player.getInventory().firstEmpty() == -1){
+				    // if inventory is full, drop it to the ground (item is a ItemStack)
+				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondLegs);
+				} else{
+				    // if there is a empty place, put it in
+				    int newItemSlot = player.getInventory().firstEmpty();
+				    player.getInventory().setItem(newItemSlot, DiamondLegs);
+				 }
+				
+				 player.updateInventory();
 				
 				saveConfig();
 				
@@ -997,6 +1233,17 @@ public void onClick(InventoryClickEvent event) {
 				
 				config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") - 3200); 
 				
+				if (player.getInventory().firstEmpty() == -1){
+				    // if inventory is full, drop it to the ground (item is a ItemStack)
+				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondBoots);
+				} else{
+				    // if there is a empty place, put it in
+				    int newItemSlot = player.getInventory().firstEmpty();
+				    player.getInventory().setItem(newItemSlot, DiamondBoots);
+				 }
+				
+				 player.updateInventory();
+				
 				saveConfig();
 				
 				}
@@ -1004,6 +1251,17 @@ public void onClick(InventoryClickEvent event) {
 			if(Clan_2.contains(player.getDisplayName()) && ((Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") >= 3200)){
 				
 				config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") - 3200); 
+				
+				if (player.getInventory().firstEmpty() == -1){
+				    // if inventory is full, drop it to the ground (item is a ItemStack)
+				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondBoots);
+				} else{
+				    // if there is a empty place, put it in
+				    int newItemSlot = player.getInventory().firstEmpty();
+				    player.getInventory().setItem(newItemSlot, DiamondBoots);
+				 }
+				
+				 player.updateInventory();
 				
 				saveConfig();
 				
@@ -1013,6 +1271,17 @@ public void onClick(InventoryClickEvent event) {
 				
 				config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") - 3200); 
 				
+				if (player.getInventory().firstEmpty() == -1){
+				    // if inventory is full, drop it to the ground (item is a ItemStack)
+				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondBoots);
+				} else{
+				    // if there is a empty place, put it in
+				    int newItemSlot = player.getInventory().firstEmpty();
+				    player.getInventory().setItem(newItemSlot, DiamondBoots);
+				 }
+				
+				 player.updateInventory();
+				
 				saveConfig();
 				
 				}
@@ -1020,6 +1289,17 @@ public void onClick(InventoryClickEvent event) {
 			if(Clan_4.contains(player.getDisplayName()) && ((Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") >= 3200)){
 				
 				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") - 3200); 
+				
+				if (player.getInventory().firstEmpty() == -1){
+				    // if inventory is full, drop it to the ground (item is a ItemStack)
+				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondBoots);
+				} else{
+				    // if there is a empty place, put it in
+				    int newItemSlot = player.getInventory().firstEmpty();
+				    player.getInventory().setItem(newItemSlot, DiamondBoots);
+				 }
+				
+				 player.updateInventory();
 				
 				saveConfig();
 				
@@ -1035,6 +1315,17 @@ public void onClick(InventoryClickEvent event) {
 				
 				config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") - 10000); 
 				
+				if (player.getInventory().firstEmpty() == -1){
+				    // if inventory is full, drop it to the ground (item is a ItemStack)
+				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondSword);
+				} else{
+				    // if there is a empty place, put it in
+				    int newItemSlot = player.getInventory().firstEmpty();
+				    player.getInventory().setItem(newItemSlot, DiamondSword);
+				 }
+				
+				 player.updateInventory();
+				
 				saveConfig();
 				
 				}
@@ -1042,6 +1333,17 @@ public void onClick(InventoryClickEvent event) {
 			if(Clan_2.contains(player.getDisplayName()) && ((Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") >= 10000)){
 				
 				config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") - 10000); 
+				
+				if (player.getInventory().firstEmpty() == -1){
+				    // if inventory is full, drop it to the ground (item is a ItemStack)
+				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondSword);
+				} else{
+				    // if there is a empty place, put it in
+				    int newItemSlot = player.getInventory().firstEmpty();
+				    player.getInventory().setItem(newItemSlot, DiamondSword);
+				 }
+				
+				 player.updateInventory();
 				
 				saveConfig();
 				
@@ -1051,6 +1353,17 @@ public void onClick(InventoryClickEvent event) {
 				
 				config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") - 10000); 
 				
+				if (player.getInventory().firstEmpty() == -1){
+				    // if inventory is full, drop it to the ground (item is a ItemStack)
+				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondSword);
+				} else{
+				    // if there is a empty place, put it in
+				    int newItemSlot = player.getInventory().firstEmpty();
+				    player.getInventory().setItem(newItemSlot, DiamondSword);
+				 }
+				
+				 player.updateInventory();
+				
 				saveConfig();
 				
 				}
@@ -1058,6 +1371,17 @@ public void onClick(InventoryClickEvent event) {
 			if(Clan_4.contains(player.getDisplayName()) && ((Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") >= 10000)){
 				
 				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") - 10000); 
+				
+				if (player.getInventory().firstEmpty() == -1){
+				    // if inventory is full, drop it to the ground (item is a ItemStack)
+				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondSword);
+				} else{
+				    // if there is a empty place, put it in
+				    int newItemSlot = player.getInventory().firstEmpty();
+				    player.getInventory().setItem(newItemSlot, DiamondSword);
+				 }
+				
+				 player.updateInventory();
 				
 				saveConfig();
 				
@@ -1072,6 +1396,17 @@ public void onClick(InventoryClickEvent event) {
 				
 				config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") - 10000); 
 				
+				if (player.getInventory().firstEmpty() == -1){
+				    // if inventory is full, drop it to the ground (item is a ItemStack)
+				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondPickAxe);
+				} else{
+				    // if there is a empty place, put it in
+				    int newItemSlot = player.getInventory().firstEmpty();
+				    player.getInventory().setItem(newItemSlot, DiamondPickAxe);
+				 }
+				
+				 player.updateInventory();
+				
 				saveConfig();
 				
 				}
@@ -1079,6 +1414,17 @@ public void onClick(InventoryClickEvent event) {
 			if(Clan_2.contains(player.getDisplayName()) && ((Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") >= 10000)){
 				
 				config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") - 10000); 
+				
+				if (player.getInventory().firstEmpty() == -1){
+				    // if inventory is full, drop it to the ground (item is a ItemStack)
+				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondPickAxe);
+				} else{
+				    // if there is a empty place, put it in
+				    int newItemSlot = player.getInventory().firstEmpty();
+				    player.getInventory().setItem(newItemSlot, DiamondPickAxe);
+				 }
+				
+				 player.updateInventory();
 				
 				saveConfig();
 				
@@ -1088,6 +1434,17 @@ public void onClick(InventoryClickEvent event) {
 				
 				config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") - 10000); 
 				
+				if (player.getInventory().firstEmpty() == -1){
+				    // if inventory is full, drop it to the ground (item is a ItemStack)
+				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondPickAxe);
+				} else{
+				    // if there is a empty place, put it in
+				    int newItemSlot = player.getInventory().firstEmpty();
+				    player.getInventory().setItem(newItemSlot, DiamondPickAxe);
+				 }
+				
+				 player.updateInventory();
+				
 				saveConfig();
 				
 				}
@@ -1095,6 +1452,17 @@ public void onClick(InventoryClickEvent event) {
 			if(Clan_4.contains(player.getDisplayName()) && ((Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") >= 10000)){
 				
 				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") - 10000); 
+				
+				if (player.getInventory().firstEmpty() == -1){
+				    // if inventory is full, drop it to the ground (item is a ItemStack)
+				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondPickAxe);
+				} else{
+				    // if there is a empty place, put it in
+				    int newItemSlot = player.getInventory().firstEmpty();
+				    player.getInventory().setItem(newItemSlot, DiamondPickAxe);
+				 }
+				
+				 player.updateInventory();
 				
 				saveConfig();
 				
@@ -1109,6 +1477,17 @@ public void onClick(InventoryClickEvent event) {
 				
 				config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") - 10000); 
 				
+				if (player.getInventory().firstEmpty() == -1){
+				    // if inventory is full, drop it to the ground (item is a ItemStack)
+				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondAxe);
+				} else{
+				    // if there is a empty place, put it in
+				    int newItemSlot = player.getInventory().firstEmpty();
+				    player.getInventory().setItem(newItemSlot, DiamondAxe);
+				 }
+				
+				 player.updateInventory();
+				
 				saveConfig();
 				
 				}
@@ -1116,6 +1495,17 @@ public void onClick(InventoryClickEvent event) {
 			if(Clan_2.contains(player.getDisplayName()) && ((Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") >= 10000)){
 				
 				config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") - 10000); 
+				
+				if (player.getInventory().firstEmpty() == -1){
+				    // if inventory is full, drop it to the ground (item is a ItemStack)
+				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondAxe);
+				} else{
+				    // if there is a empty place, put it in
+				    int newItemSlot = player.getInventory().firstEmpty();
+				    player.getInventory().setItem(newItemSlot, DiamondAxe);
+				 }
+				
+				 player.updateInventory();
 				
 				saveConfig();
 				
@@ -1125,6 +1515,17 @@ public void onClick(InventoryClickEvent event) {
 				
 				config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") - 10000); 
 				
+				if (player.getInventory().firstEmpty() == -1){
+				    // if inventory is full, drop it to the ground (item is a ItemStack)
+				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondAxe);
+				} else{
+				    // if there is a empty place, put it in
+				    int newItemSlot = player.getInventory().firstEmpty();
+				    player.getInventory().setItem(newItemSlot, DiamondAxe);
+				 }
+				
+				 player.updateInventory();
+				
 				saveConfig();
 				
 				}
@@ -1132,6 +1533,17 @@ public void onClick(InventoryClickEvent event) {
 			if(Clan_4.contains(player.getDisplayName()) && ((Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") >= 10000)){
 				
 				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") - 10000); 
+				
+				if (player.getInventory().firstEmpty() == -1){
+				    // if inventory is full, drop it to the ground (item is a ItemStack)
+				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondAxe);
+				} else{
+				    // if there is a empty place, put it in
+				    int newItemSlot = player.getInventory().firstEmpty();
+				    player.getInventory().setItem(newItemSlot, DiamondAxe);
+				 }
+				
+				 player.updateInventory();
 				
 				saveConfig();
 				
@@ -1146,6 +1558,17 @@ public void onClick(InventoryClickEvent event) {
 				
 				config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") - 10000); 
 				
+				if (player.getInventory().firstEmpty() == -1){
+				    // if inventory is full, drop it to the ground (item is a ItemStack)
+				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondShovel);
+				} else{
+				    // if there is a empty place, put it in
+				    int newItemSlot = player.getInventory().firstEmpty();
+				    player.getInventory().setItem(newItemSlot, DiamondShovel);
+				 }
+				
+				 player.updateInventory();
+				
 				saveConfig();
 				
 				}
@@ -1153,6 +1576,17 @@ public void onClick(InventoryClickEvent event) {
 			if(Clan_2.contains(player.getDisplayName()) && ((Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") >= 10000)){
 				
 				config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") - 10000); 
+				
+				if (player.getInventory().firstEmpty() == -1){
+				    // if inventory is full, drop it to the ground (item is a ItemStack)
+				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondShovel);
+				} else{
+				    // if there is a empty place, put it in
+				    int newItemSlot = player.getInventory().firstEmpty();
+				    player.getInventory().setItem(newItemSlot, DiamondShovel);
+				 }
+				
+				 player.updateInventory();
 				
 				saveConfig();
 				
@@ -1162,6 +1596,17 @@ public void onClick(InventoryClickEvent event) {
 				
 				config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") - 10000); 
 				
+				if (player.getInventory().firstEmpty() == -1){
+				    // if inventory is full, drop it to the ground (item is a ItemStack)
+				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondShovel);
+				} else{
+				    // if there is a empty place, put it in
+				    int newItemSlot = player.getInventory().firstEmpty();
+				    player.getInventory().setItem(newItemSlot, DiamondShovel);
+				 }
+				
+				 player.updateInventory();
+				
 				saveConfig();
 				
 				}
@@ -1169,6 +1614,17 @@ public void onClick(InventoryClickEvent event) {
 			if(Clan_4.contains(player.getDisplayName()) && ((Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") >= 10000)){
 				
 				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") - 10000); 
+				
+				if (player.getInventory().firstEmpty() == -1){
+				    // if inventory is full, drop it to the ground (item is a ItemStack)
+				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondShovel);
+				} else{
+				    // if there is a empty place, put it in
+				    int newItemSlot = player.getInventory().firstEmpty();
+				    player.getInventory().setItem(newItemSlot, DiamondShovel);
+				 }
+				
+				 player.updateInventory();
 				
 				saveConfig();
 				
