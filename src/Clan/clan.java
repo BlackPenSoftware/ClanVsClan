@@ -1,9 +1,6 @@
 package Clan;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.logging.Logger;
@@ -27,6 +24,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Score;
@@ -145,9 +143,28 @@ public class clan extends JavaPlugin implements Listener{
 		  
 		  registerCommands();
 		  
-		  
+		  BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
+	        scheduler.scheduleSyncRepeatingTask(this, new Runnable() {
+	            public void run() {
+	               int time = (Integer)config.get("Clans.WarTime.Time");
+	               
+	               if(time <= 10080){
+	            	   
+	            	   config.set("Clans.WarTime.Time", ((Integer)config.get("Clans.WarTime.Time") + 1));
+	            	  
+	            	   saveConfig();
+	            	   
+	            	  Bukkit.broadcastMessage("" + (Integer)config.get("Clans.WarTime.Time"));
+	            	  
+	               }
+	               
+	            }
+	        }, 20L, 20L);
 		  
 		  saveConfig();
+		  
+		  
+		  
 		  
 	    }
 	
@@ -176,6 +193,8 @@ public void onDisable(){
 public void initConfig() {
 
 		
+	config.addDefault("Clans.WarTime.Time", 0);
+	
 	config.addDefault("Clans.Shop.Sell.PayoutReturn", 3);
      
      config.addDefault("Clan_1.Admin.UserName.ClanAdmin", Clan_1Admin);
