@@ -11,6 +11,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -148,25 +149,53 @@ public class clan extends JavaPlugin implements Listener{
 	            public void run() {
 	               int time = (Integer)config.get("Clans.WarTime.Time");
 	               
-	               if(time <= 10080){
+	               if(time <= 604800){
 	            	   
 	            	   config.set("Clans.WarTime.Time", ((Integer)config.get("Clans.WarTime.Time") + 1));
 	            	  
 	            	   saveConfig();
 	            	   
-	            	  Bukkit.broadcastMessage("" + (Integer)config.get("Clans.WarTime.Time"));
-	            	  
+	            	 
+	               }
+	     
+	               if(time <= 604800){
+	            	   
+	            	   War();
+	            	   
 	               }
 	               
 	            }
 	        }, 20L, 20L);
-		  
+		 
+	        
 		  saveConfig();
 		  
 		  
 		  
 		  
 	    }
+
+	
+	public void War(){
+		
+		List<Player> Clan_1_Player_List = Bukkit.getWorld((String) config.get("Clan_1.Land.World.Name")).getPlayers();
+		Player Random_Player_In_Clan_1 = Clan_1_Player_List.get(new Random().nextInt(Clan_1_Player_List.size()));
+		
+		List<Player> Clan_2_Player_List = Bukkit.getWorld((String) config.get("Clan_2.Land.World.Name")).getPlayers();
+		Player Random_Player_In_Clan_2 = Clan_2_Player_List.get(new Random().nextInt(Clan_2_Player_List.size()));
+		
+		List<Player> Clan_3_Player_List = Bukkit.getWorld((String) config.get("Clan_3.Land.World.Name")).getPlayers();
+		Player Random_Player_In_Clan_3 = Clan_3_Player_List.get(new Random().nextInt(Clan_3_Player_List.size()));
+		
+		List<Player> Clan_4_Player_List = Bukkit.getWorld((String) config.get("Clan_4.Land.World.Name")).getPlayers();
+		Player Random_Player_In_Clan_4 = Clan_4_Player_List.get(new Random().nextInt(Clan_4_Player_List.size()));
+		
+		 World p = Bukkit.getWorld((String) config.get("Clan_1.Land.World.Name"));
+		 Random_Player_In_Clan_1.teleport(new Location(p, 50, ~0, 50));
+		
+		
+	}
+	
 	
 	/**
 	 * 
@@ -181,6 +210,8 @@ public void onDisable(){
 	System.out.println("[Clan Vs Clan] Clan Vs Clan v" + MainVersion + "." + MidVersion + "." + SubVersion + " Has Been Disabled.");
 	
   }
+
+
 
 
 /**
