@@ -67,12 +67,55 @@ public class cvc implements CommandExecutor{
             	Player playerName = Bukkit.getPlayer(args[1]);
             	
             	int ammountout = Integer.parseInt(args[2]);
+            	FileConfiguration config = plugin.getConfig(); 
+            	
+            	List<String> Clan_1 = config.getStringList("Clan_1.Players.Names");
+
+        		List<String> Clan_2 = config.getStringList("Clan_2.Players.Names");
+
+        		List<String> Clan_3 = config.getStringList("Clan_3.Players.Names");
+
+        		List<String> Clan_4 = config.getStringList("Clan_4.Players.Names");
+            	
             	
             		if(playerName != null){		 
-            			if(ammountout < 1){
+            			if(ammountout >= 1){
             			
             				sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "You Payed " + ChatColor.DARK_AQUA + playerName.getDisplayName() + ChatColor.GREEN + " $" + ammountout);
+            				playerName.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_AQUA + sender.getName() + ChatColor.DARK_PURPLE + " Sent You " + ChatColor.GREEN + "$" + ammountout);
+            			
+            				if(Clan_1.contains(playerName.getDisplayName()) && (Integer)config.get("Clan_1.Players." + playerName.getName().toString() + ".Bal") > ammountout){
+            					config.set("Clan_1.Players." + sender.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + sender.getName().toString() + ".Bal") - ammountout); 
+            					config.set("Clan_1.Players." + playerName.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + playerName.getName().toString() + ".Bal") + ammountout); 
+            					
+            					plugin.configSave();
+            					
+            				}
             				
+            				if(Clan_2.contains(playerName.getDisplayName()) && (Integer)config.get("Clan_2.Players." + playerName.getName().toString() + ".Bal") > ammountout){
+            					config.set("Clan_2.Players." + sender.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + sender.getName().toString() + ".Bal") - ammountout); 
+            					config.set("Clan_2.Players." + playerName.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + playerName.getName().toString() + ".Bal") + ammountout); 
+            					
+            					plugin.configSave();
+            					
+            				}
+            				
+            				if(Clan_3.contains(playerName.getDisplayName()) && (Integer)config.get("Clan_3.Players." + playerName.getName().toString() + ".Bal") > ammountout){
+            					config.set("Clan_3.Players." + sender.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + sender.getName().toString() + ".Bal") - ammountout); 
+            					config.set("Clan_3.Players." + playerName.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + playerName.getName().toString() + ".Bal") + ammountout); 
+            					
+            					plugin.configSave();
+            					
+            				}
+            				
+            				if(Clan_4.contains(playerName.getDisplayName()) && (Integer)config.get("Clan_4.Players." + playerName.getName().toString() + ".Bal") > ammountout){
+            					config.set("Clan_4.Players." + sender.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + sender.getName().toString() + ".Bal") - ammountout); 
+            					config.set("Clan_4.Players." + playerName.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + playerName.getName().toString() + ".Bal") + ammountout); 
+            					
+            					plugin.configSave();
+            					
+            				}
+            			
             			}
             		}else{
             		
