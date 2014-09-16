@@ -62,7 +62,30 @@ public class cvc implements CommandExecutor{
             
             
             	
+            }else if((commandLabel.equalsIgnoreCase("CvC") && args[0].equalsIgnoreCase("Pay"))){
+            	if(sender instanceof Player){
+            	Player playerName = Bukkit.getPlayer(args[1]);
+            	
+            	int ammountout = Integer.parseInt(args[2]);
+            	
+            		if(playerName != null){		 
+            			if(ammountout < 1){
+            			
+            				sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "You Payed " + ChatColor.DARK_AQUA + playerName.getDisplayName() + ChatColor.GREEN + " $" + ammountout);
+            				
+            			}
+            		}else{
+            		
+            			sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.RED + "You Need A Player To Send Money To!");
+            		
+            		}
+            	}
+            	
+            	return true;
+            	
+            	
             }else if((commandLabel.equalsIgnoreCase("CvC") && args[0].equalsIgnoreCase("Bal"))){
+            
             	
             	FileConfiguration config = plugin.getConfig(); 
             	
