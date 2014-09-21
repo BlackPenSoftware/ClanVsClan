@@ -7,6 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -52,6 +53,9 @@ public class cvc implements CommandExecutor{
 				  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GREEN + "/CvC SetAdmin (Clan Number / Name) (Player Name)" + ChatColor.DARK_PURPLE + " This Command Is Used To Assign Clan Admins.");
 				  
 				  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GREEN + "/CvC ExpandCost " + ChatColor.DARK_PURPLE + "This Command Allows For The Admins Of The Clan To Check How Much It Will Cost To Expand Their Claim To The Next Size."); 
+				  
+				  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GREEN + "/CvC Pay (Player Name) (Ammount To Send) " + ChatColor.DARK_PURPLE + "This Command Allows For Players To Send Money From Their Personal Balance To Another Player."); 
+				  
 				  
 				  sender.sendMessage(ChatColor.GOLD + "================================================");
 				  
@@ -536,6 +540,13 @@ public class cvc implements CommandExecutor{
        	 
 			  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GREEN + "/CvC Expand " + ChatColor.DARK_PURPLE + "This Command Allows For The Admins Of The Clan To Expand Their Claim.");
 			   
+			  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GREEN + "/CvC Bal " + ChatColor.DARK_PURPLE + "This Command Shows Your Personal Balance."); 
+			  
+			  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GREEN + "/CvC Home " + ChatColor.DARK_PURPLE + "This Command Teleports You To Your Clan Home."); 
+				 
+			  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GREEN + "/CvC SetHome " + ChatColor.DARK_PURPLE + "This Command Allows Clan Admins To Set Homes."); 
+				 
+			  
 			  sender.sendMessage(ChatColor.GOLD + "================================================");
        	
        return true;	
@@ -753,8 +764,10 @@ public class cvc implements CommandExecutor{
 			  		DiamondChestMeta.setDisplayName("Diamond Chestplate");
 			  		DiamondChest.setItemMeta(DiamondChestMeta);
 					ArrayList<String> DiamondChest_Lore = new ArrayList<String>();
-			  		DiamondChest_Lore.add("This Helmet Costs $5000");
+			  		DiamondChest_Lore.add("This Chestplate Costs $5000");
 			  		DiamondChest_Lore.add("Click Me To Buy!");
+			  		DiamondChestMeta.setLore(DiamondChest_Lore);
+			  		DiamondChest.setItemMeta(DiamondChestMeta);
 			  		DiamondChest.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
 			  		DiamondChest.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
 			  		DiamondChest.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
@@ -762,11 +775,13 @@ public class cvc implements CommandExecutor{
 			  		
 			  		ItemStack DiamondLegs = new ItemStack(Material.DIAMOND_LEGGINGS);
 			  		ItemMeta DiamondLegsMeta = DiamondLegs.getItemMeta();
-			  		DiamondLegsMeta.setDisplayName("Diamond Chestplate");
+			  		DiamondLegsMeta.setDisplayName("Diamond Legsplate");
 			  		DiamondLegs.setItemMeta(DiamondLegsMeta);
 					ArrayList<String> DiamondLegs_Lore = new ArrayList<String>();
-			  		DiamondLegs_Lore.add("This Helmet Costs $3500");
+			  		DiamondLegs_Lore.add("These Leggings Costs $3500");
 			  		DiamondLegs_Lore.add("Click Me To Buy!");
+			  		DiamondLegsMeta.setLore(DiamondLegs_Lore);
+			  		DiamondLegs.setItemMeta(DiamondLegsMeta);
 			  		DiamondLegs.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
 			  		DiamondLegs.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
 			  		DiamondLegs.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
@@ -778,8 +793,10 @@ public class cvc implements CommandExecutor{
 			  		DiamondBootsMeta.setDisplayName("Diamond Boots");
 			  		DiamondBoots.setItemMeta(DiamondBootsMeta);
 					ArrayList<String> DiamondBoots_Lore = new ArrayList<String>();
-			  		DiamondBoots_Lore.add("This Helmet Costs $3200");
+			  		DiamondBoots_Lore.add("These Boots Costs $3200");
 			  		DiamondBoots_Lore.add("Click Me To Buy!");
+			  		DiamondBootsMeta.setLore(DiamondBoots_Lore);
+			  		DiamondBoots.setItemMeta(DiamondBootsMeta);
 			  		DiamondBoots.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
 			  		DiamondBoots.addEnchantment(Enchantment.PROTECTION_FALL, 4);
 			  		
@@ -791,6 +808,8 @@ public class cvc implements CommandExecutor{
 					ArrayList<String> DiamondSword_Lore = new ArrayList<String>();
 			  		DiamondSword_Lore.add("This Sword Costs $10000");
 			  		DiamondSword_Lore.add("Click Me To Buy!");
+			  		DiamondSwordMeta.setLore(DiamondSword_Lore);
+			  		DiamondSword.setItemMeta(DiamondSwordMeta);
 			  		DiamondSword.addEnchantment(Enchantment.DAMAGE_ALL, 5);
 			  		DiamondSword.addEnchantment(Enchantment.DURABILITY, 3);
 			  		DiamondSword.addEnchantment(Enchantment.FIRE_ASPECT, 2);
@@ -804,6 +823,8 @@ public class cvc implements CommandExecutor{
 					ArrayList<String> DiamondPickAxe_Lore = new ArrayList<String>();
 			  		DiamondPickAxe_Lore.add("This Pickaxe Costs $10000");
 			  		DiamondPickAxe_Lore.add("Click Me To Buy!");
+			  		DiamondPickAxeMeta.setLore(DiamondPickAxe_Lore);
+			  		DiamondPickAxe.setItemMeta(DiamondPickAxeMeta);
 			  		DiamondPickAxe.addEnchantment(Enchantment.DIG_SPEED, 5);
 			  		DiamondPickAxe.addEnchantment(Enchantment.DURABILITY, 3);
 			  		DiamondPickAxe.addEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 2);
@@ -817,6 +838,8 @@ public class cvc implements CommandExecutor{
 					ArrayList<String> DiamondAxe_Lore = new ArrayList<String>();
 			  		DiamondAxe_Lore.add("This axe Costs $10000");
 			  		DiamondAxe_Lore.add("Click Me To Buy!");
+			  		DiamondAxeMeta.setLore(DiamondAxe_Lore);
+			  		DiamondAxe.setItemMeta(DiamondAxeMeta);
 			  		DiamondAxe.addEnchantment(Enchantment.DIG_SPEED, 5);
 			  		DiamondAxe.addEnchantment(Enchantment.DURABILITY, 3);
 			  		DiamondAxe.addEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 2);
@@ -830,6 +853,8 @@ public class cvc implements CommandExecutor{
 					ArrayList<String> DiamondShovel_Lore = new ArrayList<String>();
 			  		DiamondShovel_Lore.add("This Shovel Costs $10000");
 			  		DiamondShovel_Lore.add("Click Me To Buy!");
+			  		DiamondShovelMeta.setLore(DiamondShovel_Lore);
+			  		DiamondShovel.setItemMeta(DiamondShovelMeta);
 			  		DiamondShovel.addEnchantment(Enchantment.DIG_SPEED, 5);
 			  		DiamondShovel.addEnchantment(Enchantment.DURABILITY, 3);
 			  		DiamondShovel.addEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 2);
@@ -946,11 +971,14 @@ public class cvc implements CommandExecutor{
         		
         		Location Loc = player.getLocation();
         		
+        		String world = player.getWorld().getName();
+        		
         	
         	
         	
         	 if(sender.getName().equalsIgnoreCase((String) config.get("Clan_1.Admin.UserName"))){
         		 
+        		config.set("Clan_1.Home.World", world); 
         		config.set("Clan_1.Home.X", Loc.getX());
         		config.set("Clan_1.Home.Y", Loc.getY());
         		config.set("Clan_1.Home.Z", Loc.getZ());
@@ -965,6 +993,7 @@ public class cvc implements CommandExecutor{
         	 
         		 if(sender.getName().equalsIgnoreCase((String) config.get("Clan_2.Admin.UserName"))){
         			 
+        			 config.set("Clan_2.Home.World", world); 
         			 config.set("Clan_2.Home.X", Loc.getX());
              		config.set("Clan_2.Home.Y", Loc.getY());
              		config.set("Clan_2.Home.Z", Loc.getZ());
@@ -978,7 +1007,8 @@ public class cvc implements CommandExecutor{
         		 }
              		
         			 if(sender.getName().equalsIgnoreCase((String) config.get("Clan_3.Admin.UserName"))){
-        				 
+        				 	
+        				 	config.set("Clan_3.Home.World", world); 
         				 	config.set("Clan_3.Home.X", Loc.getX());
         	        		config.set("Clan_3.Home.Y", Loc.getY());
         	        		config.set("Clan_3.Home.Z", Loc.getZ());
@@ -993,6 +1023,7 @@ public class cvc implements CommandExecutor{
         			 
         				 if(sender.getName().equalsIgnoreCase((String) config.get("Clan_4.Admin.UserName"))){
         					 
+        					 config.set("Clan_4.Home.World", world); 
         					 config.set("Clan_4.Home.X", Loc.getX());
         		        		config.set("Clan_4.Home.Y", Loc.getY());
         		        		config.set("Clan_4.Home.Z", Loc.getZ());
@@ -1035,28 +1066,28 @@ public class cvc implements CommandExecutor{
         	
         		if(Clan_1.contains(player.getName())){
         		
-        		player.teleport(new Location(Bukkit.getWorld("world"), config.getDouble("Clan_1.Home.X"), config.getDouble("Clan_1.Home.Y"), config.getDouble("Clan_1.Home.Z")));
+        		player.teleport(new Location(Bukkit.getWorld(config.get("Clan_1.Home.World").toString()), config.getDouble("Clan_1.Home.X"), config.getDouble("Clan_1.Home.Y"), config.getDouble("Clan_1.Home.Z")));
         		
         		return true;
         		}
         		
         		if(Clan_2.contains(player.getName())){
             		
-            		player.teleport(new Location(Bukkit.getWorld("world"), config.getDouble("Clan_2.Home.X"), config.getDouble("Clan_2.Home.Y"), config.getDouble("Clan_2.Home.Z")));
+            		player.teleport(new Location((World) config.get("Clan_2.Home.World"), config.getDouble("Clan_2.Home.X"), config.getDouble("Clan_2.Home.Y"), config.getDouble("Clan_2.Home.Z")));
             		
             		return true;
             		}
         		
         		if(Clan_3.contains(player.getName())){
             		
-            		player.teleport(new Location(Bukkit.getWorld("world"), config.getDouble("Clan_3.Home.X"), config.getDouble("Clan_3.Home.Y"), config.getDouble("Clan_3.Home.Z")));
+            		player.teleport(new Location((World) config.get("Clan_3.Home.World"), config.getDouble("Clan_3.Home.X"), config.getDouble("Clan_3.Home.Y"), config.getDouble("Clan_3.Home.Z")));
             		
             		return true;
             		}
         		
         		if(Clan_4.contains(player.getName())){
             		
-            		player.teleport(new Location(Bukkit.getWorld("world"), config.getDouble("Clan_4.Home.X"), config.getDouble("Clan_4.Home.Y"), config.getDouble("Clan_4.Home.Z")));
+            		player.teleport(new Location((World) config.get("Clan_4.Home.World"), config.getDouble("Clan_4.Home.X"), config.getDouble("Clan_4.Home.Y"), config.getDouble("Clan_4.Home.Z")));
             		
             		return true;
             		}

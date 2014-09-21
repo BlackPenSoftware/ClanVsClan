@@ -149,7 +149,7 @@ public class clan extends JavaPlugin implements Listener{
 	            public void run() {
 	               int time = (Integer)config.get("Clans.WarTime.Time");
 	               
-	               if(time <= 604800){
+	               if(time <= 10080){
 	            	   
 	            	   config.set("Clans.WarTime.Time", ((Integer)config.get("Clans.WarTime.Time") + 1));
 	            	  
@@ -158,14 +158,20 @@ public class clan extends JavaPlugin implements Listener{
 	            	 
 	               }
 	     
-	               if(time <= 604800){
+	               if(time > 10080){
 	            	   
-	            	   War();
-	            	   
+	            	 Bukkit.broadcastMessage(ChatColor.BLUE + "[Clan Vs Clan]" + ChatColor.RED + " Let The War Begin!");  
+	            	 
+	            	 config.set("Clans.WarTime.Time", 0);
+	            	 
+	            	 saveConfig();
+	            	 
+	            	 War();
+	            	 
 	               }
 	               
 	            }
-	        }, 20L, 20L);
+	        }, 1200L, 1200L);
 		 
 	        
 		  saveConfig();
@@ -177,6 +183,8 @@ public class clan extends JavaPlugin implements Listener{
 
 	
 	public void War(){
+		
+		Bukkit.broadcastMessage("WAR");
 		
 		List<Player> Clan_1_Player_List = Bukkit.getWorld((String) config.get("Clan_1.Land.World.Name")).getPlayers();
 		Player Random_Player_In_Clan_1 = Clan_1_Player_List.get(new Random().nextInt(Clan_1_Player_List.size()));
@@ -190,8 +198,8 @@ public class clan extends JavaPlugin implements Listener{
 		List<Player> Clan_4_Player_List = Bukkit.getWorld((String) config.get("Clan_4.Land.World.Name")).getPlayers();
 		Player Random_Player_In_Clan_4 = Clan_4_Player_List.get(new Random().nextInt(Clan_4_Player_List.size()));
 		
-		 World p = Bukkit.getWorld((String) config.get("Clan_1.Land.World.Name"));
-		 Random_Player_In_Clan_1.teleport(new Location(p, 50, ~0, 50));
+		 World p = Bukkit.getWorld((String) config.get("Clan_2.Land.World.Name"));
+		 Random_Player_In_Clan_1.teleport(new Location(p, 50, 60, 50));
 		
 		
 	}
@@ -223,7 +231,7 @@ public void onDisable(){
 
 public void initConfig() {
 
-		
+
 	config.addDefault("Clans.WarTime.Time", 0);
 	
 	config.addDefault("Clans.Shop.Sell.PayoutReturn", 3);
@@ -235,6 +243,8 @@ public void initConfig() {
      
      config.addDefault("Clan_1.Admin.Ballance", 1000);
      
+     
+     config.addDefault("Clan_1.Home.World", "");
      
      config.addDefault("Clan_1.Home.X", 0.0D);
      
@@ -269,7 +279,7 @@ public void initConfig() {
      
      config.addDefault("Clan_2.Land.World.Name", "Clan_2");
      
-     
+     config.addDefault("Clan_1.Home.World", "");
      config.addDefault("Clan_2.Home.X", 0.0D);
      
      config.addDefault("Clan_2.Home.Y", 60.0D);
@@ -292,7 +302,7 @@ public void initConfig() {
  	
  	config.addDefault("Clan_3.Admin.Ballance", 100);
  	
- 	
+ 	config.addDefault("Clan_1.Home.World", "");
  	config.addDefault("Clan_3.Home.X", 0.0D);
      
      config.addDefault("Clan_3.Home.Y", 60.0D);
@@ -319,7 +329,7 @@ public void initConfig() {
      
      config.addDefault("Clan_4.Admin.Ballance", 100);
      
-     
+     config.addDefault("Clan_1.Home.World", "");
      config.addDefault("Clan_1.Home.X", 0.0D);
      
      config.addDefault("Clan_4.Home.Y", 60.0D);
@@ -932,8 +942,6 @@ public void onClick(InventoryClickEvent event) {
 		ArrayList<String> DiamondHeadLore = new ArrayList<String>();
 		DiamondHeadLore.add("This Helmet Costs $2000");
 		DiamondHeadLore.add("Click Me To Buy!");
-		DiamondHead_Meta.setLore(DiamondHeadLore);
-		DiamondHead.setItemMeta(DiamondHead_Meta);
 		DiamondHead.addEnchantment(Enchantment.OXYGEN, 3);
   		DiamondHead.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
   		DiamondHead.addEnchantment(Enchantment.WATER_WORKER, 1);
