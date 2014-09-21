@@ -48,7 +48,7 @@ public class cvc implements CommandExecutor{
             	@SuppressWarnings("unused")
 				Player player = (Player) sender;
   
-                  sender.sendMessage(ChatColor.GOLD + "==================[CvC 1 / 2]===================");
+                  sender.sendMessage(ChatColor.GOLD + "==================[CvC 1 / 3]===================");
 
 				  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GREEN + "/CvC SetAdmin (Clan Number / Name) (Player Name)" + ChatColor.DARK_PURPLE + " This Command Is Used To Assign Clan Admins.");
 				  
@@ -536,7 +536,7 @@ public class cvc implements CommandExecutor{
             
         }else if((commandLabel.equalsIgnoreCase("CvC") && args[0].equalsIgnoreCase("2"))){
         	
-       	 		sender.sendMessage(ChatColor.GOLD + "==================[CvC 2 / 2]===================");
+       	 		sender.sendMessage(ChatColor.GOLD + "==================[CvC 2 / 3]===================");
        	 
 			  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GREEN + "/CvC Expand " + ChatColor.DARK_PURPLE + "This Command Allows For The Admins Of The Clan To Expand Their Claim.");
 			   
@@ -551,6 +551,20 @@ public class cvc implements CommandExecutor{
        	
        return true;	
        
+        }else if((commandLabel.equalsIgnoreCase("CvC") && args[0].equalsIgnoreCase("3"))){
+        	
+   	 		sender.sendMessage(ChatColor.GOLD + "==================[CvC 3 / 3]===================");
+   	 
+		  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GREEN + "/CvC Shop " + ChatColor.DARK_PURPLE + "This Command Allows Players To Buy And Sell Items With Personal Money.");
+		
+		  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GOLD + "We Would Like To Thank " + ChatColor.GREEN + "MagaBenG " + ChatColor.GOLD + "For The Creation Of This Plugin! He Is Open For Private Plugin Requests.");
+			 
+		  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GOLD + "We Would Also Like To Thank " + ChatColor.GREEN + "MenTal_H4cKz " + ChatColor.GOLD + "For Testing And Support Over The Last Two Months.");
+			
+		  sender.sendMessage(ChatColor.GOLD + "================================================");
+   	
+   return true;	
+        
         }else if((commandLabel.equalsIgnoreCase("CvC") && args[0].equalsIgnoreCase("Bal"))){
         	
         	   FileConfiguration config = plugin.getConfig();
