@@ -39,7 +39,7 @@ public class cvc implements CommandExecutor{
 	  
   public static Inventory ClanBuyInventory = Bukkit.createInventory(null, 18, "Clan Buy");
 	 
-  public static Inventory ClanMainInventory = Bukkit.createInventory(null, 18, "Clan Main");
+  public static Inventory ClanMainInventory = Bukkit.createInventory(null, 9, "Shop");
     
     
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
@@ -556,11 +556,7 @@ public class cvc implements CommandExecutor{
    	 		sender.sendMessage(ChatColor.GOLD + "==================[CvC 3 / 3]===================");
    	 
 		  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GREEN + "/CvC Shop " + ChatColor.DARK_PURPLE + "This Command Allows Players To Buy And Sell Items With Personal Money.");
-		
-		  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GOLD + "We Would Like To Thank " + ChatColor.GREEN + "MagaBenG " + ChatColor.GOLD + "For The Creation Of This Plugin! He Is Open For Private Plugin Requests.");
-			 
-		  sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GOLD + "We Would Also Like To Thank " + ChatColor.GREEN + "MenTal_H4cKz " + ChatColor.GOLD + "For Testing And Support Over The Last Two Months.");
-			
+	
 		  sender.sendMessage(ChatColor.GOLD + "================================================");
    	
    return true;	
@@ -914,9 +910,9 @@ public class cvc implements CommandExecutor{
   		ClanSellInventory.setItem(17, PaperBuy);
   		
   		
-  		ClanMainInventory.setItem(4, PaperBuy);
+  		ClanMainInventory.setItem(0, PaperBuy);
   		
-  		ClanMainInventory.setItem(13, PaperSell);
+  		ClanMainInventory.setItem(8, PaperSell);
   		
   		
   		

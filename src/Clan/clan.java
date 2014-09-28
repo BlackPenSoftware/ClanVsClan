@@ -894,7 +894,7 @@ public void OnPlayerLogin(PlayerJoinEvent event){
 public void onClick(InventoryClickEvent event) {
 	
 	
-	if(event.getInventory().getName().equalsIgnoreCase("Clan Main")){
+	if(event.getInventory().getName().equalsIgnoreCase("Shop")){
 	
 		Player player = (Player) event.getWhoClicked();
 		ItemStack clicked = event.getCurrentItem();
