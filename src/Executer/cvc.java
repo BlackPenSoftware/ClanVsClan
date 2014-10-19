@@ -73,13 +73,13 @@ public class cvc implements CommandExecutor{
             	int ammountout = Integer.parseInt(args[2]);
             	FileConfiguration config = plugin.getConfig(); 
             	
-            	List<String> Clan_1 = config.getStringList("Clan_1.Players.Names");
+            	List<String> Air = config.getStringList("Air.Players.Names");
 
-        		List<String> Clan_2 = config.getStringList("Clan_2.Players.Names");
+        		List<String> Earth = config.getStringList("Earth.Players.Names");
 
-        		List<String> Clan_3 = config.getStringList("Clan_3.Players.Names");
+        		List<String> Water = config.getStringList("Water.Players.Names");
 
-        		List<String> Clan_4 = config.getStringList("Clan_4.Players.Names");
+        		List<String> Fire = config.getStringList("Fire.Players.Names");
             	
             	
             		if(playerName != null){		 
@@ -88,33 +88,33 @@ public class cvc implements CommandExecutor{
             				sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "You Payed " + ChatColor.DARK_AQUA + playerName.getDisplayName() + ChatColor.GREEN + " $" + ammountout);
             				playerName.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_AQUA + sender.getName() + ChatColor.DARK_PURPLE + " Sent You " + ChatColor.GREEN + "$" + ammountout);
             			
-            				if(Clan_1.contains(playerName.getDisplayName()) && (Integer)config.get("Clan_1.Players." + playerName.getName().toString() + ".Bal") > ammountout){
-            					config.set("Clan_1.Players." + sender.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + sender.getName().toString() + ".Bal") - ammountout); 
-            					config.set("Clan_1.Players." + playerName.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + playerName.getName().toString() + ".Bal") + ammountout); 
+            				if(Air.contains(playerName.getDisplayName()) && (Integer)config.get("Air.Players." + playerName.getName().toString() + ".Bal") > ammountout){
+            					config.set("Air.Players." + sender.getName().toString() + ".Bal", (Integer)config.get("Air.Players." + sender.getName().toString() + ".Bal") - ammountout); 
+            					config.set("Air.Players." + playerName.getName().toString() + ".Bal", (Integer)config.get("Air.Players." + playerName.getName().toString() + ".Bal") + ammountout); 
             					
             					plugin.configSave();
             					
             				}
             				
-            				if(Clan_2.contains(playerName.getDisplayName()) && (Integer)config.get("Clan_2.Players." + playerName.getName().toString() + ".Bal") > ammountout){
-            					config.set("Clan_2.Players." + sender.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + sender.getName().toString() + ".Bal") - ammountout); 
-            					config.set("Clan_2.Players." + playerName.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + playerName.getName().toString() + ".Bal") + ammountout); 
+            				if(Earth.contains(playerName.getDisplayName()) && (Integer)config.get("Earth.Players." + playerName.getName().toString() + ".Bal") > ammountout){
+            					config.set("Earth.Players." + sender.getName().toString() + ".Bal", (Integer)config.get("Earth.Players." + sender.getName().toString() + ".Bal") - ammountout); 
+            					config.set("Earth.Players." + playerName.getName().toString() + ".Bal", (Integer)config.get("Earth.Players." + playerName.getName().toString() + ".Bal") + ammountout); 
             					
             					plugin.configSave();
             					
             				}
             				
-            				if(Clan_3.contains(playerName.getDisplayName()) && (Integer)config.get("Clan_3.Players." + playerName.getName().toString() + ".Bal") > ammountout){
-            					config.set("Clan_3.Players." + sender.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + sender.getName().toString() + ".Bal") - ammountout); 
-            					config.set("Clan_3.Players." + playerName.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + playerName.getName().toString() + ".Bal") + ammountout); 
+            				if(Water.contains(playerName.getDisplayName()) && (Integer)config.get("Water.Players." + playerName.getName().toString() + ".Bal") > ammountout){
+            					config.set("Water.Players." + sender.getName().toString() + ".Bal", (Integer)config.get("Water.Players." + sender.getName().toString() + ".Bal") - ammountout); 
+            					config.set("Water.Players." + playerName.getName().toString() + ".Bal", (Integer)config.get("Water.Players." + playerName.getName().toString() + ".Bal") + ammountout); 
             					
             					plugin.configSave();
             					
             				}
             				
-            				if(Clan_4.contains(playerName.getDisplayName()) && (Integer)config.get("Clan_4.Players." + playerName.getName().toString() + ".Bal") > ammountout){
-            					config.set("Clan_4.Players." + sender.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + sender.getName().toString() + ".Bal") - ammountout); 
-            					config.set("Clan_4.Players." + playerName.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + playerName.getName().toString() + ".Bal") + ammountout); 
+            				if(Fire.contains(playerName.getDisplayName()) && (Integer)config.get("Fire.Players." + playerName.getName().toString() + ".Bal") > ammountout){
+            					config.set("Fire.Players." + sender.getName().toString() + ".Bal", (Integer)config.get("Fire.Players." + sender.getName().toString() + ".Bal") - ammountout); 
+            					config.set("Fire.Players." + playerName.getName().toString() + ".Bal", (Integer)config.get("Fire.Players." + playerName.getName().toString() + ".Bal") + ammountout); 
             					
             					plugin.configSave();
             					
@@ -136,31 +136,31 @@ public class cvc implements CommandExecutor{
             	
             	FileConfiguration config = plugin.getConfig(); 
             	
-            	List<String> Clan_1 = config.getStringList("Clan_1.Players.Names");
+            	List<String> Air = config.getStringList("Air.Players.Names");
 
-        		List<String> Clan_2 = config.getStringList("Clan_2.Players.Names");
+        		List<String> Earth = config.getStringList("Earth.Players.Names");
 
-        		List<String> Clan_3 = config.getStringList("Clan_3.Players.Names");
+        		List<String> Water = config.getStringList("Water.Players.Names");
 
-        		List<String> Clan_4 = config.getStringList("Clan_4.Players.Names");
+        		List<String> Fire = config.getStringList("Fire.Players.Names");
             	
             	 
             	 
             	if(sender instanceof Player){
-            		if(Clan_1.contains(((Player) sender).getDisplayName())){
-            			sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Your Personal Balance Is " + ChatColor.GREEN + "$" + config.get("Clan_1.Players." + sender.getName().toString() + ".Bal"));
+            		if(Air.contains(((Player) sender).getDisplayName())){
+            			sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Your Personal Balance Is " + ChatColor.GREEN + "$" + config.get("Air.Players." + sender.getName().toString() + ".Bal"));
             		}
             		
-            		if(Clan_2.contains(((Player) sender).getDisplayName())){
-            			sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Your Personal Balance Is " + ChatColor.GREEN + "$" + config.get("Clan_2.Players." + sender.getName().toString() + ".Bal"));
+            		if(Earth.contains(((Player) sender).getDisplayName())){
+            			sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Your Personal Balance Is " + ChatColor.GREEN + "$" + config.get("Earth.Players." + sender.getName().toString() + ".Bal"));
             		}
             		
-            		if(Clan_3.contains(((Player) sender).getDisplayName())){
-            			sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Your Personal Balance Is " + ChatColor.GREEN + "$" + config.get("Clan_3.Players." + sender.getName().toString() + ".Bal"));
+            		if(Water.contains(((Player) sender).getDisplayName())){
+            			sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Your Personal Balance Is " + ChatColor.GREEN + "$" + config.get("Water.Players." + sender.getName().toString() + ".Bal"));
             		}
             		
-            		if(Clan_4.contains(((Player) sender).getDisplayName())){
-            			sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Your Personal Balance Is " + ChatColor.GREEN + "$" + config.get("Clan_4.Players." + sender.getName().toString() + ".Bal"));
+            		if(Fire.contains(((Player) sender).getDisplayName())){
+            			sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Your Personal Balance Is " + ChatColor.GREEN + "$" + config.get("Fire.Players." + sender.getName().toString() + ".Bal"));
             		}
             	 }
             	
@@ -171,18 +171,18 @@ public class cvc implements CommandExecutor{
             	   FileConfiguration config = plugin.getConfig();
             	   
             	  
-            	   if( (Integer)config.get("Clan_1.Land.ClaimSize.Size") >= 1000 ){
+            	   if( (Integer)config.get("Air.Land.ClaimSize.Size") >= 1000 ){
             		   
-        			   sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Your Clan Is Already At Max Size: " + (Integer)config.get("Clan_1.Land.ClaimSize.Size") + "x" + (Integer)config.get("Clan_1.Land.ClaimSize.Size"));
+        			   sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Your Clan Is Already At Max Size: " + (Integer)config.get("Air.Land.ClaimSize.Size") + "x" + (Integer)config.get("Air.Land.ClaimSize.Size"));
           			 
         				return true;
         			   
         		   
         		   }
             	   
-            	   if( (Integer)config.get("Clan_2.Land.ClaimSize.Size") >= 1000){
+            	   if( (Integer)config.get("Earth.Land.ClaimSize.Size") >= 1000){
             		   
-        			   sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Your Clan Is Already At Max Size: " + (Integer)config.get("Clan_2.Land.ClaimSize.Size") + "x" + (Integer)config.get("Clan_2.Land.ClaimSize.Size"));
+        			   sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Your Clan Is Already At Max Size: " + (Integer)config.get("Earth.Land.ClaimSize.Size") + "x" + (Integer)config.get("Earth.Land.ClaimSize.Size"));
           			 
         		   
         				return true;
@@ -191,9 +191,9 @@ public class cvc implements CommandExecutor{
   
   
   
-            	   if( (Integer)config.get("Clan_3.Land.ClaimSize.Size") >= 1000){
+            	   if( (Integer)config.get("Water.Land.ClaimSize.Size") >= 1000){
 	   
-            		   	sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Your Clan Is Already At Max Size: " + (Integer)config.get("Clan_3.Land.ClaimSize.Size") + "x" + (Integer)config.get("Clan_3.Land.ClaimSize.Size"));
+            		   	sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Your Clan Is Already At Max Size: " + (Integer)config.get("Water.Land.ClaimSize.Size") + "x" + (Integer)config.get("Water.Land.ClaimSize.Size"));
 		 
             			return true;
   
@@ -201,9 +201,9 @@ public class cvc implements CommandExecutor{
   
   
   
-            	   if( (Integer)config.get("Clan_4.Land.ClaimSize.Size") >= 1000){
+            	   if( (Integer)config.get("Fire.Land.ClaimSize.Size") >= 1000){
 	   
-            		   		sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Your Clan Is Already At Max Size: " + (Integer)config.get("Clan_4.Land.ClaimSize.Size") + "x" + (Integer)config.get("Clan_4.Land.ClaimSize.Size"));
+            		   		sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Your Clan Is Already At Max Size: " + (Integer)config.get("Fire.Land.ClaimSize.Size") + "x" + (Integer)config.get("Fire.Land.ClaimSize.Size"));
 		 
             		   		return true;
             		   		
@@ -212,31 +212,31 @@ public class cvc implements CommandExecutor{
             	   
             	   
             	   
-            	   if(sender.getName().equalsIgnoreCase((String) config.get("Clan_1.Admin.UserName"))){
+            	   if(sender.getName().equalsIgnoreCase((String) config.get("Air.Admin.UserName"))){
             		   
 
             		   
-            		   //int Clan_1_Bal = plugin.getConfig().getInt("Clan_1.Admin.Ballance");
+            		   //int Clan_1_Bal = plugin.getConfig().getInt("Air.Admin.Ballance");
             		   
-            		   int bal = plugin.getConfig().getInt("Clan_1.Admin.Ballance");
+            		   int bal = plugin.getConfig().getInt("Air.Admin.Ballance");
             		   
-            		   //int claim = plugin.getConfig().getInt("Clan_1.Land.ClaimSize");
+            		   //int claim = plugin.getConfig().getInt("Air.Land.ClaimSize");
             		   
-            		   if( bal >= (Integer)config.get("Clan_1.Land.ClaimSize.Size") * 500 && (Integer)config.get("Clan_1.Land.ClaimSize.Size") < 1000){
+            		   if( bal >= (Integer)config.get("Air.Land.ClaimSize.Size") * 500 && (Integer)config.get("Air.Land.ClaimSize.Size") < 1000){
             			   
             			   
             			 
             			   
-            			   config.set("Clan_1.Admin.Ballance", (Integer)config.get("Clan_1.Admin.Ballance") - (Integer)config.get("Clan_1.Land.ClaimSize.Size") * 500);
+            			   config.set("Air.Admin.Ballance", (Integer)config.get("Air.Admin.Ballance") - (Integer)config.get("Air.Land.ClaimSize.Size") * 500);
             			  
             			   
-            			   config.set("Clan_1.Land.ClaimSize.Size", (Integer)config.get("Clan_1.Land.ClaimSize.Size") + 100);
+            			   config.set("Air.Land.ClaimSize.Size", (Integer)config.get("Air.Land.ClaimSize.Size") + 100);
             			   
             			
             			   plugin.saveConfig();
             			   
             			  
-                		   sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "You Have Expanded Your Clan's Claim To " + (Integer)config.get("Clan_1.Land.ClaimSize.Size") + "x" + (Integer)config.get("Clan_1.Land.ClaimSize.Size"));
+                		   sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "You Have Expanded Your Clan's Claim To " + (Integer)config.get("Air.Land.ClaimSize.Size") + "x" + (Integer)config.get("Air.Land.ClaimSize.Size"));
             			 
             	
                 		return true;
@@ -247,31 +247,31 @@ public class cvc implements CommandExecutor{
             	   
             	   
             	   
-                		   if(sender.getName().equalsIgnoreCase((String) config.get("Clan_2.Admin.UserName"))){
+                		   if(sender.getName().equalsIgnoreCase((String) config.get("Earth.Admin.UserName"))){
                     		   
 
                     		   
-                    		   //int Clan_1_Bal = plugin.getConfig().getInt("Clan_1.Admin.Ballance");
+                    		   //int Clan_1_Bal = plugin.getConfig().getInt("Air.Admin.Ballance");
                     		   
-                    		   int bal_2 = plugin.getConfig().getInt("Clan_2.Admin.Ballance");
+                    		   int bal_2 = plugin.getConfig().getInt("Earth.Admin.Ballance");
                     		   
-                    		   //int claim = plugin.getConfig().getInt("Clan_1.Land.ClaimSize");
+                    		   //int claim = plugin.getConfig().getInt("Air.Land.ClaimSize");
                     		   
-                    		   if( bal_2 >= (Integer)config.get("Clan_2.Land.ClaimSize.Size") * 500 && (Integer)config.get("Clan_2.Land.ClaimSize.Size") < 1000){
+                    		   if( bal_2 >= (Integer)config.get("Earth.Land.ClaimSize.Size") * 500 && (Integer)config.get("Earth.Land.ClaimSize.Size") < 1000){
                     			   
                     			   
                     			 
                     			   
-                    			   config.set("Clan_2.Admin.Ballance", (Integer)config.get("Clan_2.Admin.Ballance") - (Integer)config.get("Clan_2.Land.ClaimSize.Size") * 500);
+                    			   config.set("Earth.Admin.Ballance", (Integer)config.get("Earth.Admin.Ballance") - (Integer)config.get("Earth.Land.ClaimSize.Size") * 500);
                     			  
                     			   
-                    			   config.set("Clan_2.Land.ClaimSize.Size", (Integer)config.get("Clan_2.Land.ClaimSize.Size") + 100);
+                    			   config.set("Earth.Land.ClaimSize.Size", (Integer)config.get("Earth.Land.ClaimSize.Size") + 100);
                     			   
                     			
                     			   plugin.saveConfig();
                     			   
                     			  
-                        		   sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "You Have Expanded Your Clan's Claim To " + (Integer)config.get("Clan_2.Land.ClaimSize.Size") + "x" + (Integer)config.get("Clan_2.Land.ClaimSize.Size"));
+                        		   sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "You Have Expanded Your Clan's Claim To " + (Integer)config.get("Earth.Land.ClaimSize.Size") + "x" + (Integer)config.get("Earth.Land.ClaimSize.Size"));
                     			 
                     	
                         			return true;
@@ -280,31 +280,31 @@ public class cvc implements CommandExecutor{
                     	   }
             	   
             	   
-                    		   if(sender.getName().equalsIgnoreCase((String) config.get("Clan_3.Admin.UserName"))){
+                    		   if(sender.getName().equalsIgnoreCase((String) config.get("Water.Admin.UserName"))){
                         		   
 
                         		   
-                        		   //int Clan_1_Bal = plugin.getConfig().getInt("Clan_1.Admin.Ballance");
+                        		   //int Clan_1_Bal = plugin.getConfig().getInt("Air.Admin.Ballance");
                         		   
-                        		   int bal_3 = plugin.getConfig().getInt("Clan_3.Admin.Ballance");
+                        		   int bal_3 = plugin.getConfig().getInt("Water.Admin.Ballance");
                         		   
-                        		   //int claim = plugin.getConfig().getInt("Clan_1.Land.ClaimSize");
+                        		   //int claim = plugin.getConfig().getInt("Air.Land.ClaimSize");
                         		   
-                        		   if( bal_3 >= (Integer)config.get("Clan_3.Land.ClaimSize.Size") * 500 && (Integer)config.get("Clan_3.Land.ClaimSize.Size") < 1000){
+                        		   if( bal_3 >= (Integer)config.get("Water.Land.ClaimSize.Size") * 500 && (Integer)config.get("Water.Land.ClaimSize.Size") < 1000){
                         			   
                         			   
                         			 
                         			   
-                        			   config.set("Clan_3.Admin.Ballance", (Integer)config.get("Clan_3.Admin.Ballance") - (Integer)config.get("Clan_3.Land.ClaimSize.Size") * 500);
+                        			   config.set("Water.Admin.Ballance", (Integer)config.get("Water.Admin.Ballance") - (Integer)config.get("Water.Land.ClaimSize.Size") * 500);
                         			  
                         			   
-                        			   config.set("Clan_3.Land.ClaimSize.Size", (Integer)config.get("Clan_3.Land.ClaimSize.Size") + 100);
+                        			   config.set("Water.Land.ClaimSize.Size", (Integer)config.get("Water.Land.ClaimSize.Size") + 100);
                         			   
                         			
                         			   plugin.saveConfig();
                         			   
                         			  
-                            		   sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "You Have Expanded Your Clan's Claim To " + (Integer)config.get("Clan_3.Land.ClaimSize.Size") + "x" + (Integer)config.get("Clan_3.Land.ClaimSize.Size"));
+                            		   sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "You Have Expanded Your Clan's Claim To " + (Integer)config.get("Water.Land.ClaimSize.Size") + "x" + (Integer)config.get("Water.Land.ClaimSize.Size"));
                         			 
                         	
                             			return true;
@@ -312,31 +312,31 @@ public class cvc implements CommandExecutor{
                         		   
                         	   }
                         		   
-                        		   if(sender.getName().equalsIgnoreCase((String) config.get("Clan_4.Admin.UserName"))){
+                        		   if(sender.getName().equalsIgnoreCase((String) config.get("Fire.Admin.UserName"))){
                             		   
 
                             		   
-                            		   //int Clan_1_Bal = plugin.getConfig().getInt("Clan_1.Admin.Ballance");
+                            		   //int Clan_1_Bal = plugin.getConfig().getInt("Air.Admin.Ballance");
                             		   
-                            		   int bal_4 = plugin.getConfig().getInt("Clan_4.Admin.Ballance");
+                            		   int bal_4 = plugin.getConfig().getInt("Fire.Admin.Ballance");
                             		   
-                            		   //int claim = plugin.getConfig().getInt("Clan_1.Land.ClaimSize");
+                            		   //int claim = plugin.getConfig().getInt("Air.Land.ClaimSize");
                             		   
-                            		   if( bal_4 >= (Integer)config.get("Clan_4.Land.ClaimSize.Size") * 500 && (Integer)config.get("Clan_4.Land.ClaimSize.Size") < 1000){
+                            		   if( bal_4 >= (Integer)config.get("Fire.Land.ClaimSize.Size") * 500 && (Integer)config.get("Fire.Land.ClaimSize.Size") < 1000){
                             			   
                             			   
                             			 
                             			   
-                            			   config.set("Clan_4.Admin.Ballance", (Integer)config.get("Clan_4.Admin.Ballance") - (Integer)config.get("Clan_4.Land.ClaimSize.Size") * 500);
+                            			   config.set("Fire.Admin.Ballance", (Integer)config.get("Fire.Admin.Ballance") - (Integer)config.get("Fire.Land.ClaimSize.Size") * 500);
                             			  
                             			   
-                            			   config.set("Clan_4.Land.ClaimSize.Size", (Integer)config.get("Clan_4.Land.ClaimSize.Size") + 100);
+                            			   config.set("Fire.Land.ClaimSize.Size", (Integer)config.get("Fire.Land.ClaimSize.Size") + 100);
                             			   
                             			
                             			   plugin.saveConfig();
                             			   
                             			  
-                                		   sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "You Have Expanded Your Clan's Claim To " + (Integer)config.get("Clan_4.Land.ClaimSize.Size") + "x" + (Integer)config.get("Clan_4.Land.ClaimSize.Size"));
+                                		   sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "You Have Expanded Your Clan's Claim To " + (Integer)config.get("Fire.Land.ClaimSize.Size") + "x" + (Integer)config.get("Fire.Land.ClaimSize.Size"));
                             			 
                             	
                                 		
@@ -360,17 +360,17 @@ public class cvc implements CommandExecutor{
                 
          	   FileConfiguration config = plugin.getConfig();
          	 
-         	  List<String> Clan_1 = config.getStringList("Clan_1.Players.Names");
+         	  List<String> Air = config.getStringList("Air.Players.Names");
 
-         		List<String> Clan_2 = config.getStringList("Clan_2.Players.Names");
+         		List<String> Earth = config.getStringList("Earth.Players.Names");
 
-         		List<String> Clan_3 = config.getStringList("Clan_3.Players.Names");
+         		List<String> Water = config.getStringList("Water.Players.Names");
 
-         		List<String> Clan_4 = config.getStringList("Clan_4.Players.Names");
+         		List<String> Fire = config.getStringList("Fire.Players.Names");
          		
-         		if(Clan_1.contains(sender.getName())){
+         		if(Air.contains(sender.getName())){
          			
-         			int ClaimSize_1 = (Integer)config.get("Clan_1.Land.ClaimSize.Size");
+         			int ClaimSize_1 = (Integer)config.get("Air.Land.ClaimSize.Size");
          			
          			if(ClaimSize_1 < 1000){
          			
@@ -385,9 +385,9 @@ public class cvc implements CommandExecutor{
          			 return true;
          		}
          		
-         			if(Clan_2.contains(sender.getName())){
+         			if(Earth.contains(sender.getName())){
          			
-         				int ClaimSize_2 = (Integer)config.get("Clan_2.Land.ClaimSize.Size");
+         				int ClaimSize_2 = (Integer)config.get("Earth.Land.ClaimSize.Size");
              			
              			if(ClaimSize_2 < 1000){
              			
@@ -402,9 +402,9 @@ public class cvc implements CommandExecutor{
              			 return true;
          				}
 
-         					if(Clan_3.contains(sender.getName())){
+         					if(Water.contains(sender.getName())){
 		
-         						int ClaimSize_3 = (Integer)config.get("Clan_3.Land.ClaimSize.Size");
+         						int ClaimSize_3 = (Integer)config.get("Water.Land.ClaimSize.Size");
          	         			
          	         			if(ClaimSize_3 < 1000){
          	         			
@@ -419,9 +419,9 @@ public class cvc implements CommandExecutor{
          	         			 return true;
          						}
 
-         							if(Clan_4.contains(sender.getName())){
+         							if(Fire.contains(sender.getName())){
 		
-         								int ClaimSize_4 = (Integer)config.get("Clan_4.Land.ClaimSize.Size");
+         								int ClaimSize_4 = (Integer)config.get("Fire.Land.ClaimSize.Size");
          			         			
          			         			if(ClaimSize_4 < 1000){
          			         			
@@ -447,17 +447,17 @@ public class cvc implements CommandExecutor{
             	   FileConfiguration config = plugin.getConfig();
             	   
             	
-            	if(args[1].equalsIgnoreCase("1") && playerName.getName().toString() != config.get("Clan_2.Admin.UserName").toString() && playerName.getName().toString() != config.get("Clan_3.Admin.UserName").toString() && playerName.getName().toString() != config.get("Clan_4.Admin.UserName").toString()){
+            	if(args[1].equalsIgnoreCase("1") && playerName.getName().toString() != config.get("Earth.Admin.UserName").toString() && playerName.getName().toString() != config.get("Water.Admin.UserName").toString() && playerName.getName().toString() != config.get("Fire.Admin.UserName").toString()){
 
             	   	 
 
-            	     sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GOLD + playerName.getDisplayName() + ChatColor.DARK_PURPLE + " Is The New Clan 1 Leader!");
+            	     sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GOLD + playerName.getDisplayName() + ChatColor.DARK_PURPLE + " Is The New Air Leader!");
 
-            	     playerName.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GOLD + "You" + ChatColor.DARK_PURPLE + " Are The New Clan 1 Leader!");
+            	     playerName.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GOLD + "You" + ChatColor.DARK_PURPLE + " Are The New Air Leader!");
 
-            	     config.set("Clan_1.Admin.UserName", null);
+            	     config.set("Air.Admin.UserName", null);
 
-            	     config.set("Clan_1.Admin.UserName", playerName.getDisplayName());
+            	     config.set("Air.Admin.UserName", playerName.getDisplayName());
 
             	    plugin.configSave();
 
@@ -467,19 +467,19 @@ public class cvc implements CommandExecutor{
 
             	   	 
 
-            	     if(args[1].equalsIgnoreCase("2") && playerName.getName().toString() != config.get("Clan_1.Admin.UserName").toString() && playerName.getName().toString() != config.get("Clan_3.Admin.UserName").toString() && playerName.getName().toString() != config.get("Clan_4.Admin.UserName").toString() ){
+            	     if(args[1].equalsIgnoreCase("2") && playerName.getName().toString() != config.get("Air.Admin.UserName").toString() && playerName.getName().toString() != config.get("Water.Admin.UserName").toString() && playerName.getName().toString() != config.get("Fire.Admin.UserName").toString() ){
 
             	   	 
 
-            	     sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GOLD + playerName.getDisplayName() + ChatColor.DARK_PURPLE + " Is The New Clan 2 Leader!");
+            	     sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GOLD + playerName.getDisplayName() + ChatColor.DARK_PURPLE + " Is The New Earth Leader!");
 
             	   	 
 
-            	     playerName.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GOLD + "You" + ChatColor.DARK_PURPLE + " Are The New Clan 2 Leader!");
+            	     playerName.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GOLD + "You" + ChatColor.DARK_PURPLE + " Are The New Earth Leader!");
 
-            	     config.set("Clan_2.Admin.UserName", null);
+            	     config.set("Earth.Admin.UserName", null);
 
-            	     config.set("Clan_2.Admin.UserName", playerName.getDisplayName());
+            	     config.set("Earth.Admin.UserName", playerName.getDisplayName());
 
             	     plugin.configSave();
 
@@ -489,19 +489,19 @@ public class cvc implements CommandExecutor{
 
             	   	 
 
-            	     if(args[1].equalsIgnoreCase("3") && playerName.getName().toString() != config.get("Clan_1.Admin.UserName").toString() && playerName.getName().toString() != config.get("Clan_2.Admin.UserName").toString() && playerName.getName().toString() != config.get("Clan_4.Admin.UserName").toString() ){
+            	     if(args[1].equalsIgnoreCase("3") && playerName.getName().toString() != config.get("Air.Admin.UserName").toString() && playerName.getName().toString() != config.get("Earth.Admin.UserName").toString() && playerName.getName().toString() != config.get("Fire.Admin.UserName").toString() ){
 
             	   	 
 
-            	     sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GOLD + playerName.getDisplayName() + ChatColor.DARK_PURPLE + " Is The New Clan 3 Leader!");
+            	     sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GOLD + playerName.getDisplayName() + ChatColor.DARK_PURPLE + " Is The New Water Leader!");
 
             	    
 
-            	     playerName.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GOLD + "You" + ChatColor.DARK_PURPLE + " Are The New Clan 3 Leader!");
+            	     playerName.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GOLD + "You" + ChatColor.DARK_PURPLE + " Are The New Water Leader!");
 
-            	     config.set("Clan_3.Admin.UserName", null);
+            	     config.set("Water.Admin.UserName", null);
 
-            	     config.set("Clan_3.Admin.UserName", playerName.getDisplayName());
+            	     config.set("Water.Admin.UserName", playerName.getDisplayName());
 
             	     plugin.configSave();
 
@@ -510,19 +510,19 @@ public class cvc implements CommandExecutor{
 
 
 
-            	     if(args[1].equalsIgnoreCase("4") && playerName.getName() != config.get("Clan_1.Admin.UserName") && playerName.getName() != config.get("Clan_2.Admin.UserName") && playerName.getName() != config.get("Clan_3.Admin.UserName") ){
+            	     if(args[1].equalsIgnoreCase("4") && playerName.getName() != config.get("Air.Admin.UserName") && playerName.getName() != config.get("Earth.Admin.UserName") && playerName.getName() != config.get("Water.Admin.UserName") ){
 
             	   	 
 
-            	     sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GOLD + playerName.getDisplayName() + ChatColor.DARK_PURPLE + " Is The New Clan 4 Leader!");
+            	     sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GOLD + playerName.getDisplayName() + ChatColor.DARK_PURPLE + " Is The New Fire Leader!");
 
 
 
-            	     playerName.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GOLD + "You" + ChatColor.DARK_PURPLE + " Are The New Clan 4 Leader!");
+            	     playerName.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.GOLD + "You" + ChatColor.DARK_PURPLE + " Are The New Fire Leader!");
 
-            	     config.set("Clan_4.Admin.UserName", null);
+            	     config.set("Fire.Admin.UserName", null);
 
-            	     config.set("Clan_4.Admin.UserName", playerName.getDisplayName());
+            	     config.set("Fire.Admin.UserName", playerName.getDisplayName());
 
             	     plugin.configSave();
 
@@ -566,17 +566,17 @@ public class cvc implements CommandExecutor{
         	   FileConfiguration config = plugin.getConfig();
     
         	   
-        	   if(sender.getName().equalsIgnoreCase((String) config.get("Clan_1.Admin.UserName"))){
+        	   if(sender.getName().equalsIgnoreCase((String) config.get("Air.Admin.UserName"))){
 
-   	 		sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Your Clan Ballance Is " + ChatColor.GREEN + "$" + config.get("Clan_1.Admin.Ballance"));
+   	 		sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Your Clan Ballance Is " + ChatColor.GREEN + "$" + config.get("Air.Admin.Ballance"));
  
    	 		plugin.saveConfig();
    	 		
         	}
         	   
-        	   if(sender.getName().equalsIgnoreCase((String) config.get("Clan_2.Admin.UserName"))){
+        	   if(sender.getName().equalsIgnoreCase((String) config.get("Earth.Admin.UserName"))){
 
-          	 		sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Your Clan Ballance Is " + ChatColor.GREEN + "$" + config.get("Clan_2.Admin.Ballance"));
+          	 		sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Your Clan Ballance Is " + ChatColor.GREEN + "$" + config.get("Earth.Admin.Ballance"));
         
           	 		plugin.saveConfig();
           	 		
@@ -584,18 +584,18 @@ public class cvc implements CommandExecutor{
         	   
         	   
         	   
-        	   if(sender.getName().equalsIgnoreCase((String) config.get("Clan_3.Admin.UserName"))){
+        	   if(sender.getName().equalsIgnoreCase((String) config.get("Water.Admin.UserName"))){
 
-          	 		sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Your Clan Ballance Is " + ChatColor.GREEN + "$" + config.get("Clan_3.Admin.Ballance"));
+          	 		sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Your Clan Ballance Is " + ChatColor.GREEN + "$" + config.get("Water.Admin.Ballance"));
         
           	 		plugin.saveConfig();
           	 		
                	}
         	   
         	   
-        	   if(sender.getName().equalsIgnoreCase((String) config.get("Clan_4.Admin.UserName"))){
+        	   if(sender.getName().equalsIgnoreCase((String) config.get("Fire.Admin.UserName"))){
 
-          	 		sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Your Clan Ballance Is " + ChatColor.GREEN + "$" + config.get("Clan_4.Admin.Ballance"));
+          	 		sender.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "Your Clan Ballance Is " + ChatColor.GREEN + "$" + config.get("Fire.Admin.Ballance"));
         
           	 		plugin.saveConfig();
           	 		
@@ -942,7 +942,7 @@ public class cvc implements CommandExecutor{
      		  
      		 player.openInventory(ClanMainInventory);
      		  
-     		// config.set("Clan_1.Admin.Ballance", 1000);
+     		// config.set("Air.Admin.Ballance", 1000);
      		 
      		plugin.saveConfig();
      			
@@ -986,12 +986,12 @@ public class cvc implements CommandExecutor{
         	
         	
         	
-        	 if(sender.getName().equalsIgnoreCase((String) config.get("Clan_1.Admin.UserName"))){
+        	 if(sender.getName().equalsIgnoreCase((String) config.get("Air.Admin.UserName"))){
         		 
-        		config.set("Clan_1.Home.World", world); 
-        		config.set("Clan_1.Home.X", Loc.getX());
-        		config.set("Clan_1.Home.Y", Loc.getY());
-        		config.set("Clan_1.Home.Z", Loc.getZ());
+        		config.set("Air.Home.World", world); 
+        		config.set("Air.Home.X", Loc.getX());
+        		config.set("Air.Home.Y", Loc.getY());
+        		config.set("Air.Home.Z", Loc.getZ());
          		
         		plugin.saveConfig();
         		
@@ -1001,12 +1001,12 @@ public class cvc implements CommandExecutor{
         		
         	 }
         	 
-        		 if(sender.getName().equalsIgnoreCase((String) config.get("Clan_2.Admin.UserName"))){
+        		 if(sender.getName().equalsIgnoreCase((String) config.get("Earth.Admin.UserName"))){
         			 
-        			 config.set("Clan_2.Home.World", world); 
-        			 config.set("Clan_2.Home.X", Loc.getX());
-             		config.set("Clan_2.Home.Y", Loc.getY());
-             		config.set("Clan_2.Home.Z", Loc.getZ());
+        			 config.set("Earth.Home.World", world); 
+        			 config.set("Earth.Home.X", Loc.getX());
+             		config.set("Earth.Home.Y", Loc.getY());
+             		config.set("Earth.Home.Z", Loc.getZ());
               		
              		plugin.saveConfig();
              		
@@ -1016,12 +1016,12 @@ public class cvc implements CommandExecutor{
              		
         		 }
              		
-        			 if(sender.getName().equalsIgnoreCase((String) config.get("Clan_3.Admin.UserName"))){
+        			 if(sender.getName().equalsIgnoreCase((String) config.get("Water.Admin.UserName"))){
         				 	
-        				 	config.set("Clan_3.Home.World", world); 
-        				 	config.set("Clan_3.Home.X", Loc.getX());
-        	        		config.set("Clan_3.Home.Y", Loc.getY());
-        	        		config.set("Clan_3.Home.Z", Loc.getZ());
+        				 	config.set("Water.Home.World", world); 
+        				 	config.set("Water.Home.X", Loc.getX());
+        	        		config.set("Water.Home.Y", Loc.getY());
+        	        		config.set("Water.Home.Z", Loc.getZ());
         	         		
         	        		plugin.saveConfig();
         	        		
@@ -1031,12 +1031,12 @@ public class cvc implements CommandExecutor{
         	        		
         			 }
         			 
-        				 if(sender.getName().equalsIgnoreCase((String) config.get("Clan_4.Admin.UserName"))){
+        				 if(sender.getName().equalsIgnoreCase((String) config.get("Fire.Admin.UserName"))){
         					 
-        					 config.set("Clan_4.Home.World", world); 
-        					 config.set("Clan_4.Home.X", Loc.getX());
-        		        		config.set("Clan_4.Home.Y", Loc.getY());
-        		        		config.set("Clan_4.Home.Z", Loc.getZ());
+        					 config.set("Fire.Home.World", world); 
+        					 config.set("Fire.Home.X", Loc.getX());
+        		        		config.set("Fire.Home.Y", Loc.getY());
+        		        		config.set("Fire.Home.Z", Loc.getZ());
         		         		
         		        		plugin.saveConfig();
         		        		
@@ -1062,42 +1062,42 @@ public class cvc implements CommandExecutor{
         	
         	FileConfiguration config = plugin.getConfig();
         	
-        	List<String> Clan_1 = config.getStringList("Clan_1.Players.Names");
+        	List<String> Air = config.getStringList("Air.Players.Names");
 
-        	List<String> Clan_2 = config.getStringList("Clan_2.Players.Names");
+        	List<String> Earth = config.getStringList("Earth.Players.Names");
 
-        	List<String> Clan_3 = config.getStringList("Clan_3.Players.Names");
+        	List<String> Water = config.getStringList("Water.Players.Names");
 
-        	List<String> Clan_4 = config.getStringList("Clan_4.Players.Names");
+        	List<String> Fire = config.getStringList("Fire.Players.Names");
         	
         	if(sender instanceof Player){
         		
         		Player player = (Player) sender;
         	
-        		if(Clan_1.contains(player.getName())){
+        		if(Air.contains(player.getName())){
         		
-        		player.teleport(new Location(Bukkit.getWorld(config.get("Clan_1.Home.World").toString()), config.getDouble("Clan_1.Home.X"), config.getDouble("Clan_1.Home.Y"), config.getDouble("Clan_1.Home.Z")));
+        		player.teleport(new Location(Bukkit.getWorld(config.get("Air.Home.World").toString()), config.getDouble("Air.Home.X"), config.getDouble("Air.Home.Y"), config.getDouble("Air.Home.Z")));
         		
         		return true;
         		}
         		
-        		if(Clan_2.contains(player.getName())){
+        		if(Earth.contains(player.getName())){
             		
-            		player.teleport(new Location((World) config.get("Clan_2.Home.World"), config.getDouble("Clan_2.Home.X"), config.getDouble("Clan_2.Home.Y"), config.getDouble("Clan_2.Home.Z")));
-            		
-            		return true;
-            		}
-        		
-        		if(Clan_3.contains(player.getName())){
-            		
-            		player.teleport(new Location((World) config.get("Clan_3.Home.World"), config.getDouble("Clan_3.Home.X"), config.getDouble("Clan_3.Home.Y"), config.getDouble("Clan_3.Home.Z")));
+            		player.teleport(new Location((World) config.get("Earth.Home.World"), config.getDouble("Earth.Home.X"), config.getDouble("Earth.Home.Y"), config.getDouble("Earth.Home.Z")));
             		
             		return true;
             		}
         		
-        		if(Clan_4.contains(player.getName())){
+        		if(Water.contains(player.getName())){
             		
-            		player.teleport(new Location((World) config.get("Clan_4.Home.World"), config.getDouble("Clan_4.Home.X"), config.getDouble("Clan_4.Home.Y"), config.getDouble("Clan_4.Home.Z")));
+            		player.teleport(new Location((World) config.get("Water.Home.World"), config.getDouble("Water.Home.X"), config.getDouble("Water.Home.Y"), config.getDouble("Water.Home.Z")));
+            		
+            		return true;
+            		}
+        		
+        		if(Fire.contains(player.getName())){
+            		
+            		player.teleport(new Location((World) config.get("Fire.Home.World"), config.getDouble("Fire.Home.X"), config.getDouble("Fire.Home.Y"), config.getDouble("Fire.Home.Z")));
             		
             		return true;
             		}

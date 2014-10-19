@@ -1,15 +1,7 @@
-name: Clan Vs Clan
+name: ClanVsClan
 version: 1.0.0
 main: Clan.clan
 commands:
-  clan:
-    description: Clan By MagaBenG
-    usage: /clan
-    permission:
-  claim:
-    description: Claim Land For Your Clan
-    usage: /claim
-    permission:
   CvC:
     description: Base To Most CvC Commands
     usage: /CvC

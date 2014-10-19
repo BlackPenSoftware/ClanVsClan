@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.logging.Logger;
 
-import net.minecraft.server.v1_7_R3.MinecraftServer;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -14,10 +12,13 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
@@ -54,7 +55,7 @@ public class clan extends JavaPlugin implements Listener{
 	 * 
 	 */
 	
-	String MinecraftVersion = MinecraftServer.getServer().getVersion();
+	String MinecraftVersion = "1.7.10";
 	
 	/**
 	 * 
@@ -186,19 +187,19 @@ public class clan extends JavaPlugin implements Listener{
 		
 		Bukkit.broadcastMessage("WAR");
 		
-		List<Player> Clan_1_Player_List = Bukkit.getWorld((String) config.get("Clan_1.Land.World.Name")).getPlayers();
+		List<Player> Clan_1_Player_List = Bukkit.getWorld((String) config.get("Air.Land.World.Name")).getPlayers();
 		Player Random_Player_In_Clan_1 = Clan_1_Player_List.get(new Random().nextInt(Clan_1_Player_List.size()));
 		
-		List<Player> Clan_2_Player_List = Bukkit.getWorld((String) config.get("Clan_2.Land.World.Name")).getPlayers();
+		List<Player> Clan_2_Player_List = Bukkit.getWorld((String) config.get("Earth.Land.World.Name")).getPlayers();
 		Player Random_Player_In_Clan_2 = Clan_2_Player_List.get(new Random().nextInt(Clan_2_Player_List.size()));
 		
-		List<Player> Clan_3_Player_List = Bukkit.getWorld((String) config.get("Clan_3.Land.World.Name")).getPlayers();
+		List<Player> Clan_3_Player_List = Bukkit.getWorld((String) config.get("Water.Land.World.Name")).getPlayers();
 		Player Random_Player_In_Clan_3 = Clan_3_Player_List.get(new Random().nextInt(Clan_3_Player_List.size()));
 		
-		List<Player> Clan_4_Player_List = Bukkit.getWorld((String) config.get("Clan_4.Land.World.Name")).getPlayers();
+		List<Player> Clan_4_Player_List = Bukkit.getWorld((String) config.get("Fire.Land.World.Name")).getPlayers();
 		Player Random_Player_In_Clan_4 = Clan_4_Player_List.get(new Random().nextInt(Clan_4_Player_List.size()));
 		
-		 World p = Bukkit.getWorld((String) config.get("Clan_2.Land.World.Name"));
+		 World p = Bukkit.getWorld((String) config.get("Earth.Land.World.Name"));
 		 Random_Player_In_Clan_1.teleport(new Location(p, 50, 60, 50));
 		
 		
@@ -232,122 +233,125 @@ public void onDisable(){
 public void initConfig() {
 
 
+	config.addDefault("Clans.WarWorld.Name", "WarWorld");
+	config.addDefault("Clans.Spawn.Name", "world");
+	
 	config.addDefault("Clans.WarTime.Time", 0);
 	
-	config.addDefault("Clans.Shop.Sell.PayoutReturn", 3);
+	config.addDefault("Clans.Shop.Sell.PayoutReturn", 1);
      
-     config.addDefault("Clan_1.Admin.UserName.ClanAdmin", Clan_1Admin);
+     config.addDefault("Air.Admin.UserName.ClanAdmin", Clan_1Admin);
      
-     config.addDefault("Clan_1.Admin.UserName.User", "Player");
-     
-     
-     config.addDefault("Clan_1.Admin.Ballance", 1000);
+     config.addDefault("Air.Admin.UserName.User", "Player");
      
      
-     config.addDefault("Clan_1.Home.World", "");
-     
-     config.addDefault("Clan_1.Home.X", 0.0D);
-     
-     config.addDefault("Clan_1.Home.Y", 60.0D);
-     
-     config.addDefault("Clan_1.Home.Z", 0.0D);
-     
-     config.addDefault("Clan_1.Home.Yaw", 0.0D);
-     
-     config.addDefault("Clan_1.Home.Pitch", 0.0D);
+     config.addDefault("Air.Admin.Ballance", 1000);
      
      
-     config.addDefault("Clan_1.Players.Names", Clan_1_Player_List);
+     config.addDefault("Air.Home.World", "");
      
-     config.addDefault("Clan_1.Players.UserName.Bal", 0);
+     config.addDefault("Air.Home.X", 0.0D);
      
-
-     config.addDefault("Clan_1.Land.World.Name", "Clan_1");
+     config.addDefault("Air.Home.Y", 60.0D);
+     
+     config.addDefault("Air.Home.Z", 0.0D);
+     
+     config.addDefault("Air.Home.Yaw", 0.0D);
+     
+     config.addDefault("Air.Home.Pitch", 0.0D);
+     
+     
+     config.addDefault("Air.Players.Names", Clan_1_Player_List);
+     
+     config.addDefault("Air.Players.UserName.Bal", 0);
      
 
-  	config.addDefault("Clan_1.Land.ClaimSize.Size", Max);
+     config.addDefault("Air.Land.World.Name", "Air");
+     
+
+  	config.addDefault("Air.Land.ClaimSize.Size", Max);
   	
 
      	
 
-     config.addDefault("Clan_2.Admin.UserName.ClanAdmin", Clan_2Admin);
+     config.addDefault("Earth.Admin.UserName.ClanAdmin", Clan_2Admin);
      
-     config.addDefault("Clan_2.Admin.Ballance", 100);
+     config.addDefault("Earth.Admin.Ballance", 100);
      
-     config.addDefault("Clan_2.Players.Names", Clan_2_Player_List);
-     
-     
-     config.addDefault("Clan_2.Land.World.Name", "Clan_2");
-     
-     config.addDefault("Clan_1.Home.World", "");
-     config.addDefault("Clan_2.Home.X", 0.0D);
-     
-     config.addDefault("Clan_2.Home.Y", 60.0D);
-     
-     config.addDefault("Clan_2.Home.Z", 0.0D);
-     
-     config.addDefault("Clan_2.Home.Yaw", 0.0D);
-     
-     config.addDefault("Clan_2.Home.Pitch", 0.0D);
+     config.addDefault("Earth.Players.Names", Clan_2_Player_List);
      
      
-  	config.addDefault("Clan_2.Players.Names", Clan_2_Player_List);
+     config.addDefault("Earth.Land.World.Name", "Earth");
+     
+     config.addDefault("Air.Home.World", "");
+     config.addDefault("Earth.Home.X", 0.0D);
+     
+     config.addDefault("Earth.Home.Y", 60.0D);
+     
+     config.addDefault("Earth.Home.Z", 0.0D);
+     
+     config.addDefault("Earth.Home.Yaw", 0.0D);
+     
+     config.addDefault("Earth.Home.Pitch", 0.0D);
+     
+     
+  	config.addDefault("Earth.Players.Names", Clan_2_Player_List);
 
-  	config.addDefault("Clan_2.Land.ClaimSize.Size", Max_2);
+  	config.addDefault("Earth.Land.ClaimSize.Size", Max_2);
   	
 
  	
   	
- 	config.addDefault("Clan_3.Admin.UserName.ClanAdmin", Clan_3Admin);
+ 	config.addDefault("Water.Admin.UserName.ClanAdmin", Clan_3Admin);
  	
- 	config.addDefault("Clan_3.Admin.Ballance", 100);
+ 	config.addDefault("Water.Admin.Ballance", 100);
  	
- 	config.addDefault("Clan_1.Home.World", "");
- 	config.addDefault("Clan_3.Home.X", 0.0D);
+ 	config.addDefault("Air.Home.World", "");
+ 	config.addDefault("Water.Home.X", 0.0D);
      
-     config.addDefault("Clan_3.Home.Y", 60.0D);
+     config.addDefault("Water.Home.Y", 60.0D);
      
-     config.addDefault("Clan_3.Home.Z", 0.0D);
+     config.addDefault("Water.Home.Z", 0.0D);
      
-     config.addDefault("Clan_3.Home.Yaw", 0.0D);
+     config.addDefault("Water.Home.Yaw", 0.0D);
      
-     config.addDefault("Clan_3.Home.Pitch", 0.0D);
+     config.addDefault("Water.Home.Pitch", 0.0D);
  	
      
-     config.addDefault("Clan_3.Land.World.Name", "Clan_3");
+     config.addDefault("Water.Land.World.Name", "Water");
      
  	
- 	config.addDefault("Clan_3.Players.Names", Clan_3_Player_List);
+ 	config.addDefault("Water.Players.Names", Clan_3_Player_List);
 
- 	config.addDefault("Clan_3.Land.ClaimSize.Size", Max_3);
+ 	config.addDefault("Water.Land.ClaimSize.Size", Max_3);
  	
 
  	
  
  	
-     config.addDefault("Clan_4.Admin.UserName.ClanAdmin", Clan_4Admin);
+     config.addDefault("Fire.Admin.UserName.ClanAdmin", Clan_4Admin);
      
-     config.addDefault("Clan_4.Admin.Ballance", 100);
+     config.addDefault("Fire.Admin.Ballance", 100);
      
-     config.addDefault("Clan_1.Home.World", "");
-     config.addDefault("Clan_1.Home.X", 0.0D);
+     config.addDefault("Air.Home.World", "");
+     config.addDefault("Air.Home.X", 0.0D);
      
-     config.addDefault("Clan_4.Home.Y", 60.0D);
+     config.addDefault("Fire.Home.Y", 60.0D);
      
-     config.addDefault("Clan_4.Home.Z", 0.0D);
+     config.addDefault("Fire.Home.Z", 0.0D);
      
-     config.addDefault("Clan_4.Home.Yaw", 0.0D);
+     config.addDefault("Fire.Home.Yaw", 0.0D);
      
-     config.addDefault("Clan_4.Home.Pitch", 0.0D);
-     
-     
-     config.addDefault("Clan_4.Land.World.Name", "Clan_4");
+     config.addDefault("Fire.Home.Pitch", 0.0D);
      
      
-     config.addDefault("Clan_4.Players.Names", Clan_4_Player_List);
+     config.addDefault("Fire.Land.World.Name", "Fire");
+     
+     
+     config.addDefault("Fire.Players.Names", Clan_4_Player_List);
      
 
-  	config.addDefault("Clan_4.Land.ClaimSize.Size", Max_4);
+  	config.addDefault("Fire.Land.ClaimSize.Size", Max_4);
 
  	
  	config.options().copyDefaults(true);
@@ -413,13 +417,13 @@ public void registerCommands(){
  * 
  */
 
-List<String> Clan_1 = config.getStringList("Clan_1.Players.Names");
+List<String> Air = config.getStringList("Air.Players.Names");
 
-List<String> Clan_2 = config.getStringList("Clan_2.Players.Names");
+List<String> Earth = config.getStringList("Earth.Players.Names");
 
-List<String> Clan_3 = config.getStringList("Clan_3.Players.Names");
+List<String> Water = config.getStringList("Water.Players.Names");
 
-List<String> Clan_4 = config.getStringList("Clan_4.Players.Names");
+List<String> Fire = config.getStringList("Fire.Players.Names");
 
 
 
@@ -448,9 +452,9 @@ public void playerMove(PlayerMoveEvent event) {
 	
 	Scoreboard board = Clan_1_Bal_Board_Manager.getNewScoreboard();
 	
-	Team Clan_1_Bal_Board_Team = board.registerNewTeam("Clan_1");
+	Team Clan_1_Bal_Board_Team = board.registerNewTeam("Air");
 	
-	Clan_1_Bal_Board_Team.setPrefix("* Clan 1 * ");
+	Clan_1_Bal_Board_Team.setPrefix("* Air * ");
 	
 	Objective Clan_1_Bal_Board_Objective = board.registerNewObjective("test", "dummy");
 	
@@ -460,9 +464,9 @@ public void playerMove(PlayerMoveEvent event) {
 	
 	Clan_1_Bal_Board_Objective.setDisplayName("Balance");
 	
-	Score score = Clan_1_Bal_Board_Objective.getScore(ChatColor.BLUE + "Clan 1: "); //Get a fake offline player
+	Score score = Clan_1_Bal_Board_Objective.getScore(ChatColor.BLUE + "Air: "); //Get a fake offline player
 	
-	int Clan_1_Bal = getConfig().getInt("Clan_1.Admin.Ballance");
+	int Clan_1_Bal = getConfig().getInt("Air.Admin.Ballance");
 	
 	score.setScore(Clan_1_Bal);
 	
@@ -480,9 +484,9 @@ public void playerMove(PlayerMoveEvent event) {
 	
 	// CLAN 2 //
 	
-		Score Clan_2_Score = Clan_1_Bal_Board_Objective.getScore(ChatColor.BLUE + "Clan 2: "); //Get a fake offline player
+		Score Clan_2_Score = Clan_1_Bal_Board_Objective.getScore(ChatColor.BLUE + "Earth: "); //Get a fake offline player
 		
-		int Clan_2_Bal = getConfig().getInt("Clan_2.Admin.Ballance");
+		int Clan_2_Bal = getConfig().getInt("Earth.Admin.Ballance");
 		
 		Clan_2_Score.setScore(Clan_2_Bal);
 		
@@ -490,18 +494,18 @@ public void playerMove(PlayerMoveEvent event) {
 		
 		// CLAN 3 //
 		
-		Score Clan_3_Score = Clan_1_Bal_Board_Objective.getScore(ChatColor.BLUE + "Clan 3: "); //Get a fake offline player
+		Score Clan_3_Score = Clan_1_Bal_Board_Objective.getScore(ChatColor.BLUE + "Water: "); //Get a fake offline player
 		
-		int Clan_3_Bal = getConfig().getInt("Clan_3.Admin.Ballance");
+		int Clan_3_Bal = getConfig().getInt("Water.Admin.Ballance");
 		
 		Clan_3_Score.setScore(Clan_3_Bal);
 		
 		
 		// CLAN 4//
 		
-		Score Clan_4_Score = Clan_1_Bal_Board_Objective.getScore(ChatColor.BLUE + "Clan 4: "); //Get a fake offline player
+		Score Clan_4_Score = Clan_1_Bal_Board_Objective.getScore(ChatColor.BLUE + "Fire: "); //Get a fake offline player
 		
-		int Clan_4_Bal = getConfig().getInt("Clan_4.Admin.Ballance");
+		int Clan_4_Bal = getConfig().getInt("Fire.Admin.Ballance");
 		
 		Clan_4_Score.setScore(Clan_4_Bal);
 	
@@ -513,16 +517,17 @@ public void playerMove(PlayerMoveEvent event) {
 	   Location loc = player.getLocation();
 	   
 	  
-	   if(Clan_1.contains(player.getName())){
+	  
+	   if(Air.contains(player.getName())  && !player.getWorld().getName().equalsIgnoreCase((String) config.get("Clans.WarWorld.Name")) && !player.getWorld().getName().equalsIgnoreCase((String) config.get("Clans.Spawn.Name"))){
 	   
 	  
-	   if(loc.getBlockX() > (Integer)config.get("Clan_1.Land.ClaimSize.Size")){
+	   if(loc.getBlockX() > (Integer)config.get("Air.Land.ClaimSize.Size")){
 		   
 		  player.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_RED + "You Have Left Your Town");
 		
 		 // event.setCancelled(true);
 		  
-		  player.teleport(new Location(Bukkit.getWorld(config.get("Clan_1.Land.World.Name").toString()), (Integer)config.get("Clan_1.Land.ClaimSize.Size") - 5, loc.getBlockY(), loc.getBlockZ()));
+		  player.teleport(new Location(Bukkit.getWorld(config.get("Air.Land.World.Name").toString()), (Integer)config.get("Air.Land.ClaimSize.Size") - 5, loc.getBlockY(), loc.getBlockZ()));
 		   
 		  
 		  
@@ -530,14 +535,14 @@ public void playerMove(PlayerMoveEvent event) {
 	
 	   
 	   
-	   if(loc.getBlockZ() > (Integer)config.get("Clan_1.Land.ClaimSize.Size")){
+	   if(loc.getBlockZ() > (Integer)config.get("Air.Land.ClaimSize.Size")){
 		   
 			  player.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_RED + "You Have Left Your Town");
 			
 		
 		 // event.setCancelled(true);
 		  
-		  player.teleport(new Location(Bukkit.getWorld(config.get("Clan_1.Land.World.Name").toString()), loc.getX(), loc.getBlockY(), (Integer)config.get("Clan_1.Land.ClaimSize.Size") - 5));
+		  player.teleport(new Location(Bukkit.getWorld(config.get("Air.Land.World.Name").toString()), loc.getX(), loc.getBlockY(), (Integer)config.get("Air.Land.ClaimSize.Size") - 5));
 		   
 		  
 	   }
@@ -549,7 +554,7 @@ public void playerMove(PlayerMoveEvent event) {
 			
 			 // event.setCancelled(true);
 			  
-			  player.teleport(new Location(Bukkit.getWorld(config.get("Clan_1.Land.World.Name").toString()), (Integer)config.get("Clan_1.Land.ClaimSize.Size") - (Integer)config.get("Clan_1.Land.ClaimSize.Size") + 5 , loc.getBlockY(), loc.getBlockZ()));
+			  player.teleport(new Location(Bukkit.getWorld(config.get("Air.Land.World.Name").toString()), (Integer)config.get("Air.Land.ClaimSize.Size") - (Integer)config.get("Air.Land.ClaimSize.Size") + 5 , loc.getBlockY(), loc.getBlockZ()));
 			   
 			  
 		   }
@@ -563,7 +568,7 @@ public void playerMove(PlayerMoveEvent event) {
 			
 			 // event.setCancelled(true);
 			  
-			  player.teleport(new Location(Bukkit.getWorld(config.get("Clan_1.Land.World.Name").toString()), loc.getX(), loc.getBlockY(), (Integer)config.get("Clan_1.Land.ClaimSize.Size") - (Integer)config.get("Clan_1.Land.ClaimSize.Size") + 5));
+			  player.teleport(new Location(Bukkit.getWorld(config.get("Air.Land.World.Name").toString()), loc.getX(), loc.getBlockY(), (Integer)config.get("Air.Land.ClaimSize.Size") - (Integer)config.get("Air.Land.ClaimSize.Size") + 5));
 			   
 			  
 		   }
@@ -575,7 +580,7 @@ public void playerMove(PlayerMoveEvent event) {
 	   
 	   
 
-	   if(Clan_2.contains(player.getName())){
+	   if(Earth.contains(player.getName()) && !player.getWorld().getName().equalsIgnoreCase((String) config.get("Clans.WarWorld.Name")) && !player.getWorld().getName().equalsIgnoreCase((String) config.get("Clans.Spawn.Name"))){
 	   
 	  
 	   if(loc.getBlockX() > Max_2){
@@ -584,7 +589,7 @@ public void playerMove(PlayerMoveEvent event) {
 		
 		 // event.setCancelled(true);
 		  
-		  player.teleport(new Location(Bukkit.getWorld(config.get("Clan_2.Land.World.Name").toString()), Max_2 - 5, loc.getBlockY(), loc.getBlockZ()));
+		  player.teleport(new Location(Bukkit.getWorld(config.get("Earth.Land.World.Name").toString()), Max_2 - 5, loc.getBlockY(), loc.getBlockZ()));
 		   
 		  
 		  
@@ -599,7 +604,7 @@ public void playerMove(PlayerMoveEvent event) {
 		
 		 // event.setCancelled(true);
 		  
-		  player.teleport(new Location(Bukkit.getWorld(config.get("Clan_2.Land.World.Name").toString()), loc.getX(), loc.getBlockY(), Max_2 - 5));
+		  player.teleport(new Location(Bukkit.getWorld(config.get("Earth.Land.World.Name").toString()), loc.getX(), loc.getBlockY(), Max_2 - 5));
 		   
 		  
 	   }
@@ -611,7 +616,7 @@ public void playerMove(PlayerMoveEvent event) {
 			
 			 // event.setCancelled(true);
 			  
-			  player.teleport(new Location(Bukkit.getWorld(config.get("Clan_2.Land.World.Name").toString()), Max_2 - Max_2 + 5 , loc.getBlockY(), loc.getBlockZ()));
+			  player.teleport(new Location(Bukkit.getWorld(config.get("Earth.Land.World.Name").toString()), Max_2 - Max_2 + 5 , loc.getBlockY(), loc.getBlockZ()));
 			   
 			  
 		   }
@@ -625,7 +630,7 @@ public void playerMove(PlayerMoveEvent event) {
 			
 			 // event.setCancelled(true);
 			  
-			  player.teleport(new Location(Bukkit.getWorld(config.get("Clan_2.Land.World.Name").toString()), loc.getX(), loc.getBlockY(), Max_2 - Max_2 + 5));
+			  player.teleport(new Location(Bukkit.getWorld(config.get("Earth.Land.World.Name").toString()), loc.getX(), loc.getBlockY(), Max_2 - Max_2 + 5));
 			   
 			  
 		   }
@@ -634,7 +639,7 @@ public void playerMove(PlayerMoveEvent event) {
 	   
 	  
 	   
-	   if(Clan_3.contains(player.getName())){
+	   if(Water.contains(player.getName()) && !player.getWorld().getName().equalsIgnoreCase((String) config.get("Clans.WarWorld.Name")) && !player.getWorld().getName().equalsIgnoreCase((String) config.get("Clans.Spawn.Name"))){
 		   
 			  
 		   if(loc.getBlockX() > Max_3){
@@ -643,7 +648,7 @@ public void playerMove(PlayerMoveEvent event) {
 			
 			 // event.setCancelled(true);
 			  
-			  player.teleport(new Location(Bukkit.getWorld(config.get("Clan_3.Land.World.Name").toString()), Max_3 - 5, loc.getBlockY(), loc.getBlockZ()));
+			  player.teleport(new Location(Bukkit.getWorld(config.get("Water.Land.World.Name").toString()), Max_3 - 5, loc.getBlockY(), loc.getBlockZ()));
 			   
 			  
 			  
@@ -658,7 +663,7 @@ public void playerMove(PlayerMoveEvent event) {
 			
 			 // event.setCancelled(true);
 			  
-			  player.teleport(new Location(Bukkit.getWorld(config.get("Clan_3.Land.World.Name").toString()), loc.getX(), loc.getBlockY(), Max_3 - 5));
+			  player.teleport(new Location(Bukkit.getWorld(config.get("Water.Land.World.Name").toString()), loc.getX(), loc.getBlockY(), Max_3 - 5));
 			   
 			  
 		   }
@@ -670,7 +675,7 @@ public void playerMove(PlayerMoveEvent event) {
 				
 				 // event.setCancelled(true);
 				  
-				  player.teleport(new Location(Bukkit.getWorld(config.get("Clan_3.Land.World.Name").toString()), Max_3 - Max_3 + 5 , loc.getBlockY(), loc.getBlockZ()));
+				  player.teleport(new Location(Bukkit.getWorld(config.get("Water.Land.World.Name").toString()), Max_3 - Max_3 + 5 , loc.getBlockY(), loc.getBlockZ()));
 				   
 				  
 			   }
@@ -684,7 +689,7 @@ public void playerMove(PlayerMoveEvent event) {
 				
 				 // event.setCancelled(true);
 				  
-				  player.teleport(new Location(Bukkit.getWorld(config.get("Clan_3.Land.World.Name").toString()), loc.getX(), loc.getBlockY(), Max_3 - Max_3 + 5));
+				  player.teleport(new Location(Bukkit.getWorld(config.get("Water.Land.World.Name").toString()), loc.getX(), loc.getBlockY(), Max_3 - Max_3 + 5));
 				   
 				  
 			   }
@@ -693,7 +698,7 @@ public void playerMove(PlayerMoveEvent event) {
 		   
 	   
 	   
-	   if(Clan_4.contains(player.getName())){
+	   if(Fire.contains(player.getName()) && !player.getWorld().getName().equalsIgnoreCase((String) config.get("Clans.WarWorld.Name")) && !player.getWorld().getName().equalsIgnoreCase((String) config.get("Clans.Spawn.Name"))){
 		   
 			  
 		   if(loc.getBlockX() > Max_4){
@@ -702,7 +707,7 @@ public void playerMove(PlayerMoveEvent event) {
 			
 			 // event.setCancelled(true);
 			  
-			  player.teleport(new Location(Bukkit.getWorld(config.get("Clan_4.Land.World.Name").toString()), Max_4 - 5, loc.getBlockY(), loc.getBlockZ()));
+			  player.teleport(new Location(Bukkit.getWorld(config.get("Fire.Land.World.Name").toString()), Max_4 - 5, loc.getBlockY(), loc.getBlockZ()));
 			   
 			  
 			  
@@ -717,7 +722,7 @@ public void playerMove(PlayerMoveEvent event) {
 			
 			 // event.setCancelled(true);
 			  
-			  player.teleport(new Location(Bukkit.getWorld(config.get("Clan_4.Land.World.Name").toString()), loc.getX(), loc.getBlockY(), Max_4 - 5));
+			  player.teleport(new Location(Bukkit.getWorld(config.get("Fire.Land.World.Name").toString()), loc.getX(), loc.getBlockY(), Max_4 - 5));
 			   
 			  
 		   }
@@ -729,7 +734,7 @@ public void playerMove(PlayerMoveEvent event) {
 				
 				 // event.setCancelled(true);
 				  
-				  player.teleport(new Location(Bukkit.getWorld(config.get("Clan_4.Land.World.Name").toString()), Max_4 - Max_4 + 5 , loc.getBlockY(), loc.getBlockZ()));
+				  player.teleport(new Location(Bukkit.getWorld(config.get("Fire.Land.World.Name").toString()), Max_4 - Max_4 + 5 , loc.getBlockY(), loc.getBlockZ()));
 				   
 				  
 			   }
@@ -743,7 +748,7 @@ public void playerMove(PlayerMoveEvent event) {
 				
 				 // event.setCancelled(true);
 				  
-				  player.teleport(new Location(Bukkit.getWorld(config.get("Clan_4.Land.World.Name").toString()), loc.getX(), loc.getBlockY(), Max_4 - Max_4 + 5));
+				  player.teleport(new Location(Bukkit.getWorld(config.get("Fire.Land.World.Name").toString()), loc.getX(), loc.getBlockY(), Max_4 - Max_4 + 5));
 				   
 				  
 			   }
@@ -781,28 +786,28 @@ public void OnPlayerLogin(PlayerJoinEvent event){
 
 	int pick = Random.nextInt(4);
 
-	if(!Clan_1.contains(player.getName())){
+	if(!Air.contains(player.getName())){
 		
-		if(!Clan_2.contains(player.getName())){
+		if(!Earth.contains(player.getName())){
 			
-			if(!Clan_3.contains(player.getName())){
+			if(!Water.contains(player.getName())){
 				
-				if(!Clan_4.contains(player.getName())){
+				if(!Fire.contains(player.getName())){
 	
 	if(pick == 1){
 
 		
 		
-	player.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "You Are Now A Member Of " + ChatColor.GOLD + "Clan 1!");
+	player.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "You Are Now A Member Of " + ChatColor.GOLD + "Air!");
 
 	
 	
-	 Clan_1.add(player.getName());
+	 Air.add(player.getName());
 		 
 		// add to config
-		config.set("Clan_1.Players.Names", Clan_1);
+		config.set("Air.Players.Names", Air);
 		
-		config.addDefault("Clan_1.Players." + player.getDisplayName() + ".Bal", 0);
+		config.addDefault("Air.Players." + player.getDisplayName() + ".Bal", 0);
 		
 		// save
 		saveConfig();
@@ -816,19 +821,19 @@ public void OnPlayerLogin(PlayerJoinEvent event){
 		
 		
 
-		player.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "You Are Now A Member Of " + ChatColor.GOLD + "Clan 2!");
+		player.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "You Are Now A Member Of " + ChatColor.GOLD + "Earth!");
 
 
 	
 	
-	 Clan_2.add(player.getName());
+	 Earth.add(player.getName());
 		 
 		// add to config
-		config.set("Clan_2.Players.Names", Clan_2);
+		config.set("Earth.Players.Names", Earth);
 		 
-		// config.set("Clan_2.Players.Users.UserNames", player.getDisplayName());
+		// config.set("Earth.Players.Users.UserNames", player.getDisplayName());
 		
-		config.addDefault("Clan_2.Players." + player.getDisplayName() + ".Bal", 0);
+		config.addDefault("Earth.Players." + player.getDisplayName() + ".Bal", 0);
 		
 		// save
 		saveConfig();
@@ -839,17 +844,17 @@ public void OnPlayerLogin(PlayerJoinEvent event){
 	if(pick == 3){
 
 
-		player.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "You Are Now A Member Of " + ChatColor.GOLD + "Clan 3!");
+		player.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "You Are Now A Member Of " + ChatColor.GOLD + "Water!");
 
 		
-	 Clan_3.add(player.getName());
+	 Water.add(player.getName());
 		 
 		// add to config
-		config.set("Clan_3.Players.Names", Clan_3);
+		config.set("Water.Players.Names", Water);
 		 
-		// config.set("Clan_3.Players.Users.UserNames", player.getDisplayName());
+		// config.set("Water.Players.Users.UserNames", player.getDisplayName());
 		
-		config.addDefault("Clan_3.Players." + player.getDisplayName() + ".Bal", 0);
+		config.addDefault("Water.Players." + player.getDisplayName() + ".Bal", 0);
 		
 		// save
 		saveConfig();
@@ -860,18 +865,18 @@ public void OnPlayerLogin(PlayerJoinEvent event){
 	if(pick == 4){
 
 		
-		player.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "You Are Now A Member Of " + ChatColor.GOLD + "Clan 4!");
+		player.sendMessage(ChatColor.BLUE + "[Clan Vs Clan] " + ChatColor.DARK_PURPLE + "You Are Now A Member Of " + ChatColor.GOLD + "Fire!");
 
 	
 	
-	 Clan_4.add(player.getName());
+	 Fire.add(player.getName());
 		 
 		// add to config
-		config.set("Clan_4.Players.Names", Clan_4);
+		config.set("Fire.Players.Names", Fire);
 		
-		// config.set("Clan_4.Players.Users.UserNames", player.getDisplayName());
+		// config.set("Fire.Players.Users.UserNames", player.getDisplayName());
 		
-		config.addDefault("Clan_4.Players." + player.getDisplayName() + ".Bal", 0); 
+		config.addDefault("Fire.Players." + player.getDisplayName() + ".Bal", 0); 
 		
 		// save
 		saveConfig();
@@ -888,6 +893,80 @@ public void OnPlayerLogin(PlayerJoinEvent event){
 
 
 
+	
+		@EventHandler
+		private boolean sameTeam(Player victim, Player attacker) {
+			
+			List<String> Air = config.getStringList("Air.Players.Names");
+
+			List<String> Earth = config.getStringList("Earth.Players.Names");
+
+			List<String> Water = config.getStringList("Water.Players.Names");
+
+			List<String> Fire = config.getStringList("Fire.Players.Names");
+			
+		    if(Air.contains(victim.getDisplayName()) && Air.contains(attacker.getDisplayName())) {
+		       
+		    	
+		        return true;
+		    } 
+		    
+		    if(Earth.contains(victim.getDisplayName()) && Earth.contains(attacker.getDisplayName())) {
+		       
+		    	
+		        return true;
+		    } 
+  
+		    if(Water.contains(victim.getDisplayName()) && Water.contains(attacker.getDisplayName())) {
+      
+  	
+		    	return true;
+		    } 
+  
+		    if(Fire.contains(victim.getDisplayName()) && Fire.contains(attacker.getDisplayName())) {
+      
+  	
+		    	return true;
+		    } 
+  
+		    
+		    
+		    return false;
+		}
+		 
+		@EventHandler
+		public void onEntityDamageByEntity(EntityDamageByEntityEvent e) { // Triggered whenever an entity damages another entity
+		    if(!(e.getEntity() instanceof Player)) {
+		        // Victim is not a player
+		        return;
+		    }
+		 
+		    // Cast victim
+		    Player victim = (Player) e.getEntity();
+		 
+		    // Create an empty player object to store attacker
+		    Player attacker = null;
+		 
+		    if(e.getDamager() instanceof Player) {
+		        // Attacker is a player (melee damage)
+		        attacker = (Player) e.getDamager();
+		    } else if(e.getDamager() instanceof Arrow) {
+		        // Attacker is an arrow (projectile damage)
+		        Arrow arrow = (Arrow) e.getDamager();
+		        if(!(arrow.getShooter() instanceof Player)) {
+		            // Arrow was not fired by a player
+		            return;
+		        }
+		        // Cast attacker
+		        attacker = (Player) arrow.getShooter();
+		    } 
+		 
+		    // Check the teams
+		    if(sameTeam(victim, attacker)) {
+		        e.setCancelled(true);
+		    }
+		}
+		 
 
 @SuppressWarnings("deprecation")
 @EventHandler
@@ -925,13 +1004,13 @@ public void onClick(InventoryClickEvent event) {
 		Player player = (Player) event.getWhoClicked();
 
 
-		List<String> Clan_1 = config.getStringList("Clan_1.Players.Names");
+		List<String> Air = config.getStringList("Air.Players.Names");
 
-		List<String> Clan_2 = config.getStringList("Clan_2.Players.Names");
+		List<String> Earth = config.getStringList("Earth.Players.Names");
 
-		List<String> Clan_3 = config.getStringList("Clan_3.Players.Names");
+		List<String> Water = config.getStringList("Water.Players.Names");
 
-		List<String> Clan_4 = config.getStringList("Clan_4.Players.Names");
+		List<String> Fire = config.getStringList("Fire.Players.Names");
 
 		ItemStack clicked = event.getCurrentItem();
 		
@@ -1046,9 +1125,9 @@ public void onClick(InventoryClickEvent event) {
 		if (clicked.getType() == Material.DIAMOND_HELMET) {
 			event.setCancelled(true);
 			
-			if(Clan_1.contains(player.getDisplayName()) && ((Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") >= 3500)){
+			if(Air.contains(player.getDisplayName()) && ((Integer)config.get("Air.Players." + player.getName().toString() + ".Bal") >= 3500)){
 			
-				config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") - 3500); 
+				config.set("Air.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Air.Players." + player.getName().toString() + ".Bal") - 3500); 
 			
 				if (player.getInventory().firstEmpty() == -1){
 				    // if inventory is full, drop it to the ground (item is a ItemStack)
@@ -1065,28 +1144,9 @@ public void onClick(InventoryClickEvent event) {
 				
 				}
 			
-			if(Clan_2.contains(player.getDisplayName()) && ((Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") >= 3500)){
+			if(Earth.contains(player.getDisplayName()) && ((Integer)config.get("Earth.Players." + player.getName().toString() + ".Bal") >= 3500)){
 				
-				config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") - 3500); 
-				
-				if (player.getInventory().firstEmpty() == -1){
-				    // if inventory is full, drop it to the ground (item is a ItemStack)
-				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondHead);
-				} else{
-				    // if there is a empty place, put it in
-				    int newItemSlot = player.getInventory().firstEmpty();
-				    player.getInventory().setItem(newItemSlot, DiamondHead);
-				 }
-				
-				 player.updateInventory();
-				
-				saveConfig();
-				
-				}
-			
-			if(Clan_3.contains(player.getDisplayName()) && ((Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") >= 3500)){
-				
-				config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") - 3500); 
+				config.set("Earth.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Earth.Players." + player.getName().toString() + ".Bal") - 3500); 
 				
 				if (player.getInventory().firstEmpty() == -1){
 				    // if inventory is full, drop it to the ground (item is a ItemStack)
@@ -1103,9 +1163,28 @@ public void onClick(InventoryClickEvent event) {
 				
 				}
 			
-			if(Clan_4.contains(player.getDisplayName()) && ((Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") >= 3500)){
+			if(Water.contains(player.getDisplayName()) && ((Integer)config.get("Water.Players." + player.getName().toString() + ".Bal") >= 3500)){
 				
-				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") - 3500); 
+				config.set("Water.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Water.Players." + player.getName().toString() + ".Bal") - 3500); 
+				
+				if (player.getInventory().firstEmpty() == -1){
+				    // if inventory is full, drop it to the ground (item is a ItemStack)
+				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondHead);
+				} else{
+				    // if there is a empty place, put it in
+				    int newItemSlot = player.getInventory().firstEmpty();
+				    player.getInventory().setItem(newItemSlot, DiamondHead);
+				 }
+				
+				 player.updateInventory();
+				
+				saveConfig();
+				
+				}
+			
+			if(Fire.contains(player.getDisplayName()) && ((Integer)config.get("Fire.Players." + player.getName().toString() + ".Bal") >= 3500)){
+				
+				config.set("Fire.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Fire.Players." + player.getName().toString() + ".Bal") - 3500); 
 				
 				if (player.getInventory().firstEmpty() == -1){
 				    // if inventory is full, drop it to the ground (item is a ItemStack)
@@ -1126,28 +1205,9 @@ public void onClick(InventoryClickEvent event) {
 		if (clicked.getType() == Material.DIAMOND_CHESTPLATE) {
 			event.setCancelled(true);
 			
-			if(Clan_1.contains(player.getDisplayName()) && ((Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") >= 5000)){
+			if(Air.contains(player.getDisplayName()) && ((Integer)config.get("Air.Players." + player.getName().toString() + ".Bal") >= 5000)){
 				
-				config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") - 5000); 
-				
-				if (player.getInventory().firstEmpty() == -1){
-				    // if inventory is full, drop it to the ground (item is a ItemStack)
-				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondChest);
-				} else{
-				    // if there is a empty place, put it in
-				    int newItemSlot = player.getInventory().firstEmpty();
-				    player.getInventory().setItem(newItemSlot, DiamondChest);
-				 }
-				
-				 player.updateInventory();
-				
-				saveConfig();
-				
-				}
-			
-			if(Clan_2.contains(player.getDisplayName()) && ((Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") >= 5000)){
-				
-				config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") - 5000); 
+				config.set("Air.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Air.Players." + player.getName().toString() + ".Bal") - 5000); 
 				
 				if (player.getInventory().firstEmpty() == -1){
 				    // if inventory is full, drop it to the ground (item is a ItemStack)
@@ -1164,9 +1224,9 @@ public void onClick(InventoryClickEvent event) {
 				
 				}
 			
-			if(Clan_3.contains(player.getDisplayName()) && ((Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") >= 5000)){
+			if(Earth.contains(player.getDisplayName()) && ((Integer)config.get("Earth.Players." + player.getName().toString() + ".Bal") >= 5000)){
 				
-				config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") - 5000); 
+				config.set("Earth.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Earth.Players." + player.getName().toString() + ".Bal") - 5000); 
 				
 				if (player.getInventory().firstEmpty() == -1){
 				    // if inventory is full, drop it to the ground (item is a ItemStack)
@@ -1183,9 +1243,28 @@ public void onClick(InventoryClickEvent event) {
 				
 				}
 			
-			if(Clan_4.contains(player.getDisplayName()) && ((Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") >= 5000)){
+			if(Water.contains(player.getDisplayName()) && ((Integer)config.get("Water.Players." + player.getName().toString() + ".Bal") >= 5000)){
 				
-				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") - 5000); 
+				config.set("Water.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Water.Players." + player.getName().toString() + ".Bal") - 5000); 
+				
+				if (player.getInventory().firstEmpty() == -1){
+				    // if inventory is full, drop it to the ground (item is a ItemStack)
+				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondChest);
+				} else{
+				    // if there is a empty place, put it in
+				    int newItemSlot = player.getInventory().firstEmpty();
+				    player.getInventory().setItem(newItemSlot, DiamondChest);
+				 }
+				
+				 player.updateInventory();
+				
+				saveConfig();
+				
+				}
+			
+			if(Fire.contains(player.getDisplayName()) && ((Integer)config.get("Fire.Players." + player.getName().toString() + ".Bal") >= 5000)){
+				
+				config.set("Fire.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Fire.Players." + player.getName().toString() + ".Bal") - 5000); 
 				
 				if (player.getInventory().firstEmpty() == -1){
 				    // if inventory is full, drop it to the ground (item is a ItemStack)
@@ -1209,28 +1288,9 @@ public void onClick(InventoryClickEvent event) {
 			event.setCancelled(true);
 			
 			
-			if(Clan_1.contains(player.getDisplayName()) && ((Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") >= 3500)){
+			if(Air.contains(player.getDisplayName()) && ((Integer)config.get("Air.Players." + player.getName().toString() + ".Bal") >= 3500)){
 				
-				config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") - 3500); 
-				
-				if (player.getInventory().firstEmpty() == -1){
-				    // if inventory is full, drop it to the ground (item is a ItemStack)
-				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondLegs);
-				} else{
-				    // if there is a empty place, put it in
-				    int newItemSlot = player.getInventory().firstEmpty();
-				    player.getInventory().setItem(newItemSlot, DiamondLegs);
-				 }
-				
-				 player.updateInventory();
-				
-				saveConfig();
-				
-				}
-			
-			if(Clan_2.contains(player.getDisplayName()) && ((Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") >= 3500)){
-				
-				config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") - 3500); 
+				config.set("Air.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Air.Players." + player.getName().toString() + ".Bal") - 3500); 
 				
 				if (player.getInventory().firstEmpty() == -1){
 				    // if inventory is full, drop it to the ground (item is a ItemStack)
@@ -1247,9 +1307,9 @@ public void onClick(InventoryClickEvent event) {
 				
 				}
 			
-			if(Clan_3.contains(player.getDisplayName()) && ((Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") >= 3500)){
+			if(Earth.contains(player.getDisplayName()) && ((Integer)config.get("Earth.Players." + player.getName().toString() + ".Bal") >= 3500)){
 				
-				config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") - 3500); 
+				config.set("Earth.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Earth.Players." + player.getName().toString() + ".Bal") - 3500); 
 				
 				if (player.getInventory().firstEmpty() == -1){
 				    // if inventory is full, drop it to the ground (item is a ItemStack)
@@ -1266,9 +1326,28 @@ public void onClick(InventoryClickEvent event) {
 				
 				}
 			
-			if(Clan_4.contains(player.getDisplayName()) && ((Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") >= 3500)){
+			if(Water.contains(player.getDisplayName()) && ((Integer)config.get("Water.Players." + player.getName().toString() + ".Bal") >= 3500)){
 				
-				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") - 3500); 
+				config.set("Water.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Water.Players." + player.getName().toString() + ".Bal") - 3500); 
+				
+				if (player.getInventory().firstEmpty() == -1){
+				    // if inventory is full, drop it to the ground (item is a ItemStack)
+				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondLegs);
+				} else{
+				    // if there is a empty place, put it in
+				    int newItemSlot = player.getInventory().firstEmpty();
+				    player.getInventory().setItem(newItemSlot, DiamondLegs);
+				 }
+				
+				 player.updateInventory();
+				
+				saveConfig();
+				
+				}
+			
+			if(Fire.contains(player.getDisplayName()) && ((Integer)config.get("Fire.Players." + player.getName().toString() + ".Bal") >= 3500)){
+				
+				config.set("Fire.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Fire.Players." + player.getName().toString() + ".Bal") - 3500); 
 				
 				if (player.getInventory().firstEmpty() == -1){
 				    // if inventory is full, drop it to the ground (item is a ItemStack)
@@ -1292,28 +1371,9 @@ public void onClick(InventoryClickEvent event) {
 			event.setCancelled(true);
 			
 				
-			if(Clan_1.contains(player.getDisplayName()) && ((Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") >= 3200)){
+			if(Air.contains(player.getDisplayName()) && ((Integer)config.get("Air.Players." + player.getName().toString() + ".Bal") >= 3200)){
 				
-				config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") - 3200); 
-				
-				if (player.getInventory().firstEmpty() == -1){
-				    // if inventory is full, drop it to the ground (item is a ItemStack)
-				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondBoots);
-				} else{
-				    // if there is a empty place, put it in
-				    int newItemSlot = player.getInventory().firstEmpty();
-				    player.getInventory().setItem(newItemSlot, DiamondBoots);
-				 }
-				
-				 player.updateInventory();
-				
-				saveConfig();
-				
-				}
-			
-			if(Clan_2.contains(player.getDisplayName()) && ((Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") >= 3200)){
-				
-				config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") - 3200); 
+				config.set("Air.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Air.Players." + player.getName().toString() + ".Bal") - 3200); 
 				
 				if (player.getInventory().firstEmpty() == -1){
 				    // if inventory is full, drop it to the ground (item is a ItemStack)
@@ -1330,9 +1390,9 @@ public void onClick(InventoryClickEvent event) {
 				
 				}
 			
-			if(Clan_3.contains(player.getDisplayName()) && ((Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") >= 3200)){
+			if(Earth.contains(player.getDisplayName()) && ((Integer)config.get("Earth.Players." + player.getName().toString() + ".Bal") >= 3200)){
 				
-				config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") - 3200); 
+				config.set("Earth.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Earth.Players." + player.getName().toString() + ".Bal") - 3200); 
 				
 				if (player.getInventory().firstEmpty() == -1){
 				    // if inventory is full, drop it to the ground (item is a ItemStack)
@@ -1349,9 +1409,28 @@ public void onClick(InventoryClickEvent event) {
 				
 				}
 			
-			if(Clan_4.contains(player.getDisplayName()) && ((Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") >= 3200)){
+			if(Water.contains(player.getDisplayName()) && ((Integer)config.get("Water.Players." + player.getName().toString() + ".Bal") >= 3200)){
 				
-				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") - 3200); 
+				config.set("Water.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Water.Players." + player.getName().toString() + ".Bal") - 3200); 
+				
+				if (player.getInventory().firstEmpty() == -1){
+				    // if inventory is full, drop it to the ground (item is a ItemStack)
+				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondBoots);
+				} else{
+				    // if there is a empty place, put it in
+				    int newItemSlot = player.getInventory().firstEmpty();
+				    player.getInventory().setItem(newItemSlot, DiamondBoots);
+				 }
+				
+				 player.updateInventory();
+				
+				saveConfig();
+				
+				}
+			
+			if(Fire.contains(player.getDisplayName()) && ((Integer)config.get("Fire.Players." + player.getName().toString() + ".Bal") >= 3200)){
+				
+				config.set("Fire.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Fire.Players." + player.getName().toString() + ".Bal") - 3200); 
 				
 				if (player.getInventory().firstEmpty() == -1){
 				    // if inventory is full, drop it to the ground (item is a ItemStack)
@@ -1374,28 +1453,9 @@ public void onClick(InventoryClickEvent event) {
 		if (clicked.getType() == Material.DIAMOND_SWORD) {
 			event.setCancelled(true);
 			
-			if(Clan_1.contains(player.getDisplayName()) && ((Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") >= 10000)){
+			if(Air.contains(player.getDisplayName()) && ((Integer)config.get("Air.Players." + player.getName().toString() + ".Bal") >= 10000)){
 				
-				config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") - 10000); 
-				
-				if (player.getInventory().firstEmpty() == -1){
-				    // if inventory is full, drop it to the ground (item is a ItemStack)
-				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondSword);
-				} else{
-				    // if there is a empty place, put it in
-				    int newItemSlot = player.getInventory().firstEmpty();
-				    player.getInventory().setItem(newItemSlot, DiamondSword);
-				 }
-				
-				 player.updateInventory();
-				
-				saveConfig();
-				
-				}
-			
-			if(Clan_2.contains(player.getDisplayName()) && ((Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") >= 10000)){
-				
-				config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") - 10000); 
+				config.set("Air.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Air.Players." + player.getName().toString() + ".Bal") - 10000); 
 				
 				if (player.getInventory().firstEmpty() == -1){
 				    // if inventory is full, drop it to the ground (item is a ItemStack)
@@ -1412,9 +1472,9 @@ public void onClick(InventoryClickEvent event) {
 				
 				}
 			
-			if(Clan_3.contains(player.getDisplayName()) && ((Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") >= 10000)){
+			if(Earth.contains(player.getDisplayName()) && ((Integer)config.get("Earth.Players." + player.getName().toString() + ".Bal") >= 10000)){
 				
-				config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") - 10000); 
+				config.set("Earth.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Earth.Players." + player.getName().toString() + ".Bal") - 10000); 
 				
 				if (player.getInventory().firstEmpty() == -1){
 				    // if inventory is full, drop it to the ground (item is a ItemStack)
@@ -1431,9 +1491,28 @@ public void onClick(InventoryClickEvent event) {
 				
 				}
 			
-			if(Clan_4.contains(player.getDisplayName()) && ((Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") >= 10000)){
+			if(Water.contains(player.getDisplayName()) && ((Integer)config.get("Water.Players." + player.getName().toString() + ".Bal") >= 10000)){
 				
-				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") - 10000); 
+				config.set("Water.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Water.Players." + player.getName().toString() + ".Bal") - 10000); 
+				
+				if (player.getInventory().firstEmpty() == -1){
+				    // if inventory is full, drop it to the ground (item is a ItemStack)
+				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondSword);
+				} else{
+				    // if there is a empty place, put it in
+				    int newItemSlot = player.getInventory().firstEmpty();
+				    player.getInventory().setItem(newItemSlot, DiamondSword);
+				 }
+				
+				 player.updateInventory();
+				
+				saveConfig();
+				
+				}
+			
+			if(Fire.contains(player.getDisplayName()) && ((Integer)config.get("Fire.Players." + player.getName().toString() + ".Bal") >= 10000)){
+				
+				config.set("Fire.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Fire.Players." + player.getName().toString() + ".Bal") - 10000); 
 				
 				if (player.getInventory().firstEmpty() == -1){
 				    // if inventory is full, drop it to the ground (item is a ItemStack)
@@ -1455,28 +1534,9 @@ public void onClick(InventoryClickEvent event) {
 		if (clicked.getType() == Material.DIAMOND_PICKAXE) {
 			event.setCancelled(true);
 			
-		if(Clan_1.contains(player.getDisplayName()) && ((Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") >= 10000)){
+		if(Air.contains(player.getDisplayName()) && ((Integer)config.get("Air.Players." + player.getName().toString() + ".Bal") >= 10000)){
 				
-				config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") - 10000); 
-				
-				if (player.getInventory().firstEmpty() == -1){
-				    // if inventory is full, drop it to the ground (item is a ItemStack)
-				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondPickAxe);
-				} else{
-				    // if there is a empty place, put it in
-				    int newItemSlot = player.getInventory().firstEmpty();
-				    player.getInventory().setItem(newItemSlot, DiamondPickAxe);
-				 }
-				
-				 player.updateInventory();
-				
-				saveConfig();
-				
-				}
-			
-			if(Clan_2.contains(player.getDisplayName()) && ((Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") >= 10000)){
-				
-				config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") - 10000); 
+				config.set("Air.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Air.Players." + player.getName().toString() + ".Bal") - 10000); 
 				
 				if (player.getInventory().firstEmpty() == -1){
 				    // if inventory is full, drop it to the ground (item is a ItemStack)
@@ -1493,9 +1553,9 @@ public void onClick(InventoryClickEvent event) {
 				
 				}
 			
-			if(Clan_3.contains(player.getDisplayName()) && ((Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") >= 10000)){
+			if(Earth.contains(player.getDisplayName()) && ((Integer)config.get("Earth.Players." + player.getName().toString() + ".Bal") >= 10000)){
 				
-				config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") - 10000); 
+				config.set("Earth.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Earth.Players." + player.getName().toString() + ".Bal") - 10000); 
 				
 				if (player.getInventory().firstEmpty() == -1){
 				    // if inventory is full, drop it to the ground (item is a ItemStack)
@@ -1512,9 +1572,28 @@ public void onClick(InventoryClickEvent event) {
 				
 				}
 			
-			if(Clan_4.contains(player.getDisplayName()) && ((Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") >= 10000)){
+			if(Water.contains(player.getDisplayName()) && ((Integer)config.get("Water.Players." + player.getName().toString() + ".Bal") >= 10000)){
 				
-				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") - 10000); 
+				config.set("Water.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Water.Players." + player.getName().toString() + ".Bal") - 10000); 
+				
+				if (player.getInventory().firstEmpty() == -1){
+				    // if inventory is full, drop it to the ground (item is a ItemStack)
+				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondPickAxe);
+				} else{
+				    // if there is a empty place, put it in
+				    int newItemSlot = player.getInventory().firstEmpty();
+				    player.getInventory().setItem(newItemSlot, DiamondPickAxe);
+				 }
+				
+				 player.updateInventory();
+				
+				saveConfig();
+				
+				}
+			
+			if(Fire.contains(player.getDisplayName()) && ((Integer)config.get("Fire.Players." + player.getName().toString() + ".Bal") >= 10000)){
+				
+				config.set("Fire.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Fire.Players." + player.getName().toString() + ".Bal") - 10000); 
 				
 				if (player.getInventory().firstEmpty() == -1){
 				    // if inventory is full, drop it to the ground (item is a ItemStack)
@@ -1536,28 +1615,9 @@ public void onClick(InventoryClickEvent event) {
 		if (clicked.getType() == Material.DIAMOND_AXE) {
 			event.setCancelled(true);
 			
-		if(Clan_1.contains(player.getDisplayName()) && ((Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") >= 10000)){
+		if(Air.contains(player.getDisplayName()) && ((Integer)config.get("Air.Players." + player.getName().toString() + ".Bal") >= 10000)){
 				
-				config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") - 10000); 
-				
-				if (player.getInventory().firstEmpty() == -1){
-				    // if inventory is full, drop it to the ground (item is a ItemStack)
-				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondAxe);
-				} else{
-				    // if there is a empty place, put it in
-				    int newItemSlot = player.getInventory().firstEmpty();
-				    player.getInventory().setItem(newItemSlot, DiamondAxe);
-				 }
-				
-				 player.updateInventory();
-				
-				saveConfig();
-				
-				}
-			
-			if(Clan_2.contains(player.getDisplayName()) && ((Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") >= 10000)){
-				
-				config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") - 10000); 
+				config.set("Air.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Air.Players." + player.getName().toString() + ".Bal") - 10000); 
 				
 				if (player.getInventory().firstEmpty() == -1){
 				    // if inventory is full, drop it to the ground (item is a ItemStack)
@@ -1574,9 +1634,9 @@ public void onClick(InventoryClickEvent event) {
 				
 				}
 			
-			if(Clan_3.contains(player.getDisplayName()) && ((Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") >= 10000)){
+			if(Earth.contains(player.getDisplayName()) && ((Integer)config.get("Earth.Players." + player.getName().toString() + ".Bal") >= 10000)){
 				
-				config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") - 10000); 
+				config.set("Earth.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Earth.Players." + player.getName().toString() + ".Bal") - 10000); 
 				
 				if (player.getInventory().firstEmpty() == -1){
 				    // if inventory is full, drop it to the ground (item is a ItemStack)
@@ -1593,9 +1653,28 @@ public void onClick(InventoryClickEvent event) {
 				
 				}
 			
-			if(Clan_4.contains(player.getDisplayName()) && ((Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") >= 10000)){
+			if(Water.contains(player.getDisplayName()) && ((Integer)config.get("Water.Players." + player.getName().toString() + ".Bal") >= 10000)){
 				
-				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") - 10000); 
+				config.set("Water.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Water.Players." + player.getName().toString() + ".Bal") - 10000); 
+				
+				if (player.getInventory().firstEmpty() == -1){
+				    // if inventory is full, drop it to the ground (item is a ItemStack)
+				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondAxe);
+				} else{
+				    // if there is a empty place, put it in
+				    int newItemSlot = player.getInventory().firstEmpty();
+				    player.getInventory().setItem(newItemSlot, DiamondAxe);
+				 }
+				
+				 player.updateInventory();
+				
+				saveConfig();
+				
+				}
+			
+			if(Fire.contains(player.getDisplayName()) && ((Integer)config.get("Fire.Players." + player.getName().toString() + ".Bal") >= 10000)){
+				
+				config.set("Fire.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Fire.Players." + player.getName().toString() + ".Bal") - 10000); 
 				
 				if (player.getInventory().firstEmpty() == -1){
 				    // if inventory is full, drop it to the ground (item is a ItemStack)
@@ -1617,28 +1696,9 @@ public void onClick(InventoryClickEvent event) {
 		if (clicked.getType() == Material.DIAMOND_SPADE) {
 			event.setCancelled(true);
 			
-		if(Clan_1.contains(player.getDisplayName()) && ((Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") >= 10000)){
+		if(Air.contains(player.getDisplayName()) && ((Integer)config.get("Air.Players." + player.getName().toString() + ".Bal") >= 10000)){
 				
-				config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") - 10000); 
-				
-				if (player.getInventory().firstEmpty() == -1){
-				    // if inventory is full, drop it to the ground (item is a ItemStack)
-				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondShovel);
-				} else{
-				    // if there is a empty place, put it in
-				    int newItemSlot = player.getInventory().firstEmpty();
-				    player.getInventory().setItem(newItemSlot, DiamondShovel);
-				 }
-				
-				 player.updateInventory();
-				
-				saveConfig();
-				
-				}
-			
-			if(Clan_2.contains(player.getDisplayName()) && ((Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") >= 10000)){
-				
-				config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") - 10000); 
+				config.set("Air.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Air.Players." + player.getName().toString() + ".Bal") - 10000); 
 				
 				if (player.getInventory().firstEmpty() == -1){
 				    // if inventory is full, drop it to the ground (item is a ItemStack)
@@ -1655,9 +1715,9 @@ public void onClick(InventoryClickEvent event) {
 				
 				}
 			
-			if(Clan_3.contains(player.getDisplayName()) && ((Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") >= 10000)){
+			if(Earth.contains(player.getDisplayName()) && ((Integer)config.get("Earth.Players." + player.getName().toString() + ".Bal") >= 10000)){
 				
-				config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") - 10000); 
+				config.set("Earth.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Earth.Players." + player.getName().toString() + ".Bal") - 10000); 
 				
 				if (player.getInventory().firstEmpty() == -1){
 				    // if inventory is full, drop it to the ground (item is a ItemStack)
@@ -1674,9 +1734,28 @@ public void onClick(InventoryClickEvent event) {
 				
 				}
 			
-			if(Clan_4.contains(player.getDisplayName()) && ((Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") >= 10000)){
+			if(Water.contains(player.getDisplayName()) && ((Integer)config.get("Water.Players." + player.getName().toString() + ".Bal") >= 10000)){
 				
-				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") - 10000); 
+				config.set("Water.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Water.Players." + player.getName().toString() + ".Bal") - 10000); 
+				
+				if (player.getInventory().firstEmpty() == -1){
+				    // if inventory is full, drop it to the ground (item is a ItemStack)
+				    player.getWorld().dropItem(player.getLocation().add(0, 1, 0), DiamondShovel);
+				} else{
+				    // if there is a empty place, put it in
+				    int newItemSlot = player.getInventory().firstEmpty();
+				    player.getInventory().setItem(newItemSlot, DiamondShovel);
+				 }
+				
+				 player.updateInventory();
+				
+				saveConfig();
+				
+				}
+			
+			if(Fire.contains(player.getDisplayName()) && ((Integer)config.get("Fire.Players." + player.getName().toString() + ".Bal") >= 10000)){
+				
+				config.set("Fire.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Fire.Players." + player.getName().toString() + ".Bal") - 10000); 
 				
 				if (player.getInventory().firstEmpty() == -1){
 				    // if inventory is full, drop it to the ground (item is a ItemStack)
@@ -1705,13 +1784,13 @@ if (event.getInventory().getName().equalsIgnoreCase("Clan Sell")){
 	Player player = (Player) event.getWhoClicked();
 
 
-	List<String> Clan_1 = config.getStringList("Clan_1.Players.Names");
+	List<String> Air = config.getStringList("Air.Players.Names");
 
-	List<String> Clan_2 = config.getStringList("Clan_2.Players.Names");
+	List<String> Earth = config.getStringList("Earth.Players.Names");
 
-	List<String> Clan_3 = config.getStringList("Clan_3.Players.Names");
+	List<String> Water = config.getStringList("Water.Players.Names");
 
-	List<String> Clan_4 = config.getStringList("Clan_4.Players.Names");
+	List<String> Fire = config.getStringList("Fire.Players.Names");
 
 	
 //Makes it so the code will only work if its in the CustomInv inventory
@@ -1732,17 +1811,17 @@ event.setCancelled(true);
 
 if(event.getInventory().contains(Material.DIAMOND)){
     
-	if(Clan_1.contains(player.getName())){
+	if(Air.contains(player.getName())){
 	
 	 player.getInventory().removeItem(new ItemStack(Material.DIAMOND, 1));
 	 
 	player.updateInventory();
 	
-	config.set("Clan_1.Admin.Ballance", (Integer)config.get("Clan_1.Admin.Ballance") + 500 );
+	config.set("Air.Admin.Ballance", (Integer)config.get("Air.Admin.Ballance") + 500 );
 	
 	
 	
-	config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") + (500 * (Integer)config.get("Clans.Shop.Sell.PayoutReturn"))); 
+	config.set("Air.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Air.Players." + player.getName().toString() + ".Bal") + (500 * (Integer)config.get("Clans.Shop.Sell.PayoutReturn"))); 
 	
 	
 	saveConfig();
@@ -1751,15 +1830,15 @@ if(event.getInventory().contains(Material.DIAMOND)){
 	
 	if(event.getInventory().contains(Material.DIAMOND)){
 	    
-		if(Clan_2.contains(player.getName())){
+		if(Earth.contains(player.getName())){
 		
 		 player.getInventory().removeItem(new ItemStack(Material.DIAMOND, 1));
 		 
 		player.updateInventory();
 		
-		config.set("Clan_2.Admin.Ballance", (Integer)config.get("Clan_2.Admin.Ballance") + 500 );
+		config.set("Earth.Admin.Ballance", (Integer)config.get("Earth.Admin.Ballance") + 500 );
 		
-		config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") + (500 * (Integer)config.get("Clans.Shop.Sell.PayoutReturn"))); 
+		config.set("Earth.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Earth.Players." + player.getName().toString() + ".Bal") + (500 * (Integer)config.get("Clans.Shop.Sell.PayoutReturn"))); 
 		
 		
 		saveConfig();
@@ -1770,15 +1849,15 @@ if(event.getInventory().contains(Material.DIAMOND)){
 		
 		if(event.getInventory().contains(Material.DIAMOND)){
 		    
-			if(Clan_3.contains(player.getName())){
+			if(Water.contains(player.getName())){
 			
 			 player.getInventory().removeItem(new ItemStack(Material.DIAMOND, 1));
 			 
 			player.updateInventory();
 			
-			config.set("Clan_3.Admin.Ballance", (Integer)config.get("Clan_3.Admin.Ballance") + 500 );
+			config.set("Water.Admin.Ballance", (Integer)config.get("Water.Admin.Ballance") + 500 );
 			
-			config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") + (500 * (Integer)config.get("Clans.Shop.Sell.PayoutReturn"))); 
+			config.set("Water.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Water.Players." + player.getName().toString() + ".Bal") + (500 * (Integer)config.get("Clans.Shop.Sell.PayoutReturn"))); 
 			
 		
 			saveConfig();
@@ -1789,15 +1868,15 @@ if(event.getInventory().contains(Material.DIAMOND)){
 			
 			if(event.getInventory().contains(Material.DIAMOND)){
 			    
-				if(Clan_4.contains(player.getName())){
+				if(Fire.contains(player.getName())){
 				
 				 player.getInventory().removeItem(new ItemStack(Material.DIAMOND, 1));
 				 
 				player.updateInventory();
 				
-				config.set("Clan_4.Admin.Ballance", (Integer)config.get("Clan_4.Admin.Ballance") + 500 );
+				config.set("Fire.Admin.Ballance", (Integer)config.get("Fire.Admin.Ballance") + 500 );
 				
-				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") + (500 * (Integer)config.get("Clans.Shop.Sell.PayoutReturn"))); 
+				config.set("Fire.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Fire.Players." + player.getName().toString() + ".Bal") + (500 * (Integer)config.get("Clans.Shop.Sell.PayoutReturn"))); 
 				
 				
 				saveConfig();
@@ -1817,7 +1896,7 @@ event.setCancelled(true);
 
 if(event.getInventory().contains(Material.COBBLESTONE)){
     
-	if(Clan_1.contains(player.getName())){
+	if(Air.contains(player.getName())){
 	
 		if(player.getInventory().contains(Material.COBBLESTONE, 32)){
 		
@@ -1825,9 +1904,9 @@ if(event.getInventory().contains(Material.COBBLESTONE)){
 	 
 	player.updateInventory();
 	
-	config.set("Clan_1.Admin.Ballance", (Integer)config.get("Clan_1.Admin.Ballance") + 32 );
+	config.set("Air.Admin.Ballance", (Integer)config.get("Air.Admin.Ballance") + 32 );
 	
-	config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") + (32 * (Integer)config.get("Clans.Shop.Sell.PayoutReturn"))); 
+	config.set("Air.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Air.Players." + player.getName().toString() + ".Bal") + (32 * (Integer)config.get("Clans.Shop.Sell.PayoutReturn"))); 
 	
 	
 	saveConfig();
@@ -1837,7 +1916,7 @@ if(event.getInventory().contains(Material.COBBLESTONE)){
 	
 	if(event.getInventory().contains(Material.COBBLESTONE)){
 	    
-		if(Clan_2.contains(player.getName())){
+		if(Earth.contains(player.getName())){
 		
 			if(player.getInventory().contains(Material.COBBLESTONE, 32)){
 			
@@ -1845,9 +1924,9 @@ if(event.getInventory().contains(Material.COBBLESTONE)){
 		 
 		player.updateInventory();
 		
-		config.set("Clan_2.Admin.Ballance", (Integer)config.get("Clan_2.Admin.Ballance") + 32);
+		config.set("Earth.Admin.Ballance", (Integer)config.get("Earth.Admin.Ballance") + 32);
 		
-		config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") + (32 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+		config.set("Earth.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Earth.Players." + player.getName().toString() + ".Bal") + (32 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 		
 		saveConfig();
 		
@@ -1857,7 +1936,7 @@ if(event.getInventory().contains(Material.COBBLESTONE)){
 		
 		if(event.getInventory().contains(Material.COBBLESTONE)){
 		    
-			if(Clan_3.contains(player.getName())){
+			if(Water.contains(player.getName())){
 			
 				if(player.getInventory().contains(Material.COBBLESTONE, 32)){
 				
@@ -1865,9 +1944,9 @@ if(event.getInventory().contains(Material.COBBLESTONE)){
 			 
 			player.updateInventory();
 			
-			config.set("Clan_3.Admin.Ballance", (Integer)config.get("Clan_3.Admin.Ballance") + 32 );
+			config.set("Water.Admin.Ballance", (Integer)config.get("Water.Admin.Ballance") + 32 );
 			
-			config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") + (32 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+			config.set("Water.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Water.Players." + player.getName().toString() + ".Bal") + (32 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 			
 			saveConfig();
 			
@@ -1877,7 +1956,7 @@ if(event.getInventory().contains(Material.COBBLESTONE)){
 			
 			if(event.getInventory().contains(Material.COBBLESTONE)){
 			    
-				if(Clan_4.contains(player.getName())){
+				if(Fire.contains(player.getName())){
 				
 					if(player.getInventory().contains(Material.COBBLESTONE, 32)){
 					
@@ -1885,9 +1964,9 @@ if(event.getInventory().contains(Material.COBBLESTONE)){
 				 
 				player.updateInventory();
 				
-				config.set("Clan_4.Admin.Ballance", (Integer)config.get("Clan_4.Admin.Ballance") + 32 );
+				config.set("Fire.Admin.Ballance", (Integer)config.get("Fire.Admin.Ballance") + 32 );
 				
-				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") + (32 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+				config.set("Fire.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Fire.Players." + player.getName().toString() + ".Bal") + (32 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 				
 				saveConfig();
 				
@@ -1905,7 +1984,7 @@ event.setCancelled(true);
 
 if(event.getInventory().contains(Material.IRON_ORE)){
     
-	if(Clan_1.contains(player.getName())){
+	if(Air.contains(player.getName())){
 	
 		if(player.getInventory().contains(Material.IRON_ORE, 8)){
 		
@@ -1913,9 +1992,9 @@ if(event.getInventory().contains(Material.IRON_ORE)){
 	 
 	player.updateInventory();
 	
-	config.set("Clan_1.Admin.Ballance", (Integer)config.get("Clan_1.Admin.Ballance") + 100 );
+	config.set("Air.Admin.Ballance", (Integer)config.get("Air.Admin.Ballance") + 100 );
 	
-	config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") + (100 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+	config.set("Air.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Air.Players." + player.getName().toString() + ".Bal") + (100 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 	
 	saveConfig();
 	
@@ -1924,7 +2003,7 @@ if(event.getInventory().contains(Material.IRON_ORE)){
 	
 	if(event.getInventory().contains(Material.IRON_ORE)){
 	    
-		if(Clan_2.contains(player.getName())){
+		if(Earth.contains(player.getName())){
 		
 			if(player.getInventory().contains(Material.IRON_ORE, 8)){
 			
@@ -1932,9 +2011,9 @@ if(event.getInventory().contains(Material.IRON_ORE)){
 		 
 		player.updateInventory();
 		
-		config.set("Clan_2.Admin.Ballance", (Integer)config.get("Clan_2.Admin.Ballance") + 100);
+		config.set("Earth.Admin.Ballance", (Integer)config.get("Earth.Admin.Ballance") + 100);
 		
-		config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") + (100 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+		config.set("Earth.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Earth.Players." + player.getName().toString() + ".Bal") + (100 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 		
 		saveConfig();
 		
@@ -1944,7 +2023,7 @@ if(event.getInventory().contains(Material.IRON_ORE)){
 		
 		if(event.getInventory().contains(Material.IRON_ORE)){
 		    
-			if(Clan_3.contains(player.getName())){
+			if(Water.contains(player.getName())){
 			
 				if(player.getInventory().contains(Material.IRON_ORE, 8)){
 				
@@ -1952,9 +2031,9 @@ if(event.getInventory().contains(Material.IRON_ORE)){
 			 
 			player.updateInventory();
 			
-			config.set("Clan_3.Admin.Ballance", (Integer)config.get("Clan_3.Admin.Ballance") + 100 );
+			config.set("Water.Admin.Ballance", (Integer)config.get("Water.Admin.Ballance") + 100 );
 			
-			config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") + (100 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+			config.set("Water.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Water.Players." + player.getName().toString() + ".Bal") + (100 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 			
 			saveConfig();
 			
@@ -1964,7 +2043,7 @@ if(event.getInventory().contains(Material.IRON_ORE)){
 			
 			if(event.getInventory().contains(Material.IRON_ORE)){
 			    
-				if(Clan_4.contains(player.getName())){
+				if(Fire.contains(player.getName())){
 				
 					if(player.getInventory().contains(Material.IRON_ORE, 8)){
 					
@@ -1972,9 +2051,9 @@ if(event.getInventory().contains(Material.IRON_ORE)){
 				 
 				player.updateInventory();
 				
-				config.set("Clan_4.Admin.Ballance", (Integer)config.get("Clan_4.Admin.Ballance") + 100 );
+				config.set("Fire.Admin.Ballance", (Integer)config.get("Fire.Admin.Ballance") + 100 );
 				
-				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") + (100 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+				config.set("Fire.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Fire.Players." + player.getName().toString() + ".Bal") + (100 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 				
 				saveConfig();
 				
@@ -1992,7 +2071,7 @@ event.setCancelled(true);
 
 if(event.getInventory().contains(Material.GOLD_ORE)){
     
-	if(Clan_1.contains(player.getName())){
+	if(Air.contains(player.getName())){
 	
 		if(player.getInventory().contains(Material.GOLD_ORE, 8)){
 		
@@ -2000,9 +2079,9 @@ if(event.getInventory().contains(Material.GOLD_ORE)){
 	 
 	player.updateInventory();
 	
-	config.set("Clan_1.Admin.Ballance", (Integer)config.get("Clan_1.Admin.Ballance") + 150 );
+	config.set("Air.Admin.Ballance", (Integer)config.get("Air.Admin.Ballance") + 150 );
 	
-	config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") + (150 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+	config.set("Air.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Air.Players." + player.getName().toString() + ".Bal") + (150 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 	
 	saveConfig();
 	
@@ -2011,7 +2090,7 @@ if(event.getInventory().contains(Material.GOLD_ORE)){
 	
 	if(event.getInventory().contains(Material.GOLD_ORE)){
 	    
-		if(Clan_2.contains(player.getName())){
+		if(Earth.contains(player.getName())){
 		
 			if(player.getInventory().contains(Material.GOLD_ORE, 8)){
 			
@@ -2019,9 +2098,9 @@ if(event.getInventory().contains(Material.GOLD_ORE)){
 		 
 		player.updateInventory();
 		
-		config.set("Clan_2.Admin.Ballance", (Integer)config.get("Clan_2.Admin.Ballance") + 150);
+		config.set("Earth.Admin.Ballance", (Integer)config.get("Earth.Admin.Ballance") + 150);
 		
-		config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") + (150 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+		config.set("Earth.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Earth.Players." + player.getName().toString() + ".Bal") + (150 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 		
 		saveConfig();
 		
@@ -2031,7 +2110,7 @@ if(event.getInventory().contains(Material.GOLD_ORE)){
 		
 		if(event.getInventory().contains(Material.GOLD_ORE)){
 		    
-			if(Clan_3.contains(player.getName())){
+			if(Water.contains(player.getName())){
 			
 				if(player.getInventory().contains(Material.GOLD_ORE, 8)){
 				
@@ -2039,9 +2118,9 @@ if(event.getInventory().contains(Material.GOLD_ORE)){
 			 
 			player.updateInventory();
 			
-			config.set("Clan_3.Admin.Ballance", (Integer)config.get("Clan_3.Admin.Ballance") + 150 );
+			config.set("Water.Admin.Ballance", (Integer)config.get("Water.Admin.Ballance") + 150 );
 			
-			config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") + (150 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+			config.set("Water.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Water.Players." + player.getName().toString() + ".Bal") + (150 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 			
 			saveConfig();
 			
@@ -2051,7 +2130,7 @@ if(event.getInventory().contains(Material.GOLD_ORE)){
 			
 			if(event.getInventory().contains(Material.GOLD_ORE)){
 			    
-				if(Clan_4.contains(player.getName())){
+				if(Fire.contains(player.getName())){
 				
 					if(player.getInventory().contains(Material.GOLD_ORE, 8)){
 					
@@ -2059,9 +2138,9 @@ if(event.getInventory().contains(Material.GOLD_ORE)){
 				 
 				player.updateInventory();
 				
-				config.set("Clan_4.Admin.Ballance", (Integer)config.get("Clan_4.Admin.Ballance") + 150 );
+				config.set("Fire.Admin.Ballance", (Integer)config.get("Fire.Admin.Ballance") + 150 );
 				
-				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") + (150 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+				config.set("Fire.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Fire.Players." + player.getName().toString() + ".Bal") + (150 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 				
 				saveConfig();
 				
@@ -2083,7 +2162,7 @@ event.setCancelled(true);
 
 if(event.getInventory().contains(Material.LAPIS_ORE)){
     
-	if(Clan_1.contains(player.getName())){
+	if(Air.contains(player.getName())){
 	
 		if(player.getInventory().contains(Material.LAPIS_ORE, 1)){
 		
@@ -2091,9 +2170,9 @@ if(event.getInventory().contains(Material.LAPIS_ORE)){
 	 
 	player.updateInventory();
 	
-	config.set("Clan_1.Admin.Ballance", (Integer)config.get("Clan_1.Admin.Ballance") + 300 );
+	config.set("Air.Admin.Ballance", (Integer)config.get("Air.Admin.Ballance") + 300 );
 	
-	config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") + (300 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+	config.set("Air.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Air.Players." + player.getName().toString() + ".Bal") + (300 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 	
 	saveConfig();
 	
@@ -2102,7 +2181,7 @@ if(event.getInventory().contains(Material.LAPIS_ORE)){
 	
 	if(event.getInventory().contains(Material.LAPIS_ORE)){
 	    
-		if(Clan_2.contains(player.getName())){
+		if(Earth.contains(player.getName())){
 		
 			if(player.getInventory().contains(Material.LAPIS_ORE, 1)){
 			
@@ -2110,9 +2189,9 @@ if(event.getInventory().contains(Material.LAPIS_ORE)){
 		 
 		player.updateInventory();
 		
-		config.set("Clan_2.Admin.Ballance", (Integer)config.get("Clan_2.Admin.Ballance") + 300);
+		config.set("Earth.Admin.Ballance", (Integer)config.get("Earth.Admin.Ballance") + 300);
 		
-		config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") + (300 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+		config.set("Earth.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Earth.Players." + player.getName().toString() + ".Bal") + (300 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 		
 		saveConfig();
 		
@@ -2122,7 +2201,7 @@ if(event.getInventory().contains(Material.LAPIS_ORE)){
 		
 		if(event.getInventory().contains(Material.LAPIS_ORE)){
 		    
-			if(Clan_3.contains(player.getName())){
+			if(Water.contains(player.getName())){
 			
 				if(player.getInventory().contains(Material.LAPIS_ORE, 1)){
 				
@@ -2130,9 +2209,9 @@ if(event.getInventory().contains(Material.LAPIS_ORE)){
 			 
 			player.updateInventory();
 			
-			config.set("Clan_3.Admin.Ballance", (Integer)config.get("Clan_3.Admin.Ballance") + 300 );
+			config.set("Water.Admin.Ballance", (Integer)config.get("Water.Admin.Ballance") + 300 );
 			
-			config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") + (300 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+			config.set("Water.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Water.Players." + player.getName().toString() + ".Bal") + (300 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 			
 			saveConfig();
 			
@@ -2142,7 +2221,7 @@ if(event.getInventory().contains(Material.LAPIS_ORE)){
 			
 			if(event.getInventory().contains(Material.LAPIS_ORE)){
 			    
-				if(Clan_4.contains(player.getName())){
+				if(Fire.contains(player.getName())){
 				
 					if(player.getInventory().contains(Material.LAPIS_ORE, 1)){
 					
@@ -2150,9 +2229,9 @@ if(event.getInventory().contains(Material.LAPIS_ORE)){
 				 
 				player.updateInventory();
 				
-				config.set("Clan_4.Admin.Ballance", (Integer)config.get("Clan_4.Admin.Ballance") + 300 );
+				config.set("Fire.Admin.Ballance", (Integer)config.get("Fire.Admin.Ballance") + 300 );
 				
-				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") + (300 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+				config.set("Fire.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Fire.Players." + player.getName().toString() + ".Bal") + (300 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 				
 				saveConfig();
 				
@@ -2170,7 +2249,7 @@ event.setCancelled(true);
 
 if(event.getInventory().contains(Material.REDSTONE_ORE)){
     
-	if(Clan_1.contains(player.getName())){
+	if(Air.contains(player.getName())){
 	
 		if(player.getInventory().contains(Material.REDSTONE_ORE, 8)){
 		
@@ -2178,9 +2257,9 @@ if(event.getInventory().contains(Material.REDSTONE_ORE)){
 	 
 	player.updateInventory();
 	
-	config.set("Clan_1.Admin.Ballance", (Integer)config.get("Clan_1.Admin.Ballance") + 400 );
+	config.set("Air.Admin.Ballance", (Integer)config.get("Air.Admin.Ballance") + 400 );
 	
-	config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") + (400 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+	config.set("Air.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Air.Players." + player.getName().toString() + ".Bal") + (400 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 	
 	saveConfig();
 	
@@ -2189,7 +2268,7 @@ if(event.getInventory().contains(Material.REDSTONE_ORE)){
 	
 	if(event.getInventory().contains(Material.REDSTONE_ORE)){
 	    
-		if(Clan_2.contains(player.getName())){
+		if(Earth.contains(player.getName())){
 		
 			if(player.getInventory().contains(Material.REDSTONE_ORE, 8)){
 			
@@ -2197,9 +2276,9 @@ if(event.getInventory().contains(Material.REDSTONE_ORE)){
 		 
 		player.updateInventory();
 		
-		config.set("Clan_2.Admin.Ballance", (Integer)config.get("Clan_2.Admin.Ballance") + 400);
+		config.set("Earth.Admin.Ballance", (Integer)config.get("Earth.Admin.Ballance") + 400);
 		
-		config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") + (400 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+		config.set("Earth.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Earth.Players." + player.getName().toString() + ".Bal") + (400 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 		
 		saveConfig();
 		
@@ -2209,7 +2288,7 @@ if(event.getInventory().contains(Material.REDSTONE_ORE)){
 		
 		if(event.getInventory().contains(Material.REDSTONE_ORE)){
 		    
-			if(Clan_3.contains(player.getName())){
+			if(Water.contains(player.getName())){
 			
 				if(player.getInventory().contains(Material.REDSTONE_ORE, 8)){
 				
@@ -2217,9 +2296,9 @@ if(event.getInventory().contains(Material.REDSTONE_ORE)){
 			 
 			player.updateInventory();
 			
-			config.set("Clan_3.Admin.Ballance", (Integer)config.get("Clan_3.Admin.Ballance") + 400 );
+			config.set("Water.Admin.Ballance", (Integer)config.get("Water.Admin.Ballance") + 400 );
 			
-			config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") + (400 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+			config.set("Water.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Water.Players." + player.getName().toString() + ".Bal") + (400 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 			
 			saveConfig();
 			
@@ -2229,7 +2308,7 @@ if(event.getInventory().contains(Material.REDSTONE_ORE)){
 			
 			if(event.getInventory().contains(Material.REDSTONE_ORE)){
 			    
-				if(Clan_4.contains(player.getName())){
+				if(Fire.contains(player.getName())){
 				
 					if(player.getInventory().contains(Material.REDSTONE_ORE, 8)){
 					
@@ -2237,9 +2316,9 @@ if(event.getInventory().contains(Material.REDSTONE_ORE)){
 				 
 				player.updateInventory();
 				
-				config.set("Clan_4.Admin.Ballance", (Integer)config.get("Clan_4.Admin.Ballance") + 400 );
+				config.set("Fire.Admin.Ballance", (Integer)config.get("Fire.Admin.Ballance") + 400 );
 				
-				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") + (400 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+				config.set("Fire.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Fire.Players." + player.getName().toString() + ".Bal") + (400 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 				
 				saveConfig();
 				
@@ -2257,7 +2336,7 @@ event.setCancelled(true);
 
 if(event.getInventory().contains(Material.IRON_INGOT)){
     
-	if(Clan_1.contains(player.getName())){
+	if(Air.contains(player.getName())){
 	
 		if(player.getInventory().contains(Material.IRON_INGOT, 8)){
 		
@@ -2265,9 +2344,9 @@ if(event.getInventory().contains(Material.IRON_INGOT)){
 	 
 	player.updateInventory();
 	
-	config.set("Clan_1.Admin.Ballance", (Integer)config.get("Clan_1.Admin.Ballance") + 150 );
+	config.set("Air.Admin.Ballance", (Integer)config.get("Air.Admin.Ballance") + 150 );
 	
-	config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") + (150 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+	config.set("Air.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Air.Players." + player.getName().toString() + ".Bal") + (150 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 	
 	saveConfig();
 	
@@ -2276,7 +2355,7 @@ if(event.getInventory().contains(Material.IRON_INGOT)){
 	
 	if(event.getInventory().contains(Material.IRON_INGOT)){
 	    
-		if(Clan_2.contains(player.getName())){
+		if(Earth.contains(player.getName())){
 		
 			if(player.getInventory().contains(Material.IRON_INGOT, 8)){
 			
@@ -2284,9 +2363,9 @@ if(event.getInventory().contains(Material.IRON_INGOT)){
 		 
 		player.updateInventory();
 		
-		config.set("Clan_2.Admin.Ballance", (Integer)config.get("Clan_2.Admin.Ballance") + 150);
+		config.set("Earth.Admin.Ballance", (Integer)config.get("Earth.Admin.Ballance") + 150);
 		
-		config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") + (150 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+		config.set("Earth.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Earth.Players." + player.getName().toString() + ".Bal") + (150 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 		
 		saveConfig();
 		
@@ -2296,7 +2375,7 @@ if(event.getInventory().contains(Material.IRON_INGOT)){
 		
 		if(event.getInventory().contains(Material.IRON_INGOT)){
 		    
-			if(Clan_3.contains(player.getName())){
+			if(Water.contains(player.getName())){
 			
 				if(player.getInventory().contains(Material.IRON_INGOT, 8)){
 				
@@ -2304,9 +2383,9 @@ if(event.getInventory().contains(Material.IRON_INGOT)){
 			 
 			player.updateInventory();
 			
-			config.set("Clan_3.Admin.Ballance", (Integer)config.get("Clan_3.Admin.Ballance") + 150 );
+			config.set("Water.Admin.Ballance", (Integer)config.get("Water.Admin.Ballance") + 150 );
 			
-			config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") + (150 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+			config.set("Water.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Water.Players." + player.getName().toString() + ".Bal") + (150 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 			
 			saveConfig();
 			
@@ -2316,7 +2395,7 @@ if(event.getInventory().contains(Material.IRON_INGOT)){
 			
 			if(event.getInventory().contains(Material.IRON_INGOT)){
 			    
-				if(Clan_4.contains(player.getName())){
+				if(Fire.contains(player.getName())){
 				
 					if(player.getInventory().contains(Material.IRON_INGOT, 8)){
 					
@@ -2324,9 +2403,9 @@ if(event.getInventory().contains(Material.IRON_INGOT)){
 				 
 				player.updateInventory();
 				
-				config.set("Clan_4.Admin.Ballance", (Integer)config.get("Clan_4.Admin.Ballance") + 150 );
+				config.set("Fire.Admin.Ballance", (Integer)config.get("Fire.Admin.Ballance") + 150 );
 				
-				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") + (150 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+				config.set("Fire.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Fire.Players." + player.getName().toString() + ".Bal") + (150 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 				
 				saveConfig();
 				
@@ -2347,7 +2426,7 @@ event.setCancelled(true);
 
 if(event.getInventory().contains(Material.GOLD_INGOT)){
     
-	if(Clan_1.contains(player.getName())){
+	if(Air.contains(player.getName())){
 	
 		if(player.getInventory().contains(Material.GOLD_INGOT, 8)){
 		
@@ -2355,9 +2434,9 @@ if(event.getInventory().contains(Material.GOLD_INGOT)){
 	 
 	player.updateInventory();
 	
-	config.set("Clan_1.Admin.Ballance", (Integer)config.get("Clan_1.Admin.Ballance") + 250 );
+	config.set("Air.Admin.Ballance", (Integer)config.get("Air.Admin.Ballance") + 250 );
 	
-	config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") + (250 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+	config.set("Air.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Air.Players." + player.getName().toString() + ".Bal") + (250 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 	
 	saveConfig();
 	
@@ -2366,7 +2445,7 @@ if(event.getInventory().contains(Material.GOLD_INGOT)){
 	
 	if(event.getInventory().contains(Material.GOLD_INGOT)){
 	    
-		if(Clan_2.contains(player.getName())){
+		if(Earth.contains(player.getName())){
 		
 			if(player.getInventory().contains(Material.GOLD_INGOT, 8)){
 			
@@ -2374,9 +2453,9 @@ if(event.getInventory().contains(Material.GOLD_INGOT)){
 		 
 		player.updateInventory();
 		
-		config.set("Clan_2.Admin.Ballance", (Integer)config.get("Clan_2.Admin.Ballance") + 250);
+		config.set("Earth.Admin.Ballance", (Integer)config.get("Earth.Admin.Ballance") + 250);
 		
-		config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") + (250 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+		config.set("Earth.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Earth.Players." + player.getName().toString() + ".Bal") + (250 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 		
 		saveConfig();
 		
@@ -2386,7 +2465,7 @@ if(event.getInventory().contains(Material.GOLD_INGOT)){
 		
 		if(event.getInventory().contains(Material.GOLD_INGOT)){
 		    
-			if(Clan_3.contains(player.getName())){
+			if(Water.contains(player.getName())){
 			
 				if(player.getInventory().contains(Material.GOLD_INGOT, 8)){
 				
@@ -2394,9 +2473,9 @@ if(event.getInventory().contains(Material.GOLD_INGOT)){
 			 
 			player.updateInventory();
 			
-			config.set("Clan_3.Admin.Ballance", (Integer)config.get("Clan_3.Admin.Ballance") + 250 );
+			config.set("Water.Admin.Ballance", (Integer)config.get("Water.Admin.Ballance") + 250 );
 			
-			config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") + (250 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+			config.set("Water.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Water.Players." + player.getName().toString() + ".Bal") + (250 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 			
 			saveConfig();
 			
@@ -2406,7 +2485,7 @@ if(event.getInventory().contains(Material.GOLD_INGOT)){
 			
 			if(event.getInventory().contains(Material.GOLD_INGOT)){
 			    
-				if(Clan_4.contains(player.getName())){
+				if(Fire.contains(player.getName())){
 				
 					if(player.getInventory().contains(Material.GOLD_INGOT, 8)){
 					
@@ -2414,9 +2493,9 @@ if(event.getInventory().contains(Material.GOLD_INGOT)){
 				 
 				player.updateInventory();
 				
-				config.set("Clan_4.Admin.Ballance", (Integer)config.get("Clan_4.Admin.Ballance") + 250 );
+				config.set("Fire.Admin.Ballance", (Integer)config.get("Fire.Admin.Ballance") + 250 );
 				
-				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") + (250 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+				config.set("Fire.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Fire.Players." + player.getName().toString() + ".Bal") + (250 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 				
 				saveConfig();
 				
@@ -2435,7 +2514,7 @@ event.setCancelled(true);
 
 if(event.getInventory().contains(Material.REDSTONE)){
     
-	if(Clan_1.contains(player.getName())){
+	if(Air.contains(player.getName())){
 	
 		if(player.getInventory().contains(Material.REDSTONE, 8)){
 		
@@ -2443,9 +2522,9 @@ if(event.getInventory().contains(Material.REDSTONE)){
 	 
 	player.updateInventory();
 	
-	config.set("Clan_1.Admin.Ballance", (Integer)config.get("Clan_1.Admin.Ballance") + 300 );
+	config.set("Air.Admin.Ballance", (Integer)config.get("Air.Admin.Ballance") + 300 );
 	
-	config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") + (300 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+	config.set("Air.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Air.Players." + player.getName().toString() + ".Bal") + (300 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 	
 	saveConfig();
 	
@@ -2454,7 +2533,7 @@ if(event.getInventory().contains(Material.REDSTONE)){
 	
 	if(event.getInventory().contains(Material.REDSTONE)){
 	    
-		if(Clan_2.contains(player.getName())){
+		if(Earth.contains(player.getName())){
 		
 			if(player.getInventory().contains(Material.REDSTONE, 8)){
 			
@@ -2462,9 +2541,9 @@ if(event.getInventory().contains(Material.REDSTONE)){
 		 
 		player.updateInventory();
 		
-		config.set("Clan_2.Admin.Ballance", (Integer)config.get("Clan_2.Admin.Ballance") + 300);
+		config.set("Earth.Admin.Ballance", (Integer)config.get("Earth.Admin.Ballance") + 300);
 		
-		config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") + (300 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+		config.set("Earth.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Earth.Players." + player.getName().toString() + ".Bal") + (300 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 		
 		saveConfig();
 		
@@ -2474,7 +2553,7 @@ if(event.getInventory().contains(Material.REDSTONE)){
 		
 		if(event.getInventory().contains(Material.REDSTONE)){
 		    
-			if(Clan_3.contains(player.getName())){
+			if(Water.contains(player.getName())){
 			
 				if(player.getInventory().contains(Material.REDSTONE, 8)){
 				
@@ -2482,9 +2561,9 @@ if(event.getInventory().contains(Material.REDSTONE)){
 			 
 			player.updateInventory();
 			
-			config.set("Clan_3.Admin.Ballance", (Integer)config.get("Clan_3.Admin.Ballance") + 300 );
+			config.set("Water.Admin.Ballance", (Integer)config.get("Water.Admin.Ballance") + 300 );
 			
-			config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") + (300 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+			config.set("Water.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Water.Players." + player.getName().toString() + ".Bal") + (300 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 			
 			saveConfig();
 			
@@ -2494,7 +2573,7 @@ if(event.getInventory().contains(Material.REDSTONE)){
 			
 			if(event.getInventory().contains(Material.REDSTONE)){
 			    
-				if(Clan_4.contains(player.getName())){
+				if(Fire.contains(player.getName())){
 				
 					if(player.getInventory().contains(Material.REDSTONE, 8)){
 					
@@ -2502,9 +2581,9 @@ if(event.getInventory().contains(Material.REDSTONE)){
 				 
 				player.updateInventory();
 				
-				config.set("Clan_4.Admin.Ballance", (Integer)config.get("Clan_4.Admin.Ballance") + 300 );
+				config.set("Fire.Admin.Ballance", (Integer)config.get("Fire.Admin.Ballance") + 300 );
 				
-				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") + (300 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+				config.set("Fire.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Fire.Players." + player.getName().toString() + ".Bal") + (300 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 				
 				saveConfig();
 				
@@ -2522,7 +2601,7 @@ event.setCancelled(true);
 
 if(event.getInventory().contains(Material.OBSIDIAN)){
     
-	if(Clan_1.contains(player.getName())){
+	if(Air.contains(player.getName())){
 	
 		if(player.getInventory().contains(Material.OBSIDIAN, 8)){
 		
@@ -2530,9 +2609,9 @@ if(event.getInventory().contains(Material.OBSIDIAN)){
 	 
 	player.updateInventory();
 	
-	config.set("Clan_1.Admin.Ballance", (Integer)config.get("Clan_1.Admin.Ballance") + 400 );
+	config.set("Air.Admin.Ballance", (Integer)config.get("Air.Admin.Ballance") + 400 );
 	
-	config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") + (400 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+	config.set("Air.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Air.Players." + player.getName().toString() + ".Bal") + (400 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 	
 	saveConfig();
 	
@@ -2541,7 +2620,7 @@ if(event.getInventory().contains(Material.OBSIDIAN)){
 	
 	if(event.getInventory().contains(Material.OBSIDIAN)){
 	    
-		if(Clan_2.contains(player.getName())){
+		if(Earth.contains(player.getName())){
 		
 			if(player.getInventory().contains(Material.OBSIDIAN, 8)){
 			
@@ -2549,9 +2628,9 @@ if(event.getInventory().contains(Material.OBSIDIAN)){
 		 
 		player.updateInventory();
 		
-		config.set("Clan_2.Admin.Ballance", (Integer)config.get("Clan_2.Admin.Ballance") + 400);
+		config.set("Earth.Admin.Ballance", (Integer)config.get("Earth.Admin.Ballance") + 400);
 		
-		config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") + (400 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+		config.set("Earth.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Earth.Players." + player.getName().toString() + ".Bal") + (400 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 		
 		saveConfig();
 		
@@ -2561,7 +2640,7 @@ if(event.getInventory().contains(Material.OBSIDIAN)){
 		
 		if(event.getInventory().contains(Material.OBSIDIAN)){
 		    
-			if(Clan_3.contains(player.getName())){
+			if(Water.contains(player.getName())){
 			
 				if(player.getInventory().contains(Material.OBSIDIAN, 8)){
 				
@@ -2569,9 +2648,9 @@ if(event.getInventory().contains(Material.OBSIDIAN)){
 			 
 			player.updateInventory();
 			
-			config.set("Clan_3.Admin.Ballance", (Integer)config.get("Clan_3.Admin.Ballance") + 400 );
+			config.set("Water.Admin.Ballance", (Integer)config.get("Water.Admin.Ballance") + 400 );
 			
-			config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") + (400 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+			config.set("Water.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Water.Players." + player.getName().toString() + ".Bal") + (400 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 			
 			saveConfig();
 			
@@ -2581,7 +2660,7 @@ if(event.getInventory().contains(Material.OBSIDIAN)){
 			
 			if(event.getInventory().contains(Material.OBSIDIAN)){
 			    
-				if(Clan_4.contains(player.getName())){
+				if(Fire.contains(player.getName())){
 				
 					if(player.getInventory().contains(Material.OBSIDIAN, 8)){
 					
@@ -2589,9 +2668,9 @@ if(event.getInventory().contains(Material.OBSIDIAN)){
 				 
 				player.updateInventory();
 				
-				config.set("Clan_4.Admin.Ballance", (Integer)config.get("Clan_4.Admin.Ballance") + 400 );
+				config.set("Fire.Admin.Ballance", (Integer)config.get("Fire.Admin.Ballance") + 400 );
 				
-				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") + (400 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+				config.set("Fire.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Fire.Players." + player.getName().toString() + ".Bal") + (400 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 				
 				saveConfig();
 				
@@ -2609,7 +2688,7 @@ event.setCancelled(true);
 
 if(event.getInventory().contains(Material.GLOWSTONE)){
     
-	if(Clan_1.contains(player.getName())){
+	if(Air.contains(player.getName())){
 	
 		if(player.getInventory().contains(Material.GLOWSTONE, 8)){
 		
@@ -2617,9 +2696,9 @@ if(event.getInventory().contains(Material.GLOWSTONE)){
 	 
 	player.updateInventory();
 	
-	config.set("Clan_1.Admin.Ballance", (Integer)config.get("Clan_1.Admin.Ballance") + 600 );
+	config.set("Air.Admin.Ballance", (Integer)config.get("Air.Admin.Ballance") + 600 );
 	
-	config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") + (600 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+	config.set("Air.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Air.Players." + player.getName().toString() + ".Bal") + (600 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 	
 	saveConfig();
 	
@@ -2628,7 +2707,7 @@ if(event.getInventory().contains(Material.GLOWSTONE)){
 	
 	if(event.getInventory().contains(Material.GLOWSTONE)){
 	    
-		if(Clan_2.contains(player.getName())){
+		if(Earth.contains(player.getName())){
 		
 			if(player.getInventory().contains(Material.GLOWSTONE, 8)){
 			
@@ -2636,9 +2715,9 @@ if(event.getInventory().contains(Material.GLOWSTONE)){
 		 
 		player.updateInventory();
 		
-		config.set("Clan_2.Admin.Ballance", (Integer)config.get("Clan_2.Admin.Ballance") + 600);
+		config.set("Earth.Admin.Ballance", (Integer)config.get("Earth.Admin.Ballance") + 600);
 		
-		config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") + (600 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+		config.set("Earth.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Earth.Players." + player.getName().toString() + ".Bal") + (600 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 		
 		saveConfig();
 		
@@ -2648,7 +2727,7 @@ if(event.getInventory().contains(Material.GLOWSTONE)){
 		
 		if(event.getInventory().contains(Material.GLOWSTONE)){
 		    
-			if(Clan_3.contains(player.getName())){
+			if(Water.contains(player.getName())){
 			
 				if(player.getInventory().contains(Material.GLOWSTONE, 8)){
 				
@@ -2656,9 +2735,9 @@ if(event.getInventory().contains(Material.GLOWSTONE)){
 			 
 			player.updateInventory();
 			
-			config.set("Clan_3.Admin.Ballance", (Integer)config.get("Clan_3.Admin.Ballance") + 600 );
+			config.set("Water.Admin.Ballance", (Integer)config.get("Water.Admin.Ballance") + 600 );
 			
-			config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") + (600 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+			config.set("Water.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Water.Players." + player.getName().toString() + ".Bal") + (600 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 			
 			saveConfig();
 			
@@ -2668,7 +2747,7 @@ if(event.getInventory().contains(Material.GLOWSTONE)){
 			
 			if(event.getInventory().contains(Material.GLOWSTONE)){
 			    
-				if(Clan_4.contains(player.getName())){
+				if(Fire.contains(player.getName())){
 				
 					if(player.getInventory().contains(Material.GLOWSTONE, 8)){
 					
@@ -2676,9 +2755,9 @@ if(event.getInventory().contains(Material.GLOWSTONE)){
 				 
 				player.updateInventory();
 				
-				config.set("Clan_4.Admin.Ballance", (Integer)config.get("Clan_4.Admin.Ballance") + 600 );
+				config.set("Fire.Admin.Ballance", (Integer)config.get("Fire.Admin.Ballance") + 600 );
 				
-				config.set("Clan_4.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_4.Players." + player.getName().toString() + ".Bal") + (600 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+				config.set("Fire.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Fire.Players." + player.getName().toString() + ".Bal") + (600 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 				
 				saveConfig();
 				
@@ -2696,7 +2775,7 @@ event.setCancelled(true);
 
 if(event.getInventory().contains(Material.BLAZE_ROD)){
     
-	if(Clan_1.contains(player.getName())){
+	if(Air.contains(player.getName())){
 	
 		if(player.getInventory().contains(Material.BLAZE_ROD, 8)){
 		
@@ -2704,9 +2783,9 @@ if(event.getInventory().contains(Material.BLAZE_ROD)){
 	 
 	player.updateInventory();
 	
-	config.set("Clan_1.Admin.Ballance", (Integer)config.get("Clan_1.Admin.Ballance") + 800 );
+	config.set("Air.Admin.Ballance", (Integer)config.get("Air.Admin.Ballance") + 800 );
 	
-	config.set("Clan_1.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_1.Players." + player.getName().toString() + ".Bal") + (800 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+	config.set("Air.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Air.Players." + player.getName().toString() + ".Bal") + (800 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 	
 	saveConfig();
 	
@@ -2715,7 +2794,7 @@ if(event.getInventory().contains(Material.BLAZE_ROD)){
 	
 	if(event.getInventory().contains(Material.BLAZE_ROD)){
 	    
-		if(Clan_2.contains(player.getName())){
+		if(Earth.contains(player.getName())){
 		
 			if(player.getInventory().contains(Material.BLAZE_ROD, 8)){
 			
@@ -2723,9 +2802,9 @@ if(event.getInventory().contains(Material.BLAZE_ROD)){
 		 
 		player.updateInventory();
 		
-		config.set("Clan_2.Admin.Ballance", (Integer)config.get("Clan_2.Admin.Ballance") + 800);
+		config.set("Earth.Admin.Ballance", (Integer)config.get("Earth.Admin.Ballance") + 800);
 		
-		config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") + (800 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+		config.set("Earth.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Earth.Players." + player.getName().toString() + ".Bal") + (800 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 		
 		saveConfig();
 		
@@ -2735,7 +2814,7 @@ if(event.getInventory().contains(Material.BLAZE_ROD)){
 		
 		if(event.getInventory().contains(Material.BLAZE_ROD)){
 		    
-			if(Clan_3.contains(player.getName())){
+			if(Water.contains(player.getName())){
 			
 				if(player.getInventory().contains(Material.BLAZE_ROD, 8)){
 				
@@ -2743,9 +2822,9 @@ if(event.getInventory().contains(Material.BLAZE_ROD)){
 			 
 			player.updateInventory();
 			
-			config.set("Clan_3.Admin.Ballance", (Integer)config.get("Clan_3.Admin.Ballance") + 800 );
+			config.set("Water.Admin.Ballance", (Integer)config.get("Water.Admin.Ballance") + 800 );
 			
-			config.set("Clan_3.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_3.Players." + player.getName().toString() + ".Bal") + (800 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+			config.set("Water.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Water.Players." + player.getName().toString() + ".Bal") + (800 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 			
 			saveConfig();
 			
@@ -2755,7 +2834,7 @@ if(event.getInventory().contains(Material.BLAZE_ROD)){
 			
 			if(event.getInventory().contains(Material.BLAZE_ROD)){
 			    
-				if(Clan_4.contains(player.getName())){
+				if(Fire.contains(player.getName())){
 				
 					if(player.getInventory().contains(Material.BLAZE_ROD, 8)){
 					
@@ -2763,9 +2842,9 @@ if(event.getInventory().contains(Material.BLAZE_ROD)){
 				 
 				player.updateInventory();
 				
-				config.set("Clan_4.Admin.Ballance", (Integer)config.get("Clan_4.Admin.Ballance") + 800 );
+				config.set("Fire.Admin.Ballance", (Integer)config.get("Fire.Admin.Ballance") + 800 );
 				
-				config.set("Clan_2.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Clan_2.Players." + player.getName().toString() + ".Bal") + (800 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
+				config.set("Earth.Players." + player.getName().toString() + ".Bal", (Integer)config.get("Earth.Players." + player.getName().toString() + ".Bal") + (800 / (Integer)config.get("Clans.Shop.Sell.PayoutReturn")));
 				
 				saveConfig();
 				
